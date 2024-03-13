@@ -1,4 +1,7 @@
 using EuropeanContracts.Extentions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using EuropeanContracts.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
