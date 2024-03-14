@@ -1,6 +1,8 @@
 ﻿using EuropeanContracts.Infrastructure.Data.Constance;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EuropeanContracts.Infrastructure.Data.Models
 {
@@ -31,6 +33,11 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [MaxLength(DataValidationConstance.SupplierPhoneNumberMaxLength)]
         [Comment("Supplier company phone number")]
         public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required]
+        public string OwnerId { get; set; }
+        [ForeignKey(nameof(OwnerId))]
+        public IdentityUser Owner { get; set; } = null!;
 
         public IList<Offer> Offers { get; set; } = new List<Offer>();
     }

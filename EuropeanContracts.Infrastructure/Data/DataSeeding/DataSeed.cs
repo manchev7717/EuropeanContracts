@@ -6,10 +6,6 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
     {
         private ActionType SellActionType { get; set; } = null!;
         private ActionType RentActionType { get; set; } = null!;
-        private Offer Offer { get; set; } = null!;
-        private Offer FirstOffer { get; set; } = null!;
-        private Offer SecondOffer { get; set; } = null!;
-        private Offer ThirdOffer { get; set; } = null!;
         private SupplierCompany FirstSupplierCompany{ get; set; } = null!;
         private SupplierCompany SecondSupplierCompany{ get; set; } = null!;
         private SupplierCompany ThirdSupplierCompany{ get; set; } = null!;
@@ -24,6 +20,10 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         private Truck ThirdTruck { get; set; } = null!;
         private TransportCompany FirstTransportCompany { get; set; } = null!;
         private TransportCompany SecondTransportCompany { get; set; } = null!;
+        private Offer Offer { get; set; } = null!;
+        private Offer FirstOffer { get; set; } = null!;
+        private Offer SecondOffer { get; set; } = null!;
+        private Offer ThirdOffer { get; set; } = null!;
 
 
     }
