@@ -13,6 +13,10 @@
         public const int OfferProductQuantityMaxValue = int.MaxValue;
         public const decimal OfferProductPriceMinValue = 0.00m;
         public const decimal OfferProductPriceMaxValue = decimal.MaxValue;
+        public const int OfferProductLoadingAddressMinValue = 2;
+        public const int OfferProductLoadingAddressMaxLength = 50;
+        public const int OfferProductLoadingCountryMinValue = 2;
+        public const int OfferProductLoadingCountryMaxLength = 50;
 
         public const int SupplierNameMinLength = 1;
         public const int SupplierNameMaxLength = 50;

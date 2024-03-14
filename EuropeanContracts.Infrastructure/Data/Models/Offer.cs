@@ -36,6 +36,16 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public string ProductImageURL { get; set; } = string.Empty;
 
         [Required]
+        [MaxLength(DataValidationConstance.OfferProductLoadingCountryMaxLength)]
+        [Comment("Loading Country")]
+        public string LoadingCountry { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(DataValidationConstance.OfferProductLoadingAddressMaxLength)]
+        [Comment("Loadring address")]
+        public string LoadingAddress { get; set; } = string.Empty;
+
+        [Required]
         [Comment("Product temperature requirement")]
         public bool IsTemperatureControlNeeded { get; set; }
         [Comment("Is the contract concluded")]
