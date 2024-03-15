@@ -10,7 +10,6 @@ namespace EuropeanContracts.Infrastructure.Data.Models
     [Index(nameof(Name), nameof(Country), IsUnique = true)]
     public class TransportCompany
     {
-
         [Key]
         [Comment("Transport company identifier")]
         public int Id { get; set; }
@@ -36,6 +35,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        [Comment("Owner identifier")]
         public string OwnerId { get; set; } = string.Empty;
         [ForeignKey(nameof(OwnerId))]
         public IdentityUser Owner { get; set; } = null!;

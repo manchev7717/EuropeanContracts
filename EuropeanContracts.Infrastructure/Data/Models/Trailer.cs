@@ -16,13 +16,17 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [Comment("Trailer make")]
         public string Make { get; set; } = string.Empty;
 
+        [Comment("Trailer image URL")]
+        public string? TrailerImageURL { get; set; }
+
         [Required]
         [Comment("Is there temperature control")]
         public bool HasTemperatureControl { get; set; }
 
-        public int OwnerId { get; set; }
-
-        [ForeignKey(nameof(OwnerId))]
-        public TransportCompany Owner { get; set; } = null!;
+        [Required]
+        [Comment("Owner identifier")]
+        public int TransportCompanyId { get; set; }
+        [ForeignKey(nameof(TransportCompanyId))]
+        public TransportCompany TransportCompany { get; set; } = null!;
     }
 }

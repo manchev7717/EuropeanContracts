@@ -1,4 +1,5 @@
-﻿using EuropeanContracts.Infrastructure.Data.Models;
+﻿using EuropeanContracts.Infrastructure.Data.DataSeeding;
+using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,7 +9,15 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Trailer> builder)
         {
-            throw new NotImplementedException();
+            var data = new DataSeed();
+
+            builder
+                .HasData(new Trailer[]
+                {
+                    data.FirstTrailer,
+                    data.SecondTrailer,
+                    data.ThirdTrailer
+                });
         }
     }
 }

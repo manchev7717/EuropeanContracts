@@ -20,6 +20,7 @@ namespace EuropeanContracts.Extentions
             services.AddDbContext<EuropeanContractsDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
+                options.EnableSensitiveDataLogging();
             });
 
             services.AddScoped<IRepository, Repository>();

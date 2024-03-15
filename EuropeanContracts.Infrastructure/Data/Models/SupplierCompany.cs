@@ -35,7 +35,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
-        public string OwnerId { get; set; }
+        public string OwnerId { get; set; } = string.Empty!;
         [ForeignKey(nameof(OwnerId))]
         public IdentityUser Owner { get; set; } = null!;
 

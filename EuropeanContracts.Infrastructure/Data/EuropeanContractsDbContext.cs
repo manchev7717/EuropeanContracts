@@ -29,14 +29,15 @@ namespace EuropeanContracts.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfiguration( new RecipientCompanyConfiguration());
-            //builder.ApplyConfiguration( new SupplierCompanyConfiguration());
-            //builder.ApplyConfiguration( new TransportCompanyConfiguration());
-            //builder.ApplyConfiguration( new ActionTypeConfiguration());
-            //builder.ApplyConfiguration( new OfferConfiguration());
-            //builder.ApplyConfiguration( new TrailerConfiguration());
-            //builder.ApplyConfiguration( new TruckConfiguration());
-            
+            builder.ApplyConfiguration(new IdentityUserConfiguration());
+            builder.ApplyConfiguration(new ActionTypeConfiguration());
+            builder.ApplyConfiguration(new TransportCompanyConfiguration());
+            builder.ApplyConfiguration(new SupplierCompanyConfiguration());
+            builder.ApplyConfiguration(new RecipientCompanyConfiguration());
+            builder.ApplyConfiguration(new TrailerConfiguration());
+            builder.ApplyConfiguration(new TruckConfiguration());
+            builder.ApplyConfiguration(new OfferConfiguration());
+
             base.OnModelCreating(builder);
         }
 

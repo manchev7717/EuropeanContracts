@@ -4,6 +4,7 @@ using EuropeanContracts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuropeanContracts.Infrastructure.Migrations
 {
     [DbContext(typeof(EuropeanContractsDbContext))]
-    partial class EuropeanContractsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240315171953_DataValidationChanged")]
+    partial class DataValidationChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,26 +49,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("ActionsTypes");
 
                     b.HasComment("Тhe action we can do with the product");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "The amount is the purchase price of the goods and is in euros",
-                            Name = "Sale"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Тhe price is for one month of use and is in euros",
-                            Name = "Rent"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Тhe price is for transport the cargo to the delivery address and is in euros",
-                            Name = "Transportation"
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Offer", b =>
@@ -170,58 +152,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("Offers");
 
                     b.HasComment("Offer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ActionTypeId = 1,
-                            IsDelivered = false,
-                            IsTemperatureControlNeeded = true,
-                            LoadingAddress = "Badajoz, str. C.Jose.Caldito Ruiz 50",
-                            LoadingCountry = "Spain",
-                            ProductDescription = "The amount is the purchase price of the goods and is in euros",
-                            ProductImageURL = "~/images/ProductImages/FreshPorkMeat.png",
-                            ProductName = "Pork Meat",
-                            ProductPrice = 102504m,
-                            ProductQuantity = 19840,
-                            PublicationDay = new DateTime(2024, 3, 15, 19, 50, 50, 72, DateTimeKind.Local).AddTicks(3405),
-                            SupplierId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ActionTypeId = 3,
-                            AddressOfDestination = "Burgas,Lozovo district, str.Ruzha 1",
-                            CountryOfDestination = "Bulgaria",
-                            IsDelivered = false,
-                            IsTemperatureControlNeeded = false,
-                            LoadingAddress = "Foggia, str. Via Daniele Manin 14",
-                            LoadingCountry = "Italy",
-                            ProductDescription = "Тhe price is for transport the cargo to the delivery address and is in euros",
-                            ProductImageURL = "~/images/ProductImages/PlasticWaste.png",
-                            ProductName = "Plastic waste",
-                            ProductPrice = 4200m,
-                            ProductQuantity = 17800,
-                            PublicationDay = new DateTime(2024, 3, 15, 19, 50, 50, 72, DateTimeKind.Local).AddTicks(3407),
-                            SupplierId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ActionTypeId = 2,
-                            IsDelivered = false,
-                            IsTemperatureControlNeeded = false,
-                            LoadingAddress = "Vienna, str. Sindelargasse 17",
-                            LoadingCountry = "Austria",
-                            ProductDescription = "Тhe price is for one month of use and is in euros",
-                            ProductImageURL = "~/images/ProductImages/ScaffoldingMaterials.png",
-                            ProductName = "Scaffolding material",
-                            ProductPrice = 3500m,
-                            ProductQuantity = 19900,
-                            PublicationDay = new DateTime(2024, 3, 15, 19, 50, 50, 72, DateTimeKind.Local).AddTicks(3409),
-                            SupplierId = 1
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.RecipientCompany", b =>
@@ -271,35 +201,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("RecipientsCompanies");
 
                     b.HasComment("Recipient company");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Charleroi, str. Rue de Marcinelle 50",
-                            Country = "Belgium",
-                            Name = "Global workers",
-                            OwnerId = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
-                            PhoneNumber = "+3265689899852"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Lyon, str. Rue Domer 12",
-                            Country = "France",
-                            Name = "LeDecale Boutique",
-                            OwnerId = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
-                            PhoneNumber = "+332566985556140"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Florence, str. Via Madonna Della Querce 4",
-                            Country = "Italy",
-                            Name = "SmartSolutions",
-                            OwnerId = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
-                            PhoneNumber = "+3900125221287"
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.SupplierCompany", b =>
@@ -349,35 +250,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("SuppliersCompanies");
 
                     b.HasComment("Supplier company of product");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Thessaloniki, str. Perdika 10",
-                            Country = "Greece",
-                            Name = "SmartSolutions",
-                            OwnerId = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
-                            PhoneNumber = "+0030695422154"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Vienna, str. LowelStrasse 69",
-                            Country = "Austria",
-                            Name = "MDY Tools",
-                            OwnerId = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
-                            PhoneNumber = "+4368782664400"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Barcelona, str. Carrer Cruspinera 3",
-                            Country = "Spain",
-                            Name = "Stay Fly",
-                            OwnerId = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
-                            PhoneNumber = "+342244501136"
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Trailer", b =>
@@ -413,32 +285,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("Trailers");
 
                     b.HasComment("Trailer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HasTemperatureControl = true,
-                            Make = "Kodel",
-                            TrailerImageURL = "~/Images/TrailersImages/Kogel",
-                            TransportCompanyId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HasTemperatureControl = false,
-                            Make = "Krone",
-                            TrailerImageURL = "~/Images/TrailersImages/Krone",
-                            TransportCompanyId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            HasTemperatureControl = true,
-                            Make = "Schmitz Cargobull",
-                            TrailerImageURL = "~/Images/TrailersImages/SchmitzCargobull",
-                            TransportCompanyId = 2
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.TransportCompany", b =>
@@ -489,26 +335,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("TransportsCompanies");
 
                     b.HasComment("Transport company of goods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Varna, str. Popovi livadi 99",
-                            Country = "Bulgaria",
-                            Name = "NG TRANS",
-                            OwnerId = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
-                            PhoneNumber = "+3598897415202"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Kostanza, Strada Spiru Haret 42",
-                            Country = "Romania",
-                            Name = "VIOREL TRANS GROUP",
-                            OwnerId = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
-                            PhoneNumber = "+00407775987456."
-                        });
                 });
 
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Truck", b =>
@@ -560,41 +386,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("Trucks");
 
                     b.HasComment("Track");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HasCargoSpace = false,
-                            HasTemperatureControl = false,
-                            HorsePower = 450,
-                            Make = "DAF",
-                            Model = "XG+",
-                            TransportCompanyId = 1,
-                            TruckImageURL = "~/Images/TrackImages/DAF"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HasCargoSpace = false,
-                            HasTemperatureControl = false,
-                            HorsePower = 500,
-                            Make = "VOLVO",
-                            Model = "FX",
-                            TransportCompanyId = 2,
-                            TruckImageURL = "~/Images/TrackImages/VOLVO"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            HasCargoSpace = true,
-                            HasTemperatureControl = false,
-                            HorsePower = 510,
-                            Make = "SCANIA",
-                            Model = "R510",
-                            TransportCompanyId = 2,
-                            TruckImageURL = "~/Images/TrackImages/SCANIA"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -712,136 +503,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "570cd4c8-bb44-45da-85cf-7f9dc31ec7f7",
-                            Email = "firstUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "firstuser@mail.com",
-                            NormalizedUserName = "firstuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAECqpn3Elw03zlbH8LTEQTF+5h5bYyW24V+AGg4UfLWmI+w660z3D+GCa1smN9O7bpw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "51c92ccf-3f0b-4071-b0be-8c943fa66a7f",
-                            TwoFactorEnabled = false,
-                            UserName = "firstUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4bba0ea0-1aa4-4301-8915-43354207bef7",
-                            Email = "secondUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "seconduser@mail.com",
-                            NormalizedUserName = "seconduser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJiXnBoONGexG5Ji/3FnhhLseoVbpGG9yGj6pbAhCHnBh+3O0UaL6GlZo8z1Ov7RIA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2bbe57bd-b5fc-41fa-ab3e-b8d7e6c8cf9b",
-                            TwoFactorEnabled = false,
-                            UserName = "secondUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0bced349-6c62-4715-a2d2-a0e4bedf995f",
-                            Email = "thirdUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "thirduser@mail.com",
-                            NormalizedUserName = "thirduser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA5+M6LgyCZnidCX7qDulb+g8HFhB4n9jwQmz1sO6mTOz3CoqvlX3k/A+gHMF/DVCg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6a1219f6-50be-48da-8474-40da62d55054",
-                            TwoFactorEnabled = false,
-                            UserName = "thirdUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "7834771d-180b-454a-a082-0c1009087c4f",
-                            Email = "fourthUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "fourthuser@mail.com",
-                            NormalizedUserName = "fourthuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIQ2auWRgiw4HH/p+s7cbWwBUobJhmOjty072XYr32W1aJVswlJRrCOXS1WiiJydsQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "cdaa8c53-752c-4c61-b858-efef37e39ae2",
-                            TwoFactorEnabled = false,
-                            UserName = "fourthUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c1e71e9-c131-4fed-a2df-d3688b835bcb",
-                            Email = "fifthUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "fifthuser@mail.com",
-                            NormalizedUserName = "fifthuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEDhlCEW4eaTwkjOQB19ygYEquxT5icsq2sZ9GJW8jYEEzD5Z+DKcluky+U96t/lyw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6f72bc18-4511-4ed9-94f7-0d342513c488",
-                            TwoFactorEnabled = false,
-                            UserName = "fifthUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "57182430-2609-4219-9f3b-d94d58f756ea",
-                            Email = "sixthUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "sixthuser@mail.com",
-                            NormalizedUserName = "sixthuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEyAB/rIgHaJ5fjpocfGo9KEWITxKaUPZv3BbaF9aYsYaktkjBiP5DcvprMC/Cx5bA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "bae3c031-8d6b-473e-83ec-4e9202e8a884",
-                            TwoFactorEnabled = false,
-                            UserName = "sixthUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "90422df1-282d-4032-a9e1-f0263825f2c7",
-                            Email = "seventhuser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "seventhUser@mail.com",
-                            NormalizedUserName = "seventhuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKXao74RMTfKyHC/ER1TaW0uHohBPUHXQN7co1T7z7GbjnILXa2oFMoBV9Dl11aj4A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "aeb71576-6c5e-4319-84d5-518e4e044311",
-                            TwoFactorEnabled = false,
-                            UserName = "seventhUser@mail.com"
-                        },
-                        new
-                        {
-                            Id = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff4724c4-f236-4948-bad0-68244ee5872a",
-                            Email = "eighthUser@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "eighthuser@mail.com",
-                            NormalizedUserName = "eighthuser@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG/qEHy5Wja8oMQpFV1EIsMKXMA0mZthe6hJjDkakn7OT9Gc2dqUfeOI6TMEmfNPAg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "899620af-af17-4f44-ae7d-8cb09c667a6d",
-                            TwoFactorEnabled = false,
-                            UserName = "eighthUser@mail.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

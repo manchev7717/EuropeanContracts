@@ -27,15 +27,21 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [Comment("Truck horse power")]
         public int HorsePower { get; set; }
 
+        [Comment("Track image URL")]
+        public string? TruckImageURL { get; set; }
+
         [Required]
         [Comment("Is there in truck cargo space")]
         public bool HasCargoSpace { get; set; }
 
-        public int OwnerId { get; set; }
-        [ForeignKey(nameof(OwnerId))]
-        public TransportCompany Owner { get; set; } = null!;
+        [Required]
+        [Comment("Is there temperature control")]
+        public bool HasTemperatureControl { get; set; }
 
-
-
+        [Required]
+        [Comment("Owner identifier")]
+        public int TransportCompanyId { get; set; }
+        [ForeignKey(nameof(TransportCompanyId))]
+        public TransportCompany TransportCompany { get; set; } = null!;
     }
 }

@@ -7,18 +7,19 @@ namespace EuropeanContracts.Infrastructure.Data.Models
     [Comment("Тhe action we can do with the product")]
     public class ActionType
     {
+        [Key]
         [Comment("Action identifier")]
         public int Id { get; set; }
 
-        [Comment("Name of action")]
         [Required]
         [MaxLength(DataValidationConstance.ActionTypeNameMaxLength)]
+        [Comment("Name of action")]
         public string Name { get; set; } = string.Empty;
 
-        [Comment("Action type additional description")]
         [MaxLength(DataValidationConstance.ActionTypeDescriptionMaxLength)]
+        [Comment("Action type additional description")]
         public string? Description { get; set; }
 
-        public IList<Offer> Products { get; set; } = new List<Offer>();
+        public IList<Offer> Offer { get; set; } = new List<Offer>();
     }
 }
