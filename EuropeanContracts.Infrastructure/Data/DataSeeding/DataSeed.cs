@@ -84,9 +84,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
                 UserName = "firstUser@mail.com",
-                NormalizedUserName = "firstuser@mail.com",
+                NormalizedUserName = "FIRSTUSER@MAIL.COM",
                 Email = "firstUser@mail.com",
-                NormalizedEmail = "firstuser@mail.com"
+                NormalizedEmail = "FIRSTUSER@MAIL.COM"
             };
             FirstUser.PasswordHash = hasher.HashPassword(FirstUser, "123456ABC");
 
@@ -94,9 +94,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
                 UserName = "secondUser@mail.com",
-                NormalizedUserName = "seconduser@mail.com",
+                NormalizedUserName = "SECONDUSER@MAIL.COM",
                 Email = "secondUser@mail.com",
-                NormalizedEmail = "seconduser@mail.com"
+                NormalizedEmail = "SECONDUSER@MAIL.COM"
             };
             SecondUser.PasswordHash = hasher.HashPassword(SecondUser, "123456CBA");
 
@@ -104,9 +104,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
                 UserName = "thirdUser@mail.com",
-                NormalizedUserName = "thirduser@mail.com",
+                NormalizedUserName = "THIRDUSER@MAIL.COM",
                 Email = "thirdUser@mail.com",
-                NormalizedEmail = "thirduser@mail.com"
+                NormalizedEmail = "THIRDUSER@MAIL.COM"
             };
             ThirdUser.PasswordHash = hasher.HashPassword(ThirdUser, "654321ABC");
 
@@ -114,9 +114,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
                 UserName = "fourthUser@mail.com",
-                NormalizedUserName = "fourthuser@mail.com",
+                NormalizedUserName = "FOURTHUSER@MAIL.COM",
                 Email = "fourthUser@mail.com",
-                NormalizedEmail = "fourthuser@mail.com"
+                NormalizedEmail = "FOURTHUSER@MAIL.COM"
             };
             FourthUser.PasswordHash = hasher.HashPassword(FourthUser, "987654FOUR");
 
@@ -124,9 +124,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
                 UserName = "fifthUser@mail.com",
-                NormalizedUserName = "fifthuser@mail.com",
+                NormalizedUserName = "FIFTHUSER@MAIL.COM",
                 Email = "fifthUser@mail.com",
-                NormalizedEmail = "fifthuser@mail.com"
+                NormalizedEmail = "FIFTHUSER@MAIL.COM"
             };
             FifthUser.PasswordHash = hasher.HashPassword(FifthUser, "987654FIVE");
 
@@ -134,9 +134,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
                 UserName = "sixthUser@mail.com",
-                NormalizedUserName = "sixthuser@mail.com",
+                NormalizedUserName = "SIXTHUSER@MAIL.COM",
                 Email = "sixthUser@mail.com",
-                NormalizedEmail = "sixthuser@mail.com"
+                NormalizedEmail = "SIXTHUSER@MAIL.COM"
             };
             SixthUser.PasswordHash = hasher.HashPassword(SixthUser, "987654SIX");
 
@@ -144,9 +144,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
                 UserName = "seventhUser@mail.com",
-                NormalizedUserName = "seventhuser@mail.com",
+                NormalizedUserName = "SEVENTHUSER@MAIL.COM",
                 Email = "seventhuser@mail.com",
-                NormalizedEmail = "seventhUser@mail.com"
+                NormalizedEmail = "SEVENTHUSER@MAIL.COM"
             };
             SeventhUser.PasswordHash = hasher.HashPassword(SeventhUser, "987654SEVEN");
 
@@ -154,9 +154,9 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             {
                 Id = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
                 UserName = "eighthUser@mail.com",
-                NormalizedUserName = "eighthuser@mail.com",
+                NormalizedUserName = "EIGHTHUSER@MAIL.COM",
                 Email = "eighthUser@mail.com",
-                NormalizedEmail = "eighthuser@mail.com"
+                NormalizedEmail = "EIGHTHUSER@MAIL.COM"
             };
             EighthUser.PasswordHash = hasher.HashPassword(EighthUser, "987654EIGHT");
         }
@@ -258,7 +258,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "XG+",
                 HorsePower = 450,
                 HasCargoSpace = false,
-                TruckImageURL = "~/Images/TrackImages/DAF",
+                TruckImageURL = "/Images/TruckImages/DAF.png",
                 TransportCompanyId = FirstTransportCompany.Id
             };
 
@@ -269,7 +269,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "FX",
                 HorsePower = 500,
                 HasCargoSpace = false,
-                TruckImageURL = "~/Images/TrackImages/VOLVO",
+                TruckImageURL = "/Images/TruckImages/VOLVO.png",
                 TransportCompanyId = SecondTransportCompany.Id
             };
 
@@ -280,7 +280,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "R510",
                 HorsePower = 510,
                 HasCargoSpace = true,
-                TruckImageURL = "~/Images/TrackImages/SCANIA",
+                TruckImageURL = "/Images/TruckImages/SCANIA.png",
                 TransportCompanyId = SecondTransportCompany.Id
             };
         }
@@ -291,7 +291,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Id = 1,
                 TransportCompanyId = FirstTransportCompany.Id,
                 Make = "Kodel",
-                TrailerImageURL = "~/Images/TrailersImages/Kogel",
+                TrailerImageURL = "/Images/TrailerImages/Kogel.png",
                 HasTemperatureControl = true,
             };
 
@@ -300,7 +300,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Id = 2,
                 TransportCompanyId = FirstTransportCompany.Id,
                 Make = "Krone",
-                TrailerImageURL = "~/Images/TrailersImages/Krone",
+                TrailerImageURL = "/Images/TrailerImages/Krone.png",
                 HasTemperatureControl = false,
             };
 
@@ -309,7 +309,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Id = 3,
                 TransportCompanyId = SecondTransportCompany.Id,
                 Make = "Schmitz Cargobull",
-                TrailerImageURL = "~/Images/TrailersImages/SchmitzCargobull",
+                TrailerImageURL = "/Images/TrailerImages/SchmitzCargobull.png",
                 HasTemperatureControl = true,
             };
         }
@@ -322,7 +322,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductQuantity = 19840,
                 ProductPrice = 102504,
                 ProductDescription = SellActionType.Description,
-                ProductImageURL = "~/images/ProductImages/FreshPorkMeat.png",
+                ProductImageURL = "/Images/ProductImages/FreshPorkMeat.png",
                 LoadingCountry = "Spain",
                 LoadingAddress = "Badajoz, str. C.Jose.Caldito Ruiz 50",
                 PublicationDay = DateTime.Now,
@@ -338,7 +338,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductQuantity = 17800,
                 ProductPrice = 4200,
                 ProductDescription= TransportationActionType.Description,
-                ProductImageURL = "~/images/ProductImages/PlasticWaste.png",
+                ProductImageURL = "/Images/ProductImages/PlasticWaste.png",
                 LoadingCountry = "Italy",
                 LoadingAddress = "Foggia, str. Via Daniele Manin 14",
                 CountryOfDestination = "Bulgaria",
@@ -356,7 +356,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductQuantity = 19900,
                 ProductPrice = 3500,
                 ProductDescription = RentActionType.Description,
-                ProductImageURL = "~/images/ProductImages/ScaffoldingMaterials.png",
+                ProductImageURL = "/Images/ProductImages/ScaffoldingMaterials.png",
                 LoadingCountry = "Austria",
                 LoadingAddress = "Vienna, str. Sindelargasse 17",
                 PublicationDay = DateTime.Now,

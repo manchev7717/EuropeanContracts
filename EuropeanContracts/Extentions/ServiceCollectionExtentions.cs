@@ -1,4 +1,6 @@
-﻿using EuropeanContracts.Data;
+﻿using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.Services;
+using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ namespace EuropeanContracts.Extentions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-
+            services.AddScoped<IOfferService, OfferService>();
             return services;
         }
 

@@ -1,10 +1,11 @@
-﻿using EuropeanContracts.Models;
+﻿using EuropeanContracts.Controllers.Base;
+using EuropeanContracts.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace EuropeanContracts.Controllers
+namespace EuropeanContracts.Controllers.Home
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
