@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Information";
+}
+<h2 class="text-center alert-primary">
+    Information about you opportunities
+</h2>
+<div class="alert-info" style="margin-top:20px ">
+    <h4>
+        If you want to sell, rent or otherwise, register with us:
+    </h4>
+    <h5>
+        - you can create and delete offers
+        <br />
+        - you can create types of actions corresponding to the needs of your economic activity
+    </h5>
+    <br />
+    <div class="text-center">
+        <a class="btn-primary btn " asp-action="Add" asp-controller="SupplierCompany">Become Supplier</a>
+    </div>
+    <hr class="border-primary"/>
+</div>
+<div class="alert-info" style="margin-top:20px">
+    <h4>
+        If you are a transport company looking for cargo, register with us:
+    </h4>
+    <h5>
+        - you can accept transport
+        <br />
+        - you can add trucks and trailers with temperature control or not
+    </h5>
+    <br />
+    <div class="text-center">
+        <a class="btn-primary btn" asp-action="Add" asp-controller="TransportCompany">Become Transporter</a>
+    </div>
+    <hr class="border-primary"/>
+</div>
+<div class ="alert-info" style="margin-top:20px">
+    <h4>
+        If you want to buy, use
+        or other action and you liked an offer - register with us:
+    </h4>
+    <h5>
+        - you can accept an offer corresponding to the needs of your economic activity
+        <br />
+        - you can confirm receipt of the goods and finalize the contract
+    </h5>
+    <br />
+    <div class="text-center">
+        <a class="btn-primary btn" asp-action="Add" asp-controller="RecipientCompany">Become Recipient</a>
+    </div>
+    <hr class="border-primary" />
+</div>

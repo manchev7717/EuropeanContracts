@@ -3,7 +3,6 @@ using EuropeanContracts.Core.Models;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Immutable;
 
 namespace EuropeanContracts.Core.Services
 {
