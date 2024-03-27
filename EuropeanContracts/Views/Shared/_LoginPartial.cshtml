@@ -1,10 +1,21 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject ISupplierCompanyService supplierService
+@inject IRecipientCompanyService recipientService
+@inject ITransportCompanyService transporterService
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        if ((await supplierService.FindSupplierByIdAsync(User.Id())) == false &&
+            (await transporterService.FindTransporterByIdAsync(User.Id())) == false &&
+            (await recipientService.FindRecipientByIdAsync(User.Id())) == false)
+        {
+            <li class="nav-item">
+                <a class="btn btn-outline-info" asp-area="" asp-controller="Home" asp-action="Information">Information</a>
+            </li>
+        }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>

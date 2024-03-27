@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers.Base
 {
-    //[Authorize]
+    [Authorize]
     public class BaseController : Controller
     {
         

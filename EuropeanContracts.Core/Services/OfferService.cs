@@ -1,5 +1,5 @@
 ﻿using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.Models;
+using EuropeanContracts.Core.ServiceViewModels.Offer;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;

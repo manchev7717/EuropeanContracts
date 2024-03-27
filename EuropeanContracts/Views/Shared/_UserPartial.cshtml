@@ -1,13 +1,31 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject ITransportCompanyService transportService
+@inject ITransportCompanyService recipientService
+@inject ISupplierCompanyService supplierService
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="btn btn-outline-info" asp-area="" asp-controller="Home" asp-action="Information">Information</a>
-        </li>
-    </ul>
-}
+<li class="navbar-text-light">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (await transportService.FindTransporterByIdAsync(User.Id()))
+        {
+            <b>
+                TRANSPORT COMPANY:"@await transportService.ReturnTransporterName(User.Id())"
+            </b>
 
-    
+        }
+        if (await recipientService.FindTransporterByIdAsync(User.Id()))
+        {
+            <b>
+                RECIPIENT COMPANY:"@await recipientService.ReturnTransporterName(User.Id())"
+            </b>
+        }
+        if (await supplierService.FindSupplierByIdAsync(User.Id()))
+        {
+            <b>
+                SUPPLIER COMPANY: "@await supplierService.ReturnSupplierName(User.Id())"
+            </b>
+        }
+    }
+</li>

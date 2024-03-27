@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EuropeanContracts.Core.Models
+namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {
     public class AllOfferViewModel
     {
@@ -17,7 +17,7 @@ namespace EuropeanContracts.Core.Models
         public string? ActionType { get; set; } = null;
 
         [Display(Name = "From Country")]
-        public IEnumerable<string> CountriesOfOrigin { get; set; } = new List<String>();
+        public IEnumerable<string> CountriesOfOrigin { get; set; } = new List<string>();
 
         public string? Country { get; set; } = null;
 

@@ -1,7 +1,6 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.Models;
-using Microsoft.AspNetCore.Authorization;
+using EuropeanContracts.Core.ServiceViewModels.Offer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers.Offer

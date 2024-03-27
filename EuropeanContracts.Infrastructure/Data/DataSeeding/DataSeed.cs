@@ -197,7 +197,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             FirstSupplierCompany = new SupplierCompany()
             {
                 Id = 1,
-                Name = "SmartSolutions",
+                Name = "Smart Elinas LTD",
                 Country = "Greece",
                 Address = "Thessaloniki, str. Perdika 10",
                 PhoneNumber = "+0030695422154",

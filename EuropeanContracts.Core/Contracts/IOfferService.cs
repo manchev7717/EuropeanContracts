@@ -1,4 +1,4 @@
-﻿using EuropeanContracts.Core.Models;
+﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
 
 namespace EuropeanContracts.Core.Contracts
 {
