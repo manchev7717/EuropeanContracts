@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 @inject ITransportCompanyService transportService
-@inject ITransportCompanyService recipientService
+@inject IRecipientCompanyService recipientService
 @inject ISupplierCompanyService supplierService
 
 <li class="navbar-text-light">
@@ -15,10 +15,10 @@
             </b>
 
         }
-        if (await recipientService.FindTransporterByIdAsync(User.Id()))
+        if (await recipientService.FindRecipientByIdAsync(User.Id()))
         {
             <b>
-                RECIPIENT COMPANY:"@await recipientService.ReturnTransporterName(User.Id())"
+                RECIPIENT COMPANY:"@await recipientService.ReturnRecipientName(User.Id())"
             </b>
         }
         if (await supplierService.FindSupplierByIdAsync(User.Id()))

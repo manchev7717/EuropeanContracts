@@ -1,34 +1,33 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ErrorMessageAndConstance;
-using EuropeanContracts.Core.ServiceViewModels.SupplierCompany;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
-{ 
-    public class SupplierCompanyController : BaseController
+{
+    public class TransportCompanyController : BaseController
     {
-        private readonly ISupplierCompanyService supplierCompanyService;
+        private readonly ITransportCompanyService transportCompanyService;
 
-        public SupplierCompanyController(ISupplierCompanyService supplierCompanyService)
+        public TransportCompanyController(ITransportCompanyService transportCompanyService)
         {
-            this.supplierCompanyService = supplierCompanyService;
+            this.transportCompanyService = transportCompanyService;
         }
-
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new AddSupplierCompanyModel();
+            var model = new AddTransportCompanyModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddSupplierCompanyModel model)
+        public async Task<IActionResult> Add(AddTransportCompanyModel model)
         {
-            if (await supplierCompanyService.IsSupplierExists(model.Country,model.Name))
+            if (await transportCompanyService.IsTransporterExists(model.Country, model.Name))
             {
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);
@@ -38,7 +37,7 @@ namespace EuropeanContracts.Controllers
                 return View(model);
             }
 
-            var supplierToAdd = new SupplierCompany()
+            var transporterToAdd = new TransportCompany()
             {
                 Name = model.Name,
                 Country = model.Country,
@@ -47,9 +46,9 @@ namespace EuropeanContracts.Controllers
                 OwnerId = User.Id()
             };
 
-            await supplierCompanyService.AddAsync(supplierToAdd);
+            await transportCompanyService.AddAsync(transporterToAdd);
 
-            return RedirectToAction("Index","Home"); 
+            return RedirectToAction("Index", "Home");
         }
     }
 }

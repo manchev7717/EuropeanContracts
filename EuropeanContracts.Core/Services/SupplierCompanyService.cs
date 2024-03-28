@@ -15,8 +15,8 @@ namespace EuropeanContracts.Core.Services
 
         public async Task AddAsync(SupplierCompany model)
         {
-             await repository.AddAsync(model);
-             await repository.SaveChangesAsync();
+            await repository.AddAsync(model);
+            await repository.SaveChangesAsync();
         }
 
         public async Task<bool> FindSupplierByIdAsync(string userId)

@@ -28,7 +28,7 @@ namespace EuropeanContracts.Infrastructure.Comman
         }
         public async Task AddAsync<T>(T entity) where T : class
         {
-            await dbContext.Set<T>()
+            await GetDbSet<T>()
                 .AddAsync(entity);                
         }
 

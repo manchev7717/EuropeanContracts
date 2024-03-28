@@ -16,7 +16,7 @@ namespace EuropeanContracts.Core.Services
         public async Task<bool> FindRecipientByIdAsync(string userId)
         {
             return await repository.AllReadOnly<RecipientCompany>()
-                .AnyAsync(r=>r.OwnerId == userId);
+                .AnyAsync(r => r.OwnerId == userId);
         }
 
         public async Task<string> ReturnRecipientName(string userId)
@@ -25,6 +25,18 @@ namespace EuropeanContracts.Core.Services
                  .FirstAsync(r => r.OwnerId == userId);
 
             return recipient.Name;
+        }
+        public async Task<bool> IsRecipientExists(string country, string name)
+        {
+            return await repository.AllReadOnly<RecipientCompany>()
+                .AnyAsync(s => s.Country == country && s.Name == name);
+        }
+
+        public async Task AddAsync(RecipientCompany model)
+        {
+            await repository.AddAsync(model);
+            await repository.SaveChangesAsync();
+
         }
     }
 }

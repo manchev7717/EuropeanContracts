@@ -2,36 +2,33 @@
 using EuropeanContracts.Infrastructure.Data.Constance;
 using System.ComponentModel.DataAnnotations;
 
-namespace EuropeanContracts.Core.ServiceViewModels.SupplierCompany
+namespace EuropeanContracts.Core.ServiceViewModels.Recipient
 {
-    public class AddSupplierCompanyModel
+    public class AddRecipientCompanyModel
     {
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
-        [StringLength(DataValidationConstance.SupplierNameMaxLength,
-            MinimumLength = DataValidationConstance.SupplierNameMinLength,
+        [StringLength(DataValidationConstance.RecipientNameMaxLength,
+            MinimumLength = DataValidationConstance.RecipientNameMinLength,
             ErrorMessage = ModelsErrorMessages.StringLengthtError)]
         public string Name { get; set; } = string.Empty;
 
-        
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         public string Country { get; set; } = string.Empty;
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
-        [StringLength(DataValidationConstance.SupplierAddressMaxLength,
-            MinimumLength = DataValidationConstance.SupplierAddressMinLength,
+        [StringLength(DataValidationConstance.RecipientAddressMaxLength,
+            MinimumLength = DataValidationConstance.RecipientAddressMinLength,
             ErrorMessage = ModelsErrorMessages.StringLengthtError)]
         public string Address { get; set; } = string.Empty;
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
-        [StringLength(DataValidationConstance.SupplierPhoneNumberMaxLength,
-            MinimumLength = DataValidationConstance.SupplierPhoneNumberMinLength,
+        [StringLength(DataValidationConstance.RecipientPhoneNumberMaxLength,
+            MinimumLength =DataValidationConstance.RecipientPhoneNumberMinLength,
             ErrorMessage = ModelsErrorMessages.StringLengthtError)]
-        [Display(Name = "Phone Number")]
-        [RegularExpression(ModelsErrorMessages.RegexPhonePattern,ErrorMessage = ModelsErrorMessages.RegexError)]
+        [Display(Name ="Phone number")]
+        [RegularExpression(ModelsErrorMessages.RegexPhonePattern, ErrorMessage = ModelsErrorMessages.RegexError)]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        public string OwnerId { get; set; } = string.Empty!;
-
-
+        public string OwnerId { get; set; } = string.Empty;
     }
 }
