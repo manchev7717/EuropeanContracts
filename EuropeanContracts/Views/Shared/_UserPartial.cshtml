@@ -17,6 +17,8 @@
                 <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllOffers">My offers </a>
                 <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllTrucks">My trucks </a>
                 <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllTrailers">My trailers </a>
+                <a class="btn btn-primary" asp-controller="Truck" asp-action="Add">Add truck </a>
+                <a class="btn btn-primary" asp-controller="Trailer" asp-action="Add">Add trailer </a>
             </div>
         }
         if (await recipientService.FindRecipientByIdAsync(User.Id()))

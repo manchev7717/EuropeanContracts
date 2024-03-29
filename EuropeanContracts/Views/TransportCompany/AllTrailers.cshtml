@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AllTrailersViewModel
 @{
+    ViewBag.Title = "Your truck";
 }
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<hr class="border border-primary border-2 opacity-75" />
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3 ">
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="IsTemperatureControlNeeded"></label>
+            <select asp-for="IsTemperatureControlNeeded" class="form-control" data-bs-toggle="dropdown">
+                <option value=""></option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-4">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (!Model.Trailers.Any())
+{
+    <h2 class="text-center">Not found trailer by the given criteria!</h2>
+}
+<div class="row text-centec">
+
+    @foreach (var treiler in Model.Trailers)
+    {
+        <partial name="_TrailerViewPartial" model="@treiler" />
+    }
+</div>
+@{
+    var nextPage = Model.CurrentPage + 1;
+    var previousPage = Model.CurrentPage - 1;
+    var maxPage = Math.Ceiling((double)Model.TotalTrailersCount / AllTrucksViewModel.TruckCountOnPage);
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Trailers.Any();
+
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+}
+<ul class="pagination justify-content-center" style="margin:20px 0">
+    <li class="page-item">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Offer"
+           asp-action="All"
+           asp-route-currentPage="@previousPage"
+           asp-route-isTemperatureControlNeeded="@(Model.IsTemperatureControlNeeded)">
+            Previous Page
+        </a>
+    </li>
+    <li class="page-link">@Model.CurrentPage</li>
+    <li class="page-item">
+        <a class="btn btn-primary @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="Offer"
+           asp-action="All"
+           asp-route-currentPage="@nextPage"
+           asp-route-isTemperatureControlNeeded="@(Model.IsTemperatureControlNeeded)">
+            Next Page
+        </a>
+    </li>
+</ul>
+<hr class="border border-primary border-2 opacity-75 " />

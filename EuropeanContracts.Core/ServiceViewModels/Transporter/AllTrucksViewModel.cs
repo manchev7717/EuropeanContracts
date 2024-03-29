@@ -10,8 +10,11 @@ namespace EuropeanContracts.Core.ServiceViewModels.Transporter
 
         public int TotalTruckCount { get; set; }
 
-        [Display(Name = "Is temperature control required")]
+        [Display(Name = "having temperature control ")]
         public string IsTemperatureControlNeeded { get; set; } = string.Empty;
+
+        [Display(Name = "having cargo space ")]
+        public string HasCargoSpace { get; set; } = string.Empty;
 
         public IEnumerable<TruckViewModel> Trucks { get; set; } = new List<TruckViewModel>();
 

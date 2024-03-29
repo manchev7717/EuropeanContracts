@@ -12,6 +12,15 @@ namespace EuropeanContracts.Core.Contracts
 
         Task<TransportCompany> FindTransporterByUserIdAsync(string userId);
 
-        Task<AllTrucksViewModel> AllTruckAsync(string isTemperatureNeeded,int currentPage, int truckPerPage, int transportCompanyId);
+        Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
+                                                string hasCargoSpace, 
+                                                int currentPage, 
+                                                int truckPerPage, 
+                                                int transportCompanyId);
+
+        Task<AllTrailersViewModel> AllTrailersAsync(string IsTemperatureControlNeeded,
+                                                    int CurrentPage,
+                                                    int TrailersCountOnPage,
+                                                    int transportCompanyId);
     }
 }
