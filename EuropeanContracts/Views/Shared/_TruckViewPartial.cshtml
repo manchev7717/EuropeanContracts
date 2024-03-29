@@ -1,0 +1,34 @@
+﻿@model TruckViewModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.TruckImageURL" alt="Product Image">
+        <div class="card-body text-center">
+            <h4>@Model.Make</h4>
+            <h6>Truck model: <b>@Model.Model</b></h6>
+            <h6>Horse power: <b>@Model.HorsePower</b> </h6>
+            <h6>Has cargo space: <b>@(Model.HasCargoSpace == true ? "Yes":"No" )</b> </h6>
+            <h6>Has temperature control: <b>@(Model.HasTemperatureControl ? "Yes" : "No")</b></h6>
+            <br />
+            <a asp-controller="TransportCompany" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-controller="TransportCompany" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            @* @if (this.User.Identity.IsAuthenticated)
+            {
+            <a asp-controller="Offer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+            <a asp-controller="Offer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a> <p></p>
+            @if (!Model.IsRented)
+            {
+            <form class="input-group-sm" asp-controller="Offer" asp-action="Rent" asp-route-id="@Model.Id" method="post">
+            <input class="btn btn-primary" type="submit" value="Rent" />
+            </form>
+            }
+            else
+            {
+            <form asp-controller="Offer" asp-action="Leave" asp-route-id="@Model.Id" method="post">
+            <input class="btn btn-primary" type="submit" value="Leave" />
+            </form>
+            }
+            } *@
+        </div>
+    </div>
+</div>

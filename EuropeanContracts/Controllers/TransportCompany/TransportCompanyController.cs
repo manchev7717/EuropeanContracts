@@ -27,7 +27,7 @@ namespace EuropeanContracts.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddTransportCompanyModel model)
         {
-            if (await transportCompanyService.IsTransporterExists(model.Country, model.Name))
+            if (await transportCompanyService.IsTransporterExistsAsync(model.Country, model.Name))
             {
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);
@@ -49,6 +49,35 @@ namespace EuropeanContracts.Controllers
             await transportCompanyService.AddAsync(transporterToAdd);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> AllOffers()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> AllTrucks([FromQuery]AllTrucksViewModel model)
+        {
+            var transportCompany = await transportCompanyService.FindTransporterByUserIdAsync(User.Id());
+                
+            var resultFromSearching = await transportCompanyService.AllTruckAsync(model.IsTemperatureControlNeeded,
+                                                                            model.CurrentPage,
+                                                                            AllTrucksViewModel.TruckCountOnPage,
+                                                                            transportCompany.Id);
+
+            return View(resultFromSearching);
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> AllTrailers()
+        {
+            return View();
         }
     }
 }
