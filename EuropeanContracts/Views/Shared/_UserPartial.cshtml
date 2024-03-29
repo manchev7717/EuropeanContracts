@@ -8,7 +8,7 @@
 <li class="navbar-text-light">
     @if (SignInManager.IsSignedIn(User))
     {
-        if (await transportService.FindTransporterByIdAsync(User.Id()))
+        if (await transportService.IsTransporterExistFindByIdAsync(User.Id()))
         {
             <div>
                 <b>

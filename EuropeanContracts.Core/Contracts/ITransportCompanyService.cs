@@ -7,10 +7,10 @@ namespace EuropeanContracts.Core.Contracts
     {
         Task<bool> IsTransporterExistsAsync(string country, string name);
         Task AddAsync(TransportCompany model);
-        Task<bool> FindTransporterByIdAsync(string userId);
+        Task<bool> IsTransporterExistFindByIdAsync(string userId);
         Task<string> ReturnTransporterNameAsync(string userId);
 
-        Task<TransportCompany> FindTransporterByUserIdAsync(string userId);
+        Task<TransportCompany> ReturnTransporterByUserIdAsync(string userId);
 
         Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
                                                 string hasCargoSpace, 

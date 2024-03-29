@@ -9,7 +9,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         if ((await supplierService.FindSupplierByIdAsync(User.Id())) == false &&
-            (await transporterService.FindTransporterByIdAsync(User.Id())) == false &&
+            (await transporterService.IsTransporterExistFindByIdAsync(User.Id())) == false &&
             (await recipientService.FindRecipientByIdAsync(User.Id())) == false)
         {
             <li class="nav-item">

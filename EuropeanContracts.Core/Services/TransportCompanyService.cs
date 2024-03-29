@@ -109,13 +109,13 @@ namespace EuropeanContracts.Core.Services
             return model;
         }
 
-        public async Task<bool> FindTransporterByIdAsync(string userId)
+        public async Task<bool> IsTransporterExistFindByIdAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
                 .AnyAsync(t => t.OwnerId == userId);
         }
 
-        public async Task<TransportCompany> FindTransporterByUserIdAsync(string userId)
+        public async Task<TransportCompany> ReturnTransporterByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
                 .Where(t=>t.OwnerId == userId)

@@ -292,7 +292,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 TransportCompanyId = FirstTransportCompany.Id,
                 Make = "Kodel",
                 TrailerImageURL = "/Images/TrailerImages/Kogel.png",
-                HasTemperatureControl = true,
+                HasTemperatureControl = false,
             };
 
             SecondTrailer = new Trailer()

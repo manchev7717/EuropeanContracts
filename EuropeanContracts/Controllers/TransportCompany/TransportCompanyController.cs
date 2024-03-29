@@ -63,7 +63,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> AllTrucks([FromQuery]AllTrucksViewModel model)
         {
-            var transportCompany = await transportCompanyService.FindTransporterByUserIdAsync(User.Id());
+            var transportCompany = await transportCompanyService.ReturnTransporterByUserIdAsync(User.Id());
                 
             var resultFromSearching = await transportCompanyService.AllTrucksAsync(model.IsTemperatureControlNeeded,
                                                                             model.HasCargoSpace,
@@ -78,7 +78,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> AllTrailers([FromQuery]AllTrailersViewModel model)
         {
-            var transportCompany = await transportCompanyService.FindTransporterByUserIdAsync(User.Id());
+            var transportCompany = await transportCompanyService.ReturnTransporterByUserIdAsync(User.Id());
 
             var resultFromSearching = await transportCompanyService.AllTrailersAsync(model.IsTemperatureControlNeeded,
                                                                             model.CurrentPage,
