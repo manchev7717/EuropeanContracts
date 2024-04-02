@@ -1,5 +1,4 @@
 ﻿using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.ServiceViewModels.Offer;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -55,7 +54,7 @@ namespace EuropeanContracts.Core.Services
                 Trailers = treilersResult,
                 CurrentPage = currentPage,
                 IsTemperatureControlNeeded = isTemperatureControlNeeded,
-                TotalTrailersCount = treilersResult.Count()
+                TotalTrailersCount = trailers.Count()
             };
             return model;
         }
@@ -104,7 +103,7 @@ namespace EuropeanContracts.Core.Services
                 Trucks = truckResult,
                 CurrentPage = currentPage,
                 IsTemperatureControlNeeded = isTemperatureNeeded,
-                TotalTruckCount = truckResult.Count()
+                TotalTruckCount = trucks.Count()
             };
             return model;
         }

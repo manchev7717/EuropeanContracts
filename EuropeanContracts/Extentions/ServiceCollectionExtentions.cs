@@ -17,6 +17,7 @@ namespace EuropeanContracts.Extentions
             services.AddScoped<ITransportCompanyService, TransportCompanyService>();
             services.AddScoped<IRecipientCompanyService, RecipientCompanyService>();
             services.AddScoped<ITruckService, TruckService>();
+            services.AddScoped<ITrailerService, TrailerService>();
             return services;
         }
 

@@ -1,0 +1,42 @@
+﻿@model AddTrailerViewModel
+@{
+    ViewBag.Title = "Create new trailer";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr class="border border-primary border-2 opacity-75" />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Make"></label>
+                <input asp-for="Make" class="form-control" placeholder="Enter trailer make...">
+                <span asp-validation-for="Make" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrailerImageURL"></label>
+                <input asp-for="TrailerImageURL" class="form-control" placeholder="Enter image URL...">
+                <span asp-validation-for="TrailerImageURL" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HasTemperatureControl"></label>
+                <select asp-for="HasTemperatureControl" class="form-control">
+                    <option value=""> </option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <span asp-validation-for="HasTemperatureControl" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial">
+}

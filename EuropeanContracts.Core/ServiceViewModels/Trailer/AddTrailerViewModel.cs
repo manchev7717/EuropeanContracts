@@ -1,0 +1,28 @@
+﻿using EuropeanContracts.Core.ErrorMessageAndConstance;
+using EuropeanContracts.Infrastructure.Data.Constance;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace EuropeanContracts.Core.ServiceViewModels.Trailer
+{
+    public class AddTrailerViewModel
+    {
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [StringLength(DataValidationConstance.TrailerMakeMaxLength,
+            MinimumLength = DataValidationConstance.TrailerMakeMinLength,
+            ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+        [Display(Name ="Trailer make")]
+        public string Make { get; set; } = string.Empty;
+
+        [Display(Name ="Trailer image URL")]
+        public string? TrailerImageURL { get; set; }
+
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Display(Name = "Having temperature control")]
+        public bool HasTemperatureControl { get; set; }
+
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Comment("Owner identifier")]
+        public int TransportCompanyId { get; set; }
+    }
+}
