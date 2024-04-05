@@ -1,4 +1,5 @@
 ﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 
 namespace EuropeanContracts.Core.Contracts
 {
@@ -13,5 +14,6 @@ namespace EuropeanContracts.Core.Contracts
                             string? isTemperatureControlNeeded,
                             int currentPage,
                             int offersCountOnPage);
+        
     }
 }

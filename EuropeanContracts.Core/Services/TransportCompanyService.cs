@@ -3,6 +3,7 @@ using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Contracts;
 
 namespace EuropeanContracts.Core.Services
 {
@@ -21,8 +22,8 @@ namespace EuropeanContracts.Core.Services
         }
 
         public async Task<AllTrailersViewModel> AllTrailersAsync(string isTemperatureControlNeeded,
-                                                           int currentPage, 
-                                                           int trailersCountOnPage, 
+                                                           int currentPage,
+                                                           int trailersCountOnPage,
                                                            int transportCompanyId)
         {
             var trailers = await repository.AllReadOnly<Trailer>()
@@ -62,40 +63,40 @@ namespace EuropeanContracts.Core.Services
         public async Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
                                                             string hasCargoSpace,
                                                             int currentPage,
-                                                            int TruckCountOnPage,
+                                                            int truckCountOnPage,
                                                             int transportCompanyId)
         {
             var trucks = await repository.AllReadOnly<Truck>()
-                .Where(t=>t.TransportCompanyId == transportCompanyId )
+                .Where(t => t.TransportCompanyId == transportCompanyId)
                 .ToListAsync();
 
             if (!string.IsNullOrEmpty(isTemperatureNeeded))
             {
                 bool isNeeded = isTemperatureNeeded == "true" ? true : false;
                 trucks = trucks
-                    .Where(t=>t.HasTemperatureControl == isNeeded)
+                    .Where(t => t.HasTemperatureControl == isNeeded)
                     .ToList();
             }
             if (!string.IsNullOrEmpty(hasCargoSpace))
             {
                 bool hasSpace = hasCargoSpace == "true" ? true : false;
-                trucks= trucks
-                    .Where(t=>t.HasCargoSpace == hasSpace)
+                trucks = trucks
+                    .Where(t => t.HasCargoSpace == hasSpace)
                     .ToList();
             }
 
             var truckResult = trucks
-                .Skip((currentPage - 1) * TruckCountOnPage)
-                .Take(TruckCountOnPage)
-                .Select(t=> new TruckViewModel()
+                .Skip((currentPage - 1) * truckCountOnPage)
+                .Take(truckCountOnPage)
+                .Select(t => new TruckViewModel()
                 {
-                    Make= t.Make,
-                    Model= t.Model,
-                    HorsePower= t.HorsePower,
-                    TruckImageURL= t.TruckImageURL,
-                    HasCargoSpace= t.HasCargoSpace,
-                    HasTemperatureControl= t.HasTemperatureControl,
-                    TransportCompanyId= t.TransportCompanyId,
+                    Make = t.Make,
+                    Model = t.Model,
+                    HorsePower = t.HorsePower,
+                    TruckImageURL = t.TruckImageURL,
+                    HasCargoSpace = t.HasCargoSpace,
+                    HasTemperatureControl = t.HasTemperatureControl,
+                    TransportCompanyId = t.TransportCompanyId,
                 })
                 .ToList();
             var model = new AllTrucksViewModel()
@@ -117,7 +118,7 @@ namespace EuropeanContracts.Core.Services
         public async Task<TransportCompany> ReturnTransporterByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
-                .Where(t=>t.OwnerId == userId)
+                .Where(t => t.OwnerId == userId)
                 .FirstAsync();
         }
 
@@ -130,11 +131,59 @@ namespace EuropeanContracts.Core.Services
         public async Task<string> ReturnTransporterNameAsync(string userId)
         {
             var transporter = await repository.AllReadOnly<TransportCompany>()
-                .FirstAsync(t => t.OwnerId == userId) ;
+                .FirstAsync(t => t.OwnerId == userId);
 
             return transporter.Name;
         }
 
+        public async Task<OffersAndCountTransporterViewModel> AllOffersAsync(string isContract,
+                                                                       int currentPage,
+                                                                       int offersCountOnPage,
+                                                                       string userId)
+        {
+            var currentTransporter = await repository.AllReadOnly<TransportCompany>()
+                .Where(t=>t.OwnerId == userId)
+                .FirstAsync();
 
+            var offers = await repository.AllReadOnly<Offer>()
+               .Include(a => a.ActionType)
+               .Where(o=>o.TransporterId == currentTransporter.Id)
+               .ToListAsync();
+
+            if (!string.IsNullOrEmpty(isContract))
+            {
+                bool result = isContract == "true" ? true : false;
+
+                offers = offers
+                    .Where(o => o.IsContract == result)
+                    .ToList();
+            }
+
+            var offerResult = offers
+                .Skip((currentPage - 1) * offersCountOnPage)
+                .Take(offersCountOnPage)
+                .Select(o => new OfferTranspoerterViewModel()
+                {
+                    Id = o.Id,
+                    ProductName = o.ProductName,
+                    ProductImageURL = o.ProductImageURL,
+                    ProductQuantity = o.ProductQuantity,
+                    ProductPrice = o.ProductPrice,
+                    LoadingAddress = o.LoadingAddress,
+                    LoadingCountry = o.LoadingCountry,
+                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                    PublicationDay = o.PublicationDay,
+                    ActionType = o.ActionType.Name,
+                    SupplierId = o.SupplierId,
+                    IsContract = o.IsContract,
+                })
+                .ToList();
+
+            return new OffersAndCountTransporterViewModel()
+            {
+                OfferViewModels = offerResult,
+                AllOffersCount = offers.Count()
+            };
+        }
     }
 }

@@ -18,9 +18,15 @@ namespace EuropeanContracts.Core.Contracts
                                                 int truckPerPage, 
                                                 int transportCompanyId);
 
-        Task<AllTrailersViewModel> AllTrailersAsync(string IsTemperatureControlNeeded,
-                                                    int CurrentPage,
-                                                    int TrailersCountOnPage,
+        Task<AllTrailersViewModel> AllTrailersAsync(string isTemperatureControlNeeded,
+                                                    int currentPage,
+                                                    int trailersCountOnPage,
                                                     int transportCompanyId);
+
+        public Task<OffersAndCountTransporterViewModel> AllOffersAsync(
+                            string isContract,
+                            int currentPage,
+                            int offersCountOnPage,
+                            string userId);
     }
 }

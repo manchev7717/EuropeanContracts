@@ -1,17 +1,20 @@
 ﻿using EuropeanContracts.Infrastructure.Data.Constance;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EuropeanContracts.Core.ServiceViewModels.Offer
+namespace EuropeanContracts.Core.ServiceViewModels.Transporter
 {
-    public class OfferViewModel
+    public class OfferTranspoerterViewModel
     {
+
         public int Id { get; set; }
 
         [Display(Name = "Product name")]
         public string ProductName { get; set; } = string.Empty;
 
         [Display(Name = "Product quantity in kilograms")]
+
         public int ProductQuantity { get; set; }
 
         [Display(Name = "Product price in EURO")]
@@ -31,12 +34,13 @@ namespace EuropeanContracts.Core.ServiceViewModels.Offer
         [Display(Name = "Publication day")]
         public DateTime PublicationDay { get; set; }
 
+        [Display(Name ="Contract is done")]
+        public bool IsContract {  get; set; }
 
         [Display(Name = "Action type identifier")]
         public string? ActionType { get; set; }
 
         [Comment("Supplier identifier")]
         public int SupplierId { get; set; }
-
     }
 }

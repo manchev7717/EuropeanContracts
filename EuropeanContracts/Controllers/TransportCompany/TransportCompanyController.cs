@@ -15,6 +15,7 @@ namespace EuropeanContracts.Controllers
         public TransportCompanyController(ITransportCompanyService transportCompanyService)
         {
             this.transportCompanyService = transportCompanyService;
+
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -52,11 +53,18 @@ namespace EuropeanContracts.Controllers
         }
 
         [HttpGet]
-
-        public async Task<IActionResult> AllOffers()
+        public async Task<IActionResult> MyOffers([FromQuery]AllOffersForTransporterViewModel model)
         {
+            var result = await transportCompanyService.AllOffersAsync(
+                            model.IsContract,
+                            model.CurrentPage,
+                            AllOffersForTransporterViewModel.OffersCountOnPage,
+                            User.Id());
 
-            return View();
+            model.Offers = result.OfferViewModels;
+            model.TotalOffersCount = result.AllOffersCount;
+
+           return View(model);
         }
 
         [HttpGet]

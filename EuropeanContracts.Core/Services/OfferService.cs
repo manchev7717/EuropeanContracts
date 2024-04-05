@@ -87,7 +87,6 @@ namespace EuropeanContracts.Core.Services
             };
         }
 
-
-
+        
     }
 }
