@@ -90,6 +90,7 @@ namespace EuropeanContracts.Core.Services
                 .Take(truckCountOnPage)
                 .Select(t => new TruckViewModel()
                 {
+                    Id = t.Id,
                     Make = t.Make,
                     Model = t.Model,
                     HorsePower = t.HorsePower,

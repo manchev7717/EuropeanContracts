@@ -51,7 +51,53 @@ namespace EuropeanContracts.Controllers
                 TransportCompanyId = transportCompany.Id,
             };
 
-             await truckService.AddTruckAsync(model);
+            await truckService.AddTruckAsync(model);
+
+            return RedirectToAction("AllTrucks", "TransportCompany");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await truckService.ExistByIdAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await truckService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var truckModel = await truckService.ReturnEditTruckViewModelById(id);
+
+            return View(truckModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Edit(EditTruckViewModel truckModel)
+        {
+            if (await truckService.ExistByIdAsync(truckModel.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await truckService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(truckModel);
+            }
+
+            await truckService.EditAsync(truckModel);
+
+            // it is good to redirect to Details of the current truck, not in page with all trucks!!!!!!!!!!
+
+            //return RedirectToAction(nameof(Details), new { truckModel.Id });
 
             return RedirectToAction("AllTrucks", "TransportCompany");
         }
