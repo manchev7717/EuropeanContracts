@@ -16,7 +16,8 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
                 {
                     data.FirstTrailer,
                     data.SecondTrailer,
-                    data.ThirdTrailer
+                    data.ThirdTrailer,
+                    data.FourthTrailer
                 });
         }
     }

@@ -40,10 +40,12 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public Trailer FirstTrailer { get; set; } = null!;
         public Trailer SecondTrailer { get; set; } = null!;
         public Trailer ThirdTrailer { get; set; } = null!;
+        public Trailer FourthTrailer { get; set; } = null!;
 
         public Truck FirstTruck { get; set; } = null!;
         public Truck SecondTruck { get; set; } = null!;
         public Truck ThirdTruck { get; set; } = null!;
+        public Truck FourthTruck { get; set; } = null!;
 
         public TransportCompany FirstTransportCompany { get; set; } = null!;
         public TransportCompany SecondTransportCompany { get; set; } = null!;
@@ -258,6 +260,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "XG+",
                 HorsePower = 450,
                 HasCargoSpace = false,
+                HasTemperatureControl = false,
                 TruckImageURL = "/Images/TruckImages/DAF.png",
                 TransportCompanyId = FirstTransportCompany.Id
             };
@@ -269,6 +272,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "FX",
                 HorsePower = 500,
                 HasCargoSpace = false,
+                HasTemperatureControl = false,
                 TruckImageURL = "/Images/TruckImages/VOLVO.png",
                 TransportCompanyId = SecondTransportCompany.Id
             };
@@ -279,8 +283,20 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Make = "SCANIA",
                 Model = "R510",
                 HorsePower = 510,
+                HasTemperatureControl = false,
                 HasCargoSpace = true,
                 TruckImageURL = "/Images/TruckImages/SCANIA.png",
+                TransportCompanyId = SecondTransportCompany.Id
+            };
+
+            FourthTruck = new Truck()
+            {
+                Id = 4,
+                Make = "DAF",
+                Model = "XF+",
+                HorsePower = 450,
+                HasCargoSpace = true,
+                TruckImageURL = "/Images/TruckImages/DAF-XF-FRIGO.png",
                 TransportCompanyId = SecondTransportCompany.Id
             };
         }
@@ -310,6 +326,15 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 TransportCompanyId = SecondTransportCompany.Id,
                 Make = "Schmitz Cargobull",
                 TrailerImageURL = "/Images/TrailerImages/SchmitzCargobull.png",
+                HasTemperatureControl = true,
+            };
+
+            FourthTrailer = new Trailer()
+            {
+                Id = 4,
+                TransportCompanyId = FirstTransportCompany.Id,
+                Make = "Gray Adams",
+                TrailerImageURL = "/Images/TrailerImages/Gray_Adams_Frigo.png",
                 HasTemperatureControl = true,
             };
         }

@@ -21,6 +21,15 @@ namespace EuropeanContracts.Core.Services
             await repository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var truck = await repository.All<Truck>()
+                .FirstAsync(x => x.Id == id);
+
+            await repository.DeleteAsync(truck);
+            await repository.SaveChangesAsync();
+        }
+
         public async Task EditAsync(EditTruckViewModel model)
         {
             var truck = await repository.All<Truck>()

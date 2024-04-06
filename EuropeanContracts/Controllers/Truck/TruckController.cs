@@ -101,5 +101,41 @@ namespace EuropeanContracts.Controllers
 
             return RedirectToAction("AllTrucks", "TransportCompany");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await truckService.ExistByIdAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await truckService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var truckModel = await truckService.ReturnEditTruckViewModelById(id);
+
+            return View(truckModel);
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Delete(EditTruckViewModel truckModel)
+        {
+            if (await truckService.ExistByIdAsync(truckModel.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await truckService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            await truckService.DeleteAsync(truckModel.Id);
+
+            return RedirectToAction("AllTrucks", "TransportCompany");
+        }
+
     }
 }

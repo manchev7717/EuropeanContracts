@@ -36,5 +36,10 @@ namespace EuropeanContracts.Infrastructure.Comman
         {
             return await dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync<T>(T entity) where T : class
+        {
+             GetDbSet<T>().Remove(entity);
+        }
     }
 }

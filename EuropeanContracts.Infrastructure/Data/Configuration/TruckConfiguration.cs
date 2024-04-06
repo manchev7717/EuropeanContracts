@@ -16,7 +16,8 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
                 {
                     data.FirstTruck,
                     data.SecondTruck,
-                    data.ThirdTruck
+                    data.ThirdTruck,
+                    data.FourthTruck
                 });
         }
     }

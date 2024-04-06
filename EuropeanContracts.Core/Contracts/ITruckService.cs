@@ -14,5 +14,7 @@ namespace EuropeanContracts.Core.Contracts
         Task<EditTruckViewModel> ReturnEditTruckViewModelById(int truckId);
 
         Task EditAsync(EditTruckViewModel model);
+
+        Task DeleteAsync(int id);
     }
 }
