@@ -1,6 +1,6 @@
-﻿@model EditAndDeleteTruckViewModel
+﻿@model EditAndDeleteTrailerViewModel
 @{
-    ViewBag.Title = "Delete truck";
+    ViewBag.Title = "Delete trailer";
 }
 
 <h2 class="text-center text-danger ">Are you sure you want to delete?</h2>
@@ -9,15 +9,12 @@
 <form asp-action="Delete">
     <div class="row">
         <div class="col-md-6">
-            <img class="card-img-top" src="@Model.TruckImageURL" alt="Product Image">
+            <img class="card-img-top" src="@Model.TrailerImageURL" alt="Product Image">
         </div>
         <div class="col-md-4">
             <h4>@Model.Make</h4>
-            <h5>Truck model: <b class="fs-4 " .fs-4 text>@Model.Model</b></h5>
-            <h5>Horse power: <b class="fs-4 " .fs-4 text>@Model.HorsePower</b> </h5>
-            <h5>Has cargo space: <b class="fs-4 " .fs-4 text>@(Model.HasCargoSpace == true ? "Yes" : "No")</b> </h5>
             <h5>Has temperature control: <b class="fs-4" .fs-4 text>@(Model.HasTemperatureControl ? "Yes" : "No")</b></h5>
-            <hr></hr>
+            <hr/>
             <div class="form-group text-center">
                 <input type="submit" value="Delete" class="btn btn-danger" />
             </div>

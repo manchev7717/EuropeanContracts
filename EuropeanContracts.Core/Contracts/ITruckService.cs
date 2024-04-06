@@ -11,10 +11,11 @@ namespace EuropeanContracts.Core.Contracts
 
         Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId);
 
-        Task<EditTruckViewModel> ReturnEditTruckViewModelById(int truckId);
+        Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId);
 
-        Task EditAsync(EditTruckViewModel model);
+        Task EditAsync(EditAndDeleteTruckViewModel model);
 
         Task DeleteAsync(int id);
+
     }
 }

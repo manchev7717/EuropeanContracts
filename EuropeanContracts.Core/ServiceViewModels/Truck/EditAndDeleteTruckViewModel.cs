@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Truck
 {
-    public class EditTruckViewModel
+    public class EditAndDeleteTruckViewModel
     {
         public int Id { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -34,6 +35,7 @@ namespace EuropeanContracts.Controllers
             {
                 return BadRequest();
             }
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest();
@@ -63,7 +65,7 @@ namespace EuropeanContracts.Controllers
             {
                 return BadRequest();
             }
-
+           
             if (await truckService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
             {
                 return Unauthorized();
@@ -76,7 +78,7 @@ namespace EuropeanContracts.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(EditTruckViewModel truckModel)
+        public async Task<IActionResult> Edit(EditAndDeleteTruckViewModel truckModel)
         {
             if (await truckService.ExistByIdAsync(truckModel.Id) == false)
             {
@@ -120,7 +122,7 @@ namespace EuropeanContracts.Controllers
         }
         [HttpPost]
 
-        public async Task<IActionResult> Delete(EditTruckViewModel truckModel)
+        public async Task<IActionResult> Delete(EditAndDeleteTruckViewModel truckModel)
         {
             if (await truckService.ExistByIdAsync(truckModel.Id) == false)
             {

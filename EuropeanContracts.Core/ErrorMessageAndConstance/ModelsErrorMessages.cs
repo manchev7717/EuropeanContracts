@@ -11,5 +11,7 @@
         public const string RegexError = "Phone number must start with \"+\" and contains only digits";
 
         public const string RangeError = "The field {0} must be positive number between {1} and {2}";
+
+        public const string ExistVehicleError = "A vehicle with this URL already exists";
     }
 }

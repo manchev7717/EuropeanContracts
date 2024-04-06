@@ -1,6 +1,8 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.Services;
 using EuropeanContracts.Core.ServiceViewModels.Trailer;
+using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +51,87 @@ namespace EuropeanContracts.Controllers
             };
 
             await trailerService.AddTruckAsync(model);
+
+            return RedirectToAction("AllTrailers", "TransportCompany");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await trailerService.ExistByIdAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var trailerModel = await trailerService.ReturnEditTrailerViewModelById(id);
+
+            return View(trailerModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Edit(EditAndDeleteTrailerViewModel trailerModel)
+        {
+            if (await trailerService.ExistByIdAsync(trailerModel.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(trailerModel);
+            }
+
+            await trailerService.EditAsync(trailerModel);
+
+            // it is good to redirect to Details of the current truck, not in page with all trucks!!!!!!!!!!
+
+            //return RedirectToAction(nameof(Details), new { truckModel.Id });
+
+            return RedirectToAction("AllTrailers", "TransportCompany");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await trailerService.ExistByIdAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var truckModel = await trailerService.ReturnEditTrailerViewModelById(id);
+
+            return View(truckModel);
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Delete(EditAndDeleteTrailerViewModel trailerModel)
+        {
+            if (await trailerService.ExistByIdAsync(trailerModel.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            await trailerService.DeleteAsync(trailerModel.Id);
 
             return RedirectToAction("AllTrailers", "TransportCompany");
         }

@@ -8,8 +8,8 @@
             <h6>Trailer model: <b>@Model.Make</b></h6>
             <h6>Has temperature control: <b>@(Model.HasTemperatureControl ? "Yes" : "No")</b></h6>
             <br />
-            <a asp-controller="TransportCompany" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
-            <a asp-controller="TransportCompany" asp-action="Remove" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            <a asp-controller="Trailer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-controller="Trailer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
             @* @if (this.User.Identity.IsAuthenticated)
             {
             <a asp-controller="Offer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>

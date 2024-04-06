@@ -30,7 +30,7 @@ namespace EuropeanContracts.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(EditTruckViewModel model)
+        public async Task EditAsync(EditAndDeleteTruckViewModel model)
         {
             var truck = await repository.All<Truck>()
                 .FirstOrDefaultAsync(t => t.Id == model.Id);
@@ -54,11 +54,12 @@ namespace EuropeanContracts.Core.Services
                 .AnyAsync(t => t.Id == truckId);
         }
 
-        public async Task<EditTruckViewModel> ReturnEditTruckViewModelById(int truckId)
+
+        public async Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId)
         {
             var truck = await repository.AllReadOnly<Truck>()
                 .Where(t => t.Id == truckId)
-                .Select(t => new EditTruckViewModel()
+                .Select(t => new EditAndDeleteTruckViewModel()
                 {
                     Id = t.Id,
                     Make = t.Make,
