@@ -1,6 +1,8 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ErrorMessageAndConstance;
+using EuropeanContracts.Core.Services;
+using EuropeanContracts.Core.ServiceViewModels.Supplier;
 using EuropeanContracts.Core.ServiceViewModels.SupplierCompany;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -50,6 +52,20 @@ namespace EuropeanContracts.Controllers
             await supplierCompanyService.AddAsync(supplierToAdd);
 
             return RedirectToAction("Index","Home"); 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MyOffers([FromQuery] SupplierAllOffersViewModel model)
+        {
+            var supplierId =await supplierCompanyService.ReturnSupplierIdByUserId(User.Id());
+            var result = await supplierCompanyService.AllOffersAsync(model.CurrentPage,
+                                                                     SupplierAllOffersViewModel.OffersCountOnPage,
+                                                                     model.IsContract,
+                                                                     supplierId);
+            model.Offers = result.OfferViewModels;
+            model.TotalOffersCount = result.AllOffersCount;
+
+            return View(model);
         }
     }
 }

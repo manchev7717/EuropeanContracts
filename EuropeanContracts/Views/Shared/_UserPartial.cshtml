@@ -32,6 +32,8 @@
             <b>
                 SUPPLIER COMPANY: "@await supplierService.ReturnSupplierName(User.Id())"
             </b>
+            <a class="btn btn-primary" asp-controller="SupplierCompany" asp-action="MyOffers">My offers </a>
+            <a class="btn btn-primary" asp-controller="SupplierCompany" asp-action="CreateOffer">Create Offer </a>
         }
     }
 </li>

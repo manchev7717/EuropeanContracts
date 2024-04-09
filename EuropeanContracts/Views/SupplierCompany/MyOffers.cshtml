@@ -1,0 +1,72 @@
+﻿@model SupplierAllOffersViewModel
+@{
+    ViewBag.Title = "All Offers";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<hr class="border border-primary border-2 opacity-75" />
+<h3 class="text-center">You need goods</h3>
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="IsContract"></label>
+                <select asp-for="IsContract" class="form-control" data-bs-toggle="dropdown">
+                    <option value=""></option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-4">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+@if (!Model.Offers.Any())
+{
+    <h2 class="text-center">No offers found by the given criteria!</h2>
+}
+<div class="row text-centec">
+
+    @foreach (var offer in Model.Offers)
+    {
+        <partial name="_SupplierOfferViewPartial" model="@offer" />
+    }
+</div>
+@{
+    var nextPage = Model.CurrentPage + 1;
+    var previousPage = Model.CurrentPage - 1;
+    var maxPage = Math.Ceiling((double)Model.TotalOffersCount / SupplierAllOffersViewModel.OffersCountOnPage);
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Offers.Any();
+
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+}
+<ul class="pagination justify-content-center" style="margin:20px 0">
+    <li class="page-item">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="SupplierCompany"
+           asp-action="MyOffers"
+           asp-route-currentPage="@previousPage"
+           asp-route-isTemperatureControlNeeded="@(Model.IsContract)">
+            Previous Page
+        </a>
+    </li>
+    <li class="page-link">@Model.CurrentPage</li>
+    <li class="page-item">
+        <a class="btn btn-primary @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="SupplierCompany"
+           asp-action="MyOffers"
+           asp-route-currentPage="@nextPage"
+           asp-route-isTemperatureControlNeeded="@(Model.IsContract)">
+            Next Page
+        </a>
+    </li>
+</ul>
+<hr class="border border-primary border-2 opacity-75" />

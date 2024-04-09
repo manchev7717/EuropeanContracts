@@ -1,4 +1,5 @@
-﻿using EuropeanContracts.Infrastructure.Data.Models;
+﻿using EuropeanContracts.Core.ServiceViewModels.Supplier;
+using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Contracts
 {
@@ -11,5 +12,11 @@ namespace EuropeanContracts.Core.Contracts
         Task<bool> FindSupplierByIdAsync(string userId);
 
         Task<string> ReturnSupplierName(string name);
+        Task<int> ReturnSupplierIdByUserId(string userId);
+
+        Task<SupplierOffersAndCountViewModel> AllOffersAsync(int currentPage,
+                            int offersCountOnPage,
+                            string isContract,
+                            int supplierId);
     }
 }

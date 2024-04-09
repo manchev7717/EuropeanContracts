@@ -23,7 +23,7 @@ namespace EuropeanContracts.Controllers.Offer
                             model.CurrentPage,
                             AllOfferViewModel.OffersCountOnPage);
 
-            model.offers = result.OfferViewModels;
+            model.Offers = result.OfferViewModels;
             model.TotalOffersCount = result.AllOffersCount;
             model.CountriesOfOrigin = await offerService.AllCountryNamesAsync();
             model.Actions = await offerService.AllActionTypesAsync();
