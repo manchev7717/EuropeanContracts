@@ -11,9 +11,9 @@
         public const int OfferProductNameMinLength = 2;
         public const int OfferProductNameMaxLength = 50;
         public const int OfferProductDescriptionMaxLength = 200;
-        public const int OfferProductQuantityMinValue = 0;
+        public const int OfferProductQuantityMinValue = 1;
         public const int OfferProductQuantityMaxValue = int.MaxValue;
-        public const decimal OfferProductPriceMinValue = 0.00m;
+        public const decimal OfferProductPriceMinValue = 1.00m;
         public const decimal OfferProductPriceMaxValue = decimal.MaxValue;
         public const int OfferProductLoadingAddressMinValue = 2;
         public const int OfferProductLoadingAddressMaxLength = 200;

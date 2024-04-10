@@ -86,7 +86,34 @@ namespace EuropeanContracts.Core.Services
                 AllOffersCount = offers.Count()
             };
         }
-
         
+        public async Task<IEnumerable<ActionType>> ActionTypesAsync()
+        {
+            var result = await repository.AllReadOnly<ActionType>()
+                .ToListAsync();
+
+            return result;
+        }
+
+        public async Task CreateOfferAsync(CreateOfferViewModel model)
+        {
+            Offer newOffer = new Offer()
+            {
+                ProductName = model.ProductName,
+                ProductDescription = model.ProductDescription,
+                ProductQuantity = model.ProductQuantity,
+                ProductPrice = model.ProductPrice,
+                ProductImageURL= model.ProductImageURL,
+                LoadingCountry = model.LoadingCountry,
+                LoadingAddress= model.LoadingAddress,
+                CountryOfDestination = model.CountryOfDestination,
+                IsTemperatureControlNeeded= model.IsTemperatureControlNeeded,
+                PublicationDay = model.PublicationDay,
+                SupplierId= model.SupplierId,
+                ActionTypeId = model.ActionTypeId,
+            };
+            await repository.AddAsync(newOffer);
+            await repository.SaveChangesAsync();
+        }
     }
 }

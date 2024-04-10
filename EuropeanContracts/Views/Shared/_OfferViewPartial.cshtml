@@ -8,6 +8,7 @@
             <h6>From Country: <b>@Model.LoadingCountry</b></h6>
             <h6>With Address: <b>@Model.LoadingAddress</b></h6>
             <h6> Price: <b>@String.Format("{0:f2}", Model.ProductPrice) EUR</b> </h6>
+            <h6>(@Model.ActionType)</h6>
             <h6>Transport: <b>@(Model.IsTemperatureControlNeeded ? "Temperature control is required" : "No temperature control required")</b></h6>
             <h6>Published on: <b>@Model.PublicationDay</b></h6>
             <br />

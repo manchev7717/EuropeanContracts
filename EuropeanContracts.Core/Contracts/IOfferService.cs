@@ -1,5 +1,6 @@
 ﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
+using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Contracts
 {
@@ -8,12 +9,17 @@ namespace EuropeanContracts.Core.Contracts
         Task<IEnumerable<string>> AllActionTypesAsync();
         Task<IEnumerable<string>> AllCountryNamesAsync();
 
-        public Task<OffersAndCountViewModel> AllAsync(
+        Task<OffersAndCountViewModel> AllAsync(
                             string? actionType,
                             string? country,
                             string? isTemperatureControlNeeded,
                             int currentPage,
                             int offersCountOnPage);
-        
+
+        Task<IEnumerable<ActionType>> ActionTypesAsync();
+
+        Task CreateOfferAsync(CreateOfferViewModel model);
+
+
     }
 }

@@ -1,0 +1,92 @@
+﻿@model CreateOfferViewModel
+@{
+    ViewBag.Title = "Create new offer";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr class="border border-primary border-2 opacity-75" />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <input asp-for="ProductName" class="form-control" placeholder="Enter product name...">
+                <span asp-validation-for="ProductName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription"></label>
+                <input asp-for="ProductDescription" class="form-control" placeholder="Enter product description...">
+                <span asp-validation-for="ProductDescription" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductQuantity"></label>
+                <input asp-for="ProductQuantity" class="form-control" placeholder="Enter quantity...">
+                <span asp-validation-for="ProductQuantity" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice"></label>
+                <input asp-for="ProductPrice" class="form-control" placeholder="">
+                <span asp-validation-for="ProductPrice" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductImageURL"></label>
+                <input asp-for="ProductImageURL" class="form-control" placeholder="Enter product URL...">
+                <span asp-validation-for="ProductImageURL" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoadingCountry"></label>
+                <select asp-for="LoadingCountry" class="form-control">
+                    <partial name="_CountryDropDownPartial"></partial>
+                </select>
+                <span asp-validation-for="LoadingCountry" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoadingAddress"></label>
+                <input asp-for="LoadingAddress" class="form-control" placeholder="Enter loading address...">
+                <span asp-validation-for="LoadingAddress" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryOfDestination"></label>
+                <select asp-for="CountryOfDestination" class="form-control">
+                    <partial name="_CountryDropDownPartial"></partial>
+                </select>
+                <span asp-validation-for="CountryOfDestination" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressOfDestination"></label>
+                <input asp-for="AddressOfDestination" class="form-control" placeholder="Enter destination address...">
+                <span asp-validation-for="AddressOfDestination" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsTemperatureControlNeeded"></label>
+                <select asp-for="IsTemperatureControlNeeded" class="form-control">
+                    <option value=""> </option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <span asp-validation-for="IsTemperatureControlNeeded" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActionTypeId"></label>
+                <select asp-for="ActionTypeId" class="form-control" placeholde ="">
+                    <option value=""> </option>
+                    @foreach (var item in Model.ActionTypes)
+                    {
+                        <option value="@item.Id">@item.Name </option>
+                    }
+                </select>
+                <span asp-validation-for="ActionTypeId" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial">
+}
