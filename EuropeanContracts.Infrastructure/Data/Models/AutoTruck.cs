@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EuropeanContracts.Infrastructure.Data.Models
 {
     [Comment("Track")]
-    public class Truck
+    [Index(nameof(RegistrationNumber), IsUnique = true)]
+    public class AutoTruck
     {
         [Key]
         [Comment("Truck identifier")]
@@ -21,6 +22,11 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [Comment("Truck model")]
         [MaxLength(DataValidationConstance.TruckModelMaxLength)]
         public string Model { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(DataValidationConstance.TruckRegistrationMaxLength)]
+        [Comment("Truck registration number")]
+        public string RegistrationNumber { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(DataValidationConstance.TruckHorsePowerMaxValue)]

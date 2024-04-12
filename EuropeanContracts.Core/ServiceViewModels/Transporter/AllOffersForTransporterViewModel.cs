@@ -1,7 +1,4 @@
-﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
-using System.ComponentModel.DataAnnotations;
-
-namespace EuropeanContracts.Core.ServiceViewModels.Transporter
+﻿namespace EuropeanContracts.Core.ServiceViewModels.Transporter
 {
     public class AllOffersForTransporterViewModel
     {

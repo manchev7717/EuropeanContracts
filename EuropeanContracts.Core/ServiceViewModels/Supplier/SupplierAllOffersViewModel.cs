@@ -1,5 +1,4 @@
 ﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
-using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Supplier
 {
@@ -12,6 +11,6 @@ namespace EuropeanContracts.Core.ServiceViewModels.Supplier
         public int TotalOffersCount { get; set; }
 
         public string IsContract { get; set; } = string.Empty;
-        public IEnumerable<SupplierOfferViewModel> Offers { get; set; } = new List<SupplierOfferViewModel>();
+        public IEnumerable<OfferDetailViewModel> Offers { get; set; } = new List<OfferDetailViewModel>();
     }
 }

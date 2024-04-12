@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EuropeanContracts.Core.ServiceViewModels.Offer
+{
+    public class DetailOfferViewModel
+    {
+
+        [Display(Name = "Product additional description")]
+        public string? ProductDescription { get; set; }
+
+
+        public TransporterDetailViewModel TransporterDetail { get; set; } = new TransporterDetailViewModel();
+
+        public RecipientDetailViewModel RecipientDetail { get; set; } = new RecipientDetailViewModel();
+
+        public OfferDetailViewModel OfferViewModel { get; set; } = new OfferDetailViewModel();
+
+    }
+}

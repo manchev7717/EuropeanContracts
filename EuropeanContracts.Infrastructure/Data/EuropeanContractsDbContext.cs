@@ -23,7 +23,7 @@ namespace EuropeanContracts.Data
 
         public DbSet<TransportCompany> TransportsCompanies { get; set; } = null!;
 
-        public DbSet<Truck> Trucks { get; set; } = null!;
+        public DbSet<AutoTruck> AutoTrucks { get; set; } = null!;
 
         public DbSet<Offer> Offers { get; set; } = null!;
 

@@ -2,10 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.Metrics;
+using System.Xml.Linq;
 
 namespace EuropeanContracts.Infrastructure.Data.Models
 {
     [Comment("Trailer")]
+    [Index(nameof(RegistrationNumber), IsUnique = true)]
     public class Trailer
     {
         [Key]
@@ -15,6 +18,11 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [MaxLength(DataValidationConstance.TrailerMakeMaxLength)]
         [Comment("Trailer make")]
         public string Make { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(DataValidationConstance.TrailerRegistrationMaxLength)]
+        [Comment("Trailer registration number")]
+        public string RegistrationNumber { get; set; } = string.Empty;
 
         [Comment("Trailer image URL")]
         public string? TrailerImageURL { get; set; }

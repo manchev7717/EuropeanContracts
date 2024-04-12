@@ -42,10 +42,10 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public Trailer ThirdTrailer { get; set; } = null!;
         public Trailer FourthTrailer { get; set; } = null!;
 
-        public Truck FirstTruck { get; set; } = null!;
-        public Truck SecondTruck { get; set; } = null!;
-        public Truck ThirdTruck { get; set; } = null!;
-        public Truck FourthTruck { get; set; } = null!;
+        public AutoTruck FirstTruck { get; set; } = null!;
+        public AutoTruck SecondTruck { get; set; } = null!;
+        public AutoTruck ThirdTruck { get; set; } = null!;
+        public AutoTruck FourthTruck { get; set; } = null!;
 
         public TransportCompany FirstTransportCompany { get; set; } = null!;
         public TransportCompany SecondTransportCompany { get; set; } = null!;
@@ -53,6 +53,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public Offer TopOffer { get; set; } = null!;
         public Offer FirstOffer { get; set; } = null!;
         public Offer SecondOffer { get; set; } = null!;
+        public Offer ChokoOffer { get; set; } = null!;
 
 
         private void SeedActionType()
@@ -253,7 +254,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         }
         private void SeedTrucks()
         {
-            FirstTruck = new Truck()
+            FirstTruck = new AutoTruck()
             {
                 Id = 1,
                 Make = "DAF",
@@ -265,7 +266,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 TransportCompanyId = FirstTransportCompany.Id
             };
 
-            SecondTruck = new Truck()
+            SecondTruck = new AutoTruck()
             {
                 Id = 2,
                 Make = "VOLVO",
@@ -277,7 +278,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 TransportCompanyId = SecondTransportCompany.Id
             };
 
-            ThirdTruck = new Truck()
+            ThirdTruck = new AutoTruck()
             {
                 Id = 3,
                 Make = "SCANIA",
@@ -289,7 +290,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 TransportCompanyId = SecondTransportCompany.Id
             };
 
-            FourthTruck = new Truck()
+            FourthTruck = new AutoTruck()
             {
                 Id = 4,
                 Make = "DAF",
@@ -346,7 +347,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductName = "Pork Meat",
                 ProductQuantity = 19840,
                 ProductPrice = 102504,
-                ProductDescription = SellActionType.Description,
+                ProductDescription = "Тhe produce is fresh from animals raised on certified farms",
                 ProductImageURL = "/Images/ProductImages/FreshPorkMeat.png",
                 LoadingCountry = "Spain",
                 LoadingAddress = "Badajoz, str. C.Jose.Caldito Ruiz 50",
@@ -362,7 +363,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductName = "Plastic waste",
                 ProductQuantity = 17800,
                 ProductPrice = 4200,
-                ProductDescription= TransportationActionType.Description,
+                ProductDescription= "Baled and suitable for recycling",
                 ProductImageURL = "/Images/ProductImages/PlasticWaste.png",
                 LoadingCountry = "Italy",
                 LoadingAddress = "Foggia, str. Via Daniele Manin 14",
@@ -380,7 +381,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductName = "Scaffolding material",
                 ProductQuantity = 19900,
                 ProductPrice = 3500,
-                ProductDescription = RentActionType.Description,
+                ProductDescription = "Manufactured in 2020 with a safety certificate",
                 ProductImageURL = "/Images/ProductImages/ScaffoldingMaterials.png",
                 LoadingCountry = "Austria",
                 LoadingAddress = "Vienna, str. Sindelargasse 17",
@@ -388,6 +389,22 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ActionTypeId = RentActionType.Id,
                 SupplierId = FirstSupplierCompany.Id,
                 IsTemperatureControlNeeded = false
+            };
+
+            ChokoOffer = new Offer()
+            {
+                Id = 4,
+                ProductName = "Chocolate Products",
+                ProductQuantity = 17450,
+                ProductPrice = 36745.55m,
+                ProductDescription = "Оwn production with a high quality certificate",
+                ProductImageURL = "/Images/ProductImages/chocolateProducts.png",
+                LoadingCountry = "Hungary",
+                LoadingAddress = "Debrecen, str. Biczokert 52",
+                PublicationDay = DateTime.Now,
+                ActionTypeId = SellActionType.Id,
+                SupplierId = FirstSupplierCompany.Id,
+                IsTemperatureControlNeeded = true
             };
         }
 

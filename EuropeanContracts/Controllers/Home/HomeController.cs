@@ -1,5 +1,6 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,11 +15,11 @@ namespace EuropeanContracts.Controllers.Home
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
         public IActionResult Information()
         {
             return View();

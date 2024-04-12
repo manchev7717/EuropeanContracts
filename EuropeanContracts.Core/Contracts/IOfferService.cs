@@ -20,6 +20,9 @@ namespace EuropeanContracts.Core.Contracts
 
         Task CreateOfferAsync(CreateOfferViewModel model);
 
+        Task<DetailOfferViewModel> DetailsOfferAsync(int offerId);
+
+        Task AddTransporterInOfferAsync();
 
     }
 }

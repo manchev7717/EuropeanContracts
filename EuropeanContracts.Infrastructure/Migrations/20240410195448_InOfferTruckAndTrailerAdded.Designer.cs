@@ -4,6 +4,7 @@ using EuropeanContracts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuropeanContracts.Infrastructure.Migrations
 {
     [DbContext(typeof(EuropeanContractsDbContext))]
-    partial class EuropeanContractsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240410195448_InOfferTruckAndTrailerAdded")]
+    partial class InOfferTruckAndTrailerAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,103 +68,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             Id = 3,
                             Description = "Тhe price is for transport the cargo to the delivery address and is in euros",
                             Name = "Transportation"
-                        });
-                });
-
-            modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.AutoTruck", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Truck identifier");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("HasCargoSpace")
-                        .HasColumnType("bit")
-                        .HasComment("Is there in truck cargo space");
-
-                    b.Property<bool>("HasTemperatureControl")
-                        .HasColumnType("bit")
-                        .HasComment("Is there temperature control");
-
-                    b.Property<int>("HorsePower")
-                        .HasMaxLength(10000)
-                        .HasColumnType("int")
-                        .HasComment("Truck horse power");
-
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasComment("Truck make");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasComment("Truck model");
-
-                    b.Property<int>("TransportCompanyId")
-                        .HasColumnType("int")
-                        .HasComment("Owner identifier");
-
-                    b.Property<string>("TruckImageURL")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("Track image URL");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TransportCompanyId");
-
-                    b.ToTable("AutoTrucks");
-
-                    b.HasComment("Track");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HasCargoSpace = false,
-                            HasTemperatureControl = false,
-                            HorsePower = 450,
-                            Make = "DAF",
-                            Model = "XG+",
-                            TransportCompanyId = 1,
-                            TruckImageURL = "/Images/TruckImages/DAF.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HasCargoSpace = false,
-                            HasTemperatureControl = false,
-                            HorsePower = 500,
-                            Make = "VOLVO",
-                            Model = "FX",
-                            TransportCompanyId = 2,
-                            TruckImageURL = "/Images/TruckImages/VOLVO.png"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            HasCargoSpace = true,
-                            HasTemperatureControl = false,
-                            HorsePower = 510,
-                            Make = "SCANIA",
-                            Model = "R510",
-                            TransportCompanyId = 2,
-                            TruckImageURL = "/Images/TruckImages/SCANIA.png"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            HasCargoSpace = true,
-                            HasTemperatureControl = false,
-                            HorsePower = 450,
-                            Make = "DAF",
-                            Model = "XF+",
-                            TransportCompanyId = 2,
-                            TruckImageURL = "/Images/TruckImages/DAF-XF-FRIGO.png"
                         });
                 });
 
@@ -299,7 +204,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Pork Meat",
                             ProductPrice = 102504m,
                             ProductQuantity = 19840,
-                            PublicationDay = new DateTime(2024, 4, 10, 23, 46, 47, 753, DateTimeKind.Local).AddTicks(8039),
+                            PublicationDay = new DateTime(2024, 4, 10, 22, 54, 48, 38, DateTimeKind.Local).AddTicks(4008),
                             SupplierId = 1
                         },
                         new
@@ -318,7 +223,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Plastic waste",
                             ProductPrice = 4200m,
                             ProductQuantity = 17800,
-                            PublicationDay = new DateTime(2024, 4, 10, 23, 46, 47, 753, DateTimeKind.Local).AddTicks(8063),
+                            PublicationDay = new DateTime(2024, 4, 10, 22, 54, 48, 38, DateTimeKind.Local).AddTicks(4040),
                             SupplierId = 2
                         },
                         new
@@ -335,7 +240,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Scaffolding material",
                             ProductPrice = 3500m,
                             ProductQuantity = 19900,
-                            PublicationDay = new DateTime(2024, 4, 10, 23, 46, 47, 753, DateTimeKind.Local).AddTicks(8068),
+                            PublicationDay = new DateTime(2024, 4, 10, 22, 54, 48, 38, DateTimeKind.Local).AddTicks(4048),
                             SupplierId = 1
                         },
                         new
@@ -352,7 +257,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Chocolate Products",
                             ProductPrice = 36745.55m,
                             ProductQuantity = 17450,
-                            PublicationDay = new DateTime(2024, 4, 10, 23, 46, 47, 753, DateTimeKind.Local).AddTicks(8072),
+                            PublicationDay = new DateTime(2024, 4, 10, 22, 54, 48, 38, DateTimeKind.Local).AddTicks(4055),
                             SupplierId = 1
                         });
                 });
@@ -652,6 +557,103 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Truck", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Truck identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("HasCargoSpace")
+                        .HasColumnType("bit")
+                        .HasComment("Is there in truck cargo space");
+
+                    b.Property<bool>("HasTemperatureControl")
+                        .HasColumnType("bit")
+                        .HasComment("Is there temperature control");
+
+                    b.Property<int>("HorsePower")
+                        .HasMaxLength(10000)
+                        .HasColumnType("int")
+                        .HasComment("Truck horse power");
+
+                    b.Property<string>("Make")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasComment("Truck make");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasComment("Truck model");
+
+                    b.Property<int>("TransportCompanyId")
+                        .HasColumnType("int")
+                        .HasComment("Owner identifier");
+
+                    b.Property<string>("TruckImageURL")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Track image URL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TransportCompanyId");
+
+                    b.ToTable("Trucks");
+
+                    b.HasComment("Track");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HasCargoSpace = false,
+                            HasTemperatureControl = false,
+                            HorsePower = 450,
+                            Make = "DAF",
+                            Model = "XG+",
+                            TransportCompanyId = 1,
+                            TruckImageURL = "/Images/TruckImages/DAF.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HasCargoSpace = false,
+                            HasTemperatureControl = false,
+                            HorsePower = 500,
+                            Make = "VOLVO",
+                            Model = "FX",
+                            TransportCompanyId = 2,
+                            TruckImageURL = "/Images/TruckImages/VOLVO.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HasCargoSpace = true,
+                            HasTemperatureControl = false,
+                            HorsePower = 510,
+                            Make = "SCANIA",
+                            Model = "R510",
+                            TransportCompanyId = 2,
+                            TruckImageURL = "/Images/TruckImages/SCANIA.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            HasCargoSpace = true,
+                            HasTemperatureControl = false,
+                            HorsePower = 450,
+                            Make = "DAF",
+                            Model = "XF+",
+                            TransportCompanyId = 2,
+                            TruckImageURL = "/Images/TruckImages/DAF-XF-FRIGO.png"
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -773,15 +775,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4684b6ab-313a-4456-b81a-c42383a3c523",
+                            ConcurrencyStamp = "dc70103a-35ee-4029-858b-4ef703c57d96",
                             Email = "firstUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "FIRSTUSER@MAIL.COM",
                             NormalizedUserName = "FIRSTUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECIz4coVblmHwqFn7zlgd99U4Ha9DhJXjMF0W8GkEKhrxaGQ2X3GqoT6vVIimPXiyg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECeZPooqgow/sXzld/42MWJjqz7L2HJCBGf5XutaN308wEFXojLXjRL6gby1KW8wPA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "515d3223-b292-478d-bb0d-d9e397161b46",
+                            SecurityStamp = "9b5f0beb-ea13-427d-9995-ceeb1b9384d5",
                             TwoFactorEnabled = false,
                             UserName = "firstUser@mail.com"
                         },
@@ -789,15 +791,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69c2ed87-b4d3-4278-a89b-227ef8ba688d",
+                            ConcurrencyStamp = "e789ffaf-15fd-4d7f-b81c-8bab8556168e",
                             Email = "secondUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SECONDUSER@MAIL.COM",
                             NormalizedUserName = "SECONDUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIW8Glh+pAAziu8BZsqIC9ZrvASz8VJzxd2i2Y/zrN72YmNgNJ9Dt2h048t9cdxMEg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE22JNtkRuP2f8Z6YHsG58y8LyIlRiOx9G0zAKsX//7ZWD/zAYyBtNcZozLUhdcz8w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "87576009-dc10-4177-85e6-5c75a92e40dd",
+                            SecurityStamp = "235bb861-8e49-4216-9fb8-f1a4100ced50",
                             TwoFactorEnabled = false,
                             UserName = "secondUser@mail.com"
                         },
@@ -805,15 +807,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "04b6f9c9-16ff-44cd-97e1-132ab7e26b10",
+                            ConcurrencyStamp = "d2551eb7-ab5e-4fe8-a605-1c26ec9f9927",
                             Email = "thirdUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "THIRDUSER@MAIL.COM",
                             NormalizedUserName = "THIRDUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPI71SI+HH27vWzBPyPnJwhxMGAltR3mEz+f2npn4s/4S2KvZtuAPr6RXWxupdvuQA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHQZ4TllEzXwvIN7C4VT8MKNZbz3wTw1WXhPtJIUpuP57l1atJACP1RHuZppDJ0VUw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "02ddcced-0a71-4f4f-af0a-ab66d2963131",
+                            SecurityStamp = "f5d57920-b72a-4b23-a353-d6a87332c296",
                             TwoFactorEnabled = false,
                             UserName = "thirdUser@mail.com"
                         },
@@ -821,15 +823,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b9f62d9f-3859-4e8e-9826-591193653342",
+                            ConcurrencyStamp = "f16f6870-bca6-4b37-9c69-58de7d20339e",
                             Email = "fourthUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "FOURTHUSER@MAIL.COM",
                             NormalizedUserName = "FOURTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKE5x3WGoVBKruIiw9IioznZ8tSAIkfvVXzoRnVwe+9NfM60rCfYnVB/2xCcZR5S3g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGK6dyFGO1M3bPmCVRbVTbWPncl1gqIEMl5FOGBRN0D/kL+QRJpqj5/C7If1hbw/lQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3740c20c-f7d3-4a1b-8ae9-205c35c94e1d",
+                            SecurityStamp = "d11a8cd4-83ce-4c5f-8816-c05be6bc6e2f",
                             TwoFactorEnabled = false,
                             UserName = "fourthUser@mail.com"
                         },
@@ -837,15 +839,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0580544d-ac4e-43aa-ac7b-0c234b3f75d4",
+                            ConcurrencyStamp = "ac17fb56-d8b3-4177-9fe6-2cc29b7b114a",
                             Email = "fifthUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "FIFTHUSER@MAIL.COM",
                             NormalizedUserName = "FIFTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENl2yJsbGOsKzo5QOnCOpZQlWNvhXTCUG+zfG3EF/kkJ8LQq1FtxhB5VHV68O8vSeg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM1il8VJ4SYUUQrxJd9c/2OKlS4s6Qb+XLsWSro2ydM24ebSlEyVp1HI/qChyNQ2NQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f149e3e1-bd5c-45dc-b30b-5f6260faf38f",
+                            SecurityStamp = "4561b1e1-37ef-4fd3-bfe6-8640d25c856c",
                             TwoFactorEnabled = false,
                             UserName = "fifthUser@mail.com"
                         },
@@ -853,15 +855,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9cb45f22-c334-450c-9125-04537d309033",
+                            ConcurrencyStamp = "3fe59197-4b9e-428e-9a7c-cad2d4d55836",
                             Email = "sixthUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SIXTHUSER@MAIL.COM",
                             NormalizedUserName = "SIXTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIJqUM63ocvJN8BUBkFmaYSE5Fe21oKh4VSM9QZoOLulEUN7Ij4Z7+A7quFLLS5FA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMgCmJhfFJUooGrdBbK5za4C+2jhEJYZiAgGii4Dszj/D4/LCB6KVN6FtMkxYUwV8Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "00bdc0a2-38ff-4f27-b6e3-7ce13f3fb1f3",
+                            SecurityStamp = "0d33d141-4dd0-4821-9f64-2b3713c3fb30",
                             TwoFactorEnabled = false,
                             UserName = "sixthUser@mail.com"
                         },
@@ -869,15 +871,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "00ffbe68-4674-44fe-bcc4-17a3f3ba5966",
+                            ConcurrencyStamp = "4916a03b-fcc8-4fbc-b97b-727d609fce4e",
                             Email = "seventhuser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SEVENTHUSER@MAIL.COM",
                             NormalizedUserName = "SEVENTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOLLXCdyiXmTJn1FnQy4YKASGKIILTt1DRkgBWI+9qQSzIHhqCxhGbMCUoYPX1Bl6g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELsb2dCDPG27XsfFEgN92sj2p566XzrlpkpS3e/iehAjrqNiYMs3MWgPvLq8yzZtWQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f0f7df2c-ff2f-475d-ba34-af5d3c70a51a",
+                            SecurityStamp = "6c07f850-238c-4a75-a318-e95f87b61f2f",
                             TwoFactorEnabled = false,
                             UserName = "seventhUser@mail.com"
                         },
@@ -885,15 +887,15 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ffc245ae-e9dd-4d2c-80b1-52f813472ad0",
+                            ConcurrencyStamp = "c33365de-ffed-4d62-99ee-bf47c63ab4c6",
                             Email = "eighthUser@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "EIGHTHUSER@MAIL.COM",
                             NormalizedUserName = "EIGHTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKBJSrxQx/l8pJ3QTfre3J3SM8kcBQ0eBJ2nOM0GjGVb8COB+ahYYSqS4pTNh4bR+w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKoz1jcQHXnDTQu/bJVJ4yQ6Pg15bTRwUt8HYZuSEwAK+v/zrXETJRQeXojIOO+Sxg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fc775585-c8d5-4be1-8547-805c3372d068",
+                            SecurityStamp = "2f81db90-1c7e-4b0e-882f-8c241f17ce89",
                             TwoFactorEnabled = false,
                             UserName = "eighthUser@mail.com"
                         });
@@ -984,17 +986,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.AutoTruck", b =>
-                {
-                    b.HasOne("EuropeanContracts.Infrastructure.Data.Models.TransportCompany", "TransportCompany")
-                        .WithMany("Trucks")
-                        .HasForeignKey("TransportCompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TransportCompany");
-                });
-
             modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Offer", b =>
                 {
                     b.HasOne("EuropeanContracts.Infrastructure.Data.Models.ActionType", "ActionType")
@@ -1021,7 +1012,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         .WithMany("Offers")
                         .HasForeignKey("TransporterId");
 
-                    b.HasOne("EuropeanContracts.Infrastructure.Data.Models.AutoTruck", "Truck")
+                    b.HasOne("EuropeanContracts.Infrastructure.Data.Models.Truck", "Truck")
                         .WithMany()
                         .HasForeignKey("TruckId");
 
@@ -1080,6 +1071,17 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("EuropeanContracts.Infrastructure.Data.Models.Truck", b =>
+                {
+                    b.HasOne("EuropeanContracts.Infrastructure.Data.Models.TransportCompany", "TransportCompany")
+                        .WithMany("Trucks")
+                        .HasForeignKey("TransportCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransportCompany");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

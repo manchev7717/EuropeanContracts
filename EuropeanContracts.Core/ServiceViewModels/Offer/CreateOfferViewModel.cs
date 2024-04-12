@@ -1,10 +1,7 @@
 ﻿using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {

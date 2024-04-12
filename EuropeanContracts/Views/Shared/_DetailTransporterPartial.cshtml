@@ -1,0 +1,15 @@
+﻿@model DetailOfferViewModel
+@if (Model.TransporterDetail.TransporterId != null)
+{
+
+}
+else
+{
+    <h4 class="text-center">
+        <span class="text-danger text-center">No transport company yet</span>
+    </h4>
+    <br />
+    <br />
+    <br />
+    <a asp-action="AddTransporter" asp-controller="Offer" class="btn btn-primary">Add Transport Company</a>
+}

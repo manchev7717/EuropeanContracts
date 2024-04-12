@@ -16,7 +16,8 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
                 {
                     data.TopOffer,
                     data.FirstOffer,
-                    data.SecondOffer
+                    data.SecondOffer,
+                    data.ChokoOffer
                 });
         }
     }

@@ -2,7 +2,7 @@
 using EuropeanContracts.Infrastructure.Data.Constance;
 using System.ComponentModel.DataAnnotations;
 
-namespace EuropeanContracts.Core.ServiceViewModels.SupplierCompany
+namespace EuropeanContracts.Core.ServiceViewModels.Supplier
 {
     public class AddSupplierCompanyModel
     {

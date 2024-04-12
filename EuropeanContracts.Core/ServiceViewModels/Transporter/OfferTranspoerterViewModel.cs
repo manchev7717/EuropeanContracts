@@ -1,7 +1,5 @@
-﻿using EuropeanContracts.Infrastructure.Data.Constance;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Transporter
 {

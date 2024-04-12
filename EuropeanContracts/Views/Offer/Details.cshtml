@@ -1,0 +1,25 @@
+﻿@model DetailOfferViewModel
+@{
+    ViewData["Title"] = "Offer details";
+}
+<h4 class="text-center">@ViewData["Title"]</h4>
+<hr class="border border-primary border-2 opacity-75" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailOfferPartial"></partial>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailTransporterPartial">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailRecipientPartial">
+            </div>
+        </div>
+    </div>
+</div>

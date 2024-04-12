@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EuropeanContracts.Infrastructure.Data.Configuration
 {
-    public class TruckConfiguration : IEntityTypeConfiguration<Truck>
+    public class TruckConfiguration : IEntityTypeConfiguration<AutoTruck>
     {
-        public void Configure(EntityTypeBuilder<Truck> builder)
+        public void Configure(EntityTypeBuilder<AutoTruck> builder)
         {
             var data = new DataSeed();
 
             builder
-                .HasData(new Truck[]
+                .HasData(new AutoTruck[]
                 {
                     data.FirstTruck,
                     data.SecondTruck,

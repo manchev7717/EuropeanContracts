@@ -42,7 +42,7 @@ namespace EuropeanContracts.Controllers
             }
             var transportCompany = await transportCompanyService.ReturnTransporterByUserIdAsync(User.Id());
 
-            var model = new Truck()
+            var model = new AutoTruck()
             {
                 Make = truckModel.Make,
                 Model = truckModel.Model,

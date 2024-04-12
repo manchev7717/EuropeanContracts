@@ -1,6 +1,5 @@
 ﻿using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ServiceViewModels.Trailer;
-using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;

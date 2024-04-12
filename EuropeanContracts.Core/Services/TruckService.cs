@@ -15,7 +15,7 @@ namespace EuropeanContracts.Core.Services
             this.repository = repository;
         }
 
-        public async Task AddTruckAsync(Truck truckModel)
+        public async Task AddTruckAsync(AutoTruck truckModel)
         {
             await repository.AddAsync(truckModel);
             await repository.SaveChangesAsync();
@@ -23,7 +23,7 @@ namespace EuropeanContracts.Core.Services
 
         public async Task DeleteAsync(int id)
         {
-            var truck = await repository.All<Truck>()
+            var truck = await repository.All<AutoTruck>()
                 .FirstAsync(x => x.Id == id);
 
             await repository.DeleteAsync(truck);
@@ -32,7 +32,7 @@ namespace EuropeanContracts.Core.Services
 
         public async Task EditAsync(EditAndDeleteTruckViewModel model)
         {
-            var truck = await repository.All<Truck>()
+            var truck = await repository.All<AutoTruck>()
                 .FirstOrDefaultAsync(t => t.Id == model.Id);
 
             if (truck != null)
@@ -50,14 +50,14 @@ namespace EuropeanContracts.Core.Services
 
         public async Task<bool> ExistByIdAsync(int truckId)
         {
-            return await repository.AllReadOnly<Truck>()
+            return await repository.AllReadOnly<AutoTruck>()
                 .AnyAsync(t => t.Id == truckId);
         }
 
 
         public async Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId)
         {
-            var truck = await repository.AllReadOnly<Truck>()
+            var truck = await repository.AllReadOnly<AutoTruck>()
                 .Where(t => t.Id == truckId)
                 .Select(t => new EditAndDeleteTruckViewModel()
                 {

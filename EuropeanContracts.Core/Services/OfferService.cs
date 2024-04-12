@@ -38,6 +38,7 @@ namespace EuropeanContracts.Core.Services
 
             var offers = await repository.AllReadOnly<Offer>()
                 .Include(a => a.ActionType)
+                .Include(a=>a.Supplier)
                 .ToListAsync();
 
             if (actionType != null)
@@ -64,7 +65,7 @@ namespace EuropeanContracts.Core.Services
             var offerResult = offers
                 .Skip((currentPage - 1) * offersCountOnPage)
                 .Take(offersCountOnPage)
-                .Select(o => new OfferViewModel()
+                .Select(o => new OfferDetailViewModel()
                 {
                     Id = o.Id,
                     ProductName = o.ProductName,
@@ -77,6 +78,10 @@ namespace EuropeanContracts.Core.Services
                     PublicationDay = o.PublicationDay,
                     ActionType = o.ActionType.Name,
                     SupplierId = o.SupplierId,
+                    CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
+                    CreatorPhoneNumber = o.Supplier.PhoneNumber,
+                    ActionDescription = o.ActionType.Description
+                    
                 })
                 .ToList();
 
@@ -111,9 +116,68 @@ namespace EuropeanContracts.Core.Services
                 PublicationDay = model.PublicationDay,
                 SupplierId= model.SupplierId,
                 ActionTypeId = model.ActionTypeId,
+               
             };
             await repository.AddAsync(newOffer);
             await repository.SaveChangesAsync();
+        }
+
+        public async Task<DetailOfferViewModel> DetailsOfferAsync(int offerId)
+        {
+            var model = await repository.AllReadOnly<Offer>()
+                .Include(o=>o.Supplier)
+                .Include(o=>o.Transporter)
+                .Include(o=>o.Recipient)
+                .Include(o=>o.Truck)
+                .Include(o=>o.Trailer)
+                .Where(o => o.Id == offerId)
+                .Select(o=> new DetailOfferViewModel()
+                {
+                    ProductDescription = o.ProductDescription,
+
+                    OfferViewModel = new OfferDetailViewModel()
+                    {
+                        Id = o.Id,
+                        ProductName = o.ProductName,
+                        ProductImageURL = o.ProductImageURL,
+                        ProductQuantity = o.ProductQuantity,
+                        ProductPrice = o.ProductPrice,
+                        LoadingAddress = o.LoadingAddress,
+                        LoadingCountry = o.LoadingCountry,
+                        IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                        PublicationDay = o.PublicationDay,
+                        ActionType = o.ActionType.Name,
+                        SupplierId = o.SupplierId,
+                        ActionDescription=o.ActionType.Description,
+                        CreatorName = o .Supplier.Name +"/"+ o.Supplier.Country,
+                        CreatorPhoneNumber = o.Supplier.PhoneNumber
+                        
+                    },
+
+                    RecipientDetail = new RecipientDetailViewModel()
+                    {
+                        CountryOfDestination = o.CountryOfDestination,
+                        AddressOfDestination = o.AddressOfDestination,
+                        IsDelivered = o.IsDelivered,
+                        DeliveryTime = o.DeliveryTime,
+                        RecipientId = o.RecipientId,
+                    },
+
+                    TransporterDetail = new TransporterDetailViewModel()
+                    {
+                        TrailerId = o.TransporterId,
+                        TruckId = o.TruckId,
+                        TransporterId = o.TransporterId,
+                    }
+                })
+                .FirstAsync();
+
+            return model;
+        }
+
+        public Task AddTransporterInOfferAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

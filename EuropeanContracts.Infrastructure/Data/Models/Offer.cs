@@ -27,7 +27,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public int ProductQuantity { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18, 6)")]
+        [Column(TypeName = "decimal(18, 2)")]
         [Comment("Product price in EURO")]
         public decimal ProductPrice { get; set; }
 
@@ -57,8 +57,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [Comment("Product temperature requirement")]
         public bool IsTemperatureControlNeeded { get; set; }
         [Comment("Is the contract concluded")]
-        public bool IsContract 
-            => TransporterId != null && RecipientId != null ? true : false;
+        public bool IsContract { get; set; }
 
         [Comment("Is the product is delivered")]
         public bool IsDelivered { get; set; }
@@ -87,6 +86,20 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public int? TransporterId { get; set; }
         [ForeignKey(nameof(TransporterId))]
         public TransportCompany? Transporter { get; set; }
+
+        [Comment("Offer Truck")]
+        public int? TruckId { get; set; }
+
+        [ForeignKey(nameof(TruckId))]
+        public AutoTruck? Truck { get; set; }
+
+        [Comment("Offer Trailer")]
+
+        public int? TrailerId { get; set; }
+
+        [ForeignKey(nameof(TrailerId))]
+
+        public Trailer? Trailer { get; set; }
 
         [Comment("Recipient identifier")]
         public int? RecipientId { get; set; }

@@ -4,7 +4,6 @@ using EuropeanContracts.Core.ServiceViewModels.Supplier;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
 
 namespace EuropeanContracts.Core.Services
 {
@@ -30,6 +29,7 @@ namespace EuropeanContracts.Core.Services
             var offers = await repository.AllReadOnly<Offer>()
                 .Where(o=>o.SupplierId == supplierId)
                 .Include(a => a.ActionType)
+                .Include(a => a.Supplier)
                 .ToListAsync();
 
             if (isContract != null)
@@ -44,7 +44,7 @@ namespace EuropeanContracts.Core.Services
             var offerResult = offers
                 .Skip((currentPage - 1) * offersCountOnPage)
                 .Take(offersCountOnPage)
-                .Select(o => new SupplierOfferViewModel()
+                .Select(o => new OfferDetailViewModel()
                 {
                     Id = o.Id,
                     ProductName = o.ProductName,
@@ -57,6 +57,9 @@ namespace EuropeanContracts.Core.Services
                     PublicationDay = o.PublicationDay,
                     ActionType = o.ActionType.Name,
                     SupplierId = o.SupplierId,
+                    CreatorPhoneNumber = o.Supplier.PhoneNumber,
+                    CreatorName = o.Supplier.Name,
+                    ActionDescription = o.ActionType.Description
                 })
                 .ToList();
 

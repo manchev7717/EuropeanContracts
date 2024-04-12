@@ -1,10 +1,8 @@
-﻿using EuropeanContracts.Infrastructure.Data.Constance;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {
-    public class OfferViewModel
+    public class OfferDetailViewModel
     {
         public int Id { get; set; }
 
@@ -35,8 +33,16 @@ namespace EuropeanContracts.Core.ServiceViewModels.Offer
         [Display(Name = "Action type identifier")]
         public string? ActionType { get; set; }
 
-        [Comment("Supplier identifier")]
+        public string? ActionDescription { get;set; }
+
+        [Display(Name ="Supplier identifier")]
         public int SupplierId { get; set; }
+
+        [Display(Name = "Name of creator")]
+        public string CreatorName { get; set; } = string.Empty;
+
+        [Display(Name = "Creator Phone number")]
+        public string CreatorPhoneNumber { get; set; } = string.Empty;
 
     }
 }

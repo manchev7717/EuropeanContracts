@@ -1,15 +1,13 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ErrorMessageAndConstance;
-using EuropeanContracts.Core.Services;
 using EuropeanContracts.Core.ServiceViewModels.Supplier;
-using EuropeanContracts.Core.ServiceViewModels.SupplierCompany;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
-{ 
+{
     public class SupplierCompanyController : BaseController
     {
         private readonly ISupplierCompanyService supplierCompanyService;

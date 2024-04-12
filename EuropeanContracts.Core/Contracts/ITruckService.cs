@@ -5,7 +5,7 @@ namespace EuropeanContracts.Core.Contracts
 {
     public interface ITruckService
     {
-        Task AddTruckAsync(Truck truckModel);
+        Task AddTruckAsync(AutoTruck truckModel);
 
         Task<bool> ExistByIdAsync(int truckId);
 

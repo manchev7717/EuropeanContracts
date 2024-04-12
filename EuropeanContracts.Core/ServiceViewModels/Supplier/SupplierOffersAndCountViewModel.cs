@@ -1,10 +1,12 @@
-﻿namespace EuropeanContracts.Core.ServiceViewModels.Supplier
+﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
+
+namespace EuropeanContracts.Core.ServiceViewModels.Supplier
 {
     public class SupplierOffersAndCountViewModel
     {
         public int AllOffersCount { get; set; }
 
-        public IEnumerable<SupplierOfferViewModel> OfferViewModels { get; set; } = new List<SupplierOfferViewModel>();
+        public IEnumerable<OfferDetailViewModel> OfferViewModels { get; set; } = new List<OfferDetailViewModel>();
     }
 }
 

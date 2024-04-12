@@ -24,6 +24,6 @@ namespace EuropeanContracts.Core.ServiceViewModels.Offer
         [Display(Name = "Is temperature control required")]
         public string? IsTemperatureControlNeeded { get; set; }
 
-        public IEnumerable<OfferViewModel> Offers { get; set; } = new List<OfferViewModel>();
+        public IEnumerable<OfferDetailViewModel> Offers { get; set; } = new List<OfferDetailViewModel>();
     }
 }

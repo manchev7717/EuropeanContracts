@@ -66,7 +66,7 @@ namespace EuropeanContracts.Core.Services
                                                             int truckCountOnPage,
                                                             int transportCompanyId)
         {
-            var trucks = await repository.AllReadOnly<Truck>()
+            var trucks = await repository.AllReadOnly<AutoTruck>()
                 .Where(t => t.TransportCompanyId == transportCompanyId)
                 .ToListAsync();
 

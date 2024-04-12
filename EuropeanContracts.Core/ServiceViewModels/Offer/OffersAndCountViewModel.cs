@@ -4,6 +4,6 @@
     {
         public int AllOffersCount { get; set; }
 
-        public IEnumerable<OfferViewModel> OfferViewModels { get; set; } = new List<OfferViewModel>();
+        public IEnumerable<OfferDetailViewModel> OfferViewModels { get; set; } = new List<OfferDetailViewModel>();
     }
 }

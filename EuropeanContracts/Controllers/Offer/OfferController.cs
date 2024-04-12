@@ -66,5 +66,21 @@ namespace EuropeanContracts.Controllers.Offer
 
             return RedirectToAction("MyOffers", "SupplierCompany");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+
+            var model = await offerService.DetailsOfferAsync(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddTransporter()
+        {
+           // var model = await offerService.AddTransporterInOfferAsync();
+            return View();
+        }
     }
 }

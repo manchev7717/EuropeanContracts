@@ -41,7 +41,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         public IdentityUser Owner { get; set; } = null!;
 
         public IList<Offer> Offers { get; set; } = new List<Offer>();
-        public IList<Truck> Trucks { get; set; } = new List<Truck>();
+        public IList<AutoTruck> Trucks { get; set; } = new List<AutoTruck>();
         public IList<Trailer> Trailers { get; set; } = new List<Trailer>();
 
     }
