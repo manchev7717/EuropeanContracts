@@ -16,6 +16,14 @@ namespace EuropeanContracts.Core.ServiceViewModels.Trailer
         [Display(Name = "Trailer make")]
         public string Make { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Display(Name = "Registration number")]
+        [RegularExpression(ModelsErrorMessages.RegexVehiclePattern, ErrorMessage = ModelsErrorMessages.RegexVehicleNumberError)]
+        [StringLength(DataValidationConstance.TrailerRegistrationMaxLength,
+            MinimumLength = DataValidationConstance.TrailerRegistrationMinLength,
+            ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+        public string RegistrationNumber { get; set; } = string.Empty;
+
         [Display(Name = "Trailer image URL")]
         public string? TrailerImageURL { get; set; }
 

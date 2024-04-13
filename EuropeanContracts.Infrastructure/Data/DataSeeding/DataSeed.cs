@@ -263,7 +263,8 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 HasCargoSpace = false,
                 HasTemperatureControl = false,
                 TruckImageURL = "/Images/TruckImages/DAF.png",
-                TransportCompanyId = FirstTransportCompany.Id
+                TransportCompanyId = FirstTransportCompany.Id,
+                RegistrationNumber = "CB5758CB"
             };
 
             SecondTruck = new AutoTruck()
@@ -275,7 +276,8 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 HasCargoSpace = false,
                 HasTemperatureControl = false,
                 TruckImageURL = "/Images/TruckImages/VOLVO.png",
-                TransportCompanyId = SecondTransportCompany.Id
+                TransportCompanyId = SecondTransportCompany.Id,
+                RegistrationNumber = "IAE7551"
             };
 
             ThirdTruck = new AutoTruck()
@@ -287,7 +289,8 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 HasTemperatureControl = false,
                 HasCargoSpace = true,
                 TruckImageURL = "/Images/TruckImages/SCANIA.png",
-                TransportCompanyId = SecondTransportCompany.Id
+                TransportCompanyId = SecondTransportCompany.Id,
+                RegistrationNumber = "B125VTG"
             };
 
             FourthTruck = new AutoTruck()
@@ -298,7 +301,8 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 HorsePower = 450,
                 HasCargoSpace = true,
                 TruckImageURL = "/Images/TruckImages/DAF-XF-FRIGO.png",
-                TransportCompanyId = SecondTransportCompany.Id
+                TransportCompanyId = SecondTransportCompany.Id,
+                RegistrationNumber = "W1255BCV"
             };
         }
         private void SeedTrailers()
@@ -310,6 +314,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Make = "Kodel",
                 TrailerImageURL = "/Images/TrailerImages/Kogel.png",
                 HasTemperatureControl = false,
+                RegistrationNumber = "UT775"
             };
 
             SecondTrailer = new Trailer()
@@ -319,6 +324,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Make = "Krone",
                 TrailerImageURL = "/Images/TrailerImages/Krone.png",
                 HasTemperatureControl = false,
+                RegistrationNumber = "IJ274MQG"
             };
 
             ThirdTrailer = new Trailer()
@@ -328,6 +334,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Make = "Schmitz Cargobull",
                 TrailerImageURL = "/Images/TrailerImages/SchmitzCargobull.png",
                 HasTemperatureControl = true,
+                RegistrationNumber = "P79634"
             };
 
             FourthTrailer = new Trailer()
@@ -337,6 +344,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Make = "Gray Adams",
                 TrailerImageURL = "/Images/TrailerImages/Gray_Adams_Frigo.png",
                 HasTemperatureControl = true,
+                RegistrationNumber = "F5011S"
             };
         }
         private void SeedOffer()

@@ -18,6 +18,14 @@ namespace EuropeanContracts.Core.ServiceViewModels.Trailer
         public string? TrailerImageURL { get; set; }
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Display(Name = "Registration number")]
+        [RegularExpression(ModelsErrorMessages.RegexVehiclePattern, ErrorMessage = ModelsErrorMessages.RegexVehicleNumberError)]
+        [StringLength(DataValidationConstance.TrailerRegistrationMaxLength,
+            MinimumLength = DataValidationConstance.TrailerRegistrationMinLength,
+            ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+        public string RegistrationNumber { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         [Display(Name = "Having temperature control")]
         public bool HasTemperatureControl { get; set; }
 

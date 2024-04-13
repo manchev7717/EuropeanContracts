@@ -48,13 +48,13 @@
         public const int TruckModelMaxLength = 20;
         public const int TruckHorsePowerMinValue = 1;
         public const int TruckHorsePowerMaxValue = 10000;
-        public const int TruckRegistrationMaxLength = 1;
-        public const int TruckRegistrationMinLength = 30;
+        public const int TruckRegistrationMinLength = 3;
+        public const int TruckRegistrationMaxLength = 30;
 
         public const int TrailerMakeMinLength = 3;
         public const int TrailerMakeMaxLength = 20;
-        public const int TrailerRegistrationMaxLength = 1;
-        public const int TrailerRegistrationMinLength = 30;
+        public const int TrailerRegistrationMinLength = 3;
+        public const int TrailerRegistrationMaxLength = 30;
 
         public const int RecipientNameMinLength = 3;
         public const int RecipientNameMaxLength = 200;

@@ -51,6 +51,7 @@ namespace EuropeanContracts.Controllers
                 HasCargoSpace = truckModel.HasCargoSpace,
                 HasTemperatureControl = truckModel.HasTemperatureControl,
                 TransportCompanyId = transportCompany.Id,
+                RegistrationNumber = truckModel.RegistrationNumber
             };
 
             await truckService.AddTruckAsync(model);

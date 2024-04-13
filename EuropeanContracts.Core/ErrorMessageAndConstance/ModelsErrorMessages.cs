@@ -13,5 +13,8 @@
         public const string RangeError = "The field {0} must be positive number between {1} and {2}";
 
         public const string ExistVehicleError = "A vehicle with this URL already exists";
+
+        public const string RegexVehiclePattern = @"^[A-Z0-9]+$";
+        public const string RegexVehicleNumberError = "The field must contain only digits and upper case letters";
     }
 }

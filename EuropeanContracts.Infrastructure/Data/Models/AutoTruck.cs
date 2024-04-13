@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EuropeanContracts.Infrastructure.Data.Models
 {
     [Comment("Track")]
-    [Index(nameof(RegistrationNumber), IsUnique = true)]
+    [Index(nameof(RegistrationNumber),IsUnique = true)]
     public class AutoTruck
     {
         [Key]

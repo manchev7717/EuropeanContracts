@@ -43,6 +43,7 @@ namespace EuropeanContracts.Core.Services
                 truck.TruckImageURL = model.TruckImageURL;
                 truck.HasCargoSpace = model.HasCargoSpace;
                 truck.HasTemperatureControl = model.HasTemperatureControl;
+                truck.RegistrationNumber = model.RegistrationNumber;
 
                 await repository.SaveChangesAsync();
             }
@@ -68,6 +69,7 @@ namespace EuropeanContracts.Core.Services
                     TruckImageURL = t.TruckImageURL,
                     HasCargoSpace = t.HasCargoSpace,
                     HasTemperatureControl = t.HasTemperatureControl,
+                    RegistrationNumber = t.RegistrationNumber
 
                 })
                 .FirstAsync();

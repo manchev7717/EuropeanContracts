@@ -38,6 +38,15 @@ namespace EuropeanContracts.Core.ServiceViewModels.Truck
         [Display(Name = "Having temperature control")]
         public bool HasTemperatureControl { get; set; }
 
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Display(Name = "Registration number")]
+        [RegularExpression(ModelsErrorMessages.RegexVehiclePattern,
+            ErrorMessage = ModelsErrorMessages.RegexVehicleNumberError)]
+        [StringLength(DataValidationConstance.TruckRegistrationMaxLength,
+            MinimumLength = DataValidationConstance.TruckRegistrationMinLength,
+            ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+        public string RegistrationNumber { get; set; } = string.Empty;
+
         
         [Display(Name = "Owner identifier")]
         public int TransportCompanyId { get; set; }

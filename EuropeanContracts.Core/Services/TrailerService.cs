@@ -38,6 +38,7 @@ namespace EuropeanContracts.Core.Services
                 trailer.Make = model.Make;
                 trailer.TrailerImageURL = model.TrailerImageURL;
                 trailer.HasTemperatureControl = model.HasTemperatureControl;
+                trailer.RegistrationNumber = model.RegistrationNumber;
 
                 await repository.SaveChangesAsync();
             }
@@ -60,6 +61,7 @@ namespace EuropeanContracts.Core.Services
                     TrailerImageURL = t.TrailerImageURL,
                     HasTemperatureControl = t.HasTemperatureControl,
                     TransportCompanyId = t.TransportCompanyId,
+                    RegistrationNumber = t.RegistrationNumber
                 })
                 .FirstAsync();
 

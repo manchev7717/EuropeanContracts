@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.Metrics;
-using System.Xml.Linq;
 
 namespace EuropeanContracts.Infrastructure.Data.Models
 {

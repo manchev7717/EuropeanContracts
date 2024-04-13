@@ -23,6 +23,15 @@ namespace EuropeanContracts.Core.ServiceViewModels.Truck
         public string Model { get; set; } = string.Empty;
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
+        [Display(Name = "Registration number")]
+        [RegularExpression(ModelsErrorMessages.RegexVehiclePattern,
+            ErrorMessage = ModelsErrorMessages.RegexVehicleNumberError)]
+        [StringLength(DataValidationConstance.TruckRegistrationMaxLength,
+            MinimumLength = DataValidationConstance.TruckRegistrationMinLength,
+            ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+        public string RegistrationNumber { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         [Range(DataValidationConstance.TruckHorsePowerMinValue,
             DataValidationConstance.TruckHorsePowerMaxValue,
             ErrorMessage = ModelsErrorMessages.RangeError)]
