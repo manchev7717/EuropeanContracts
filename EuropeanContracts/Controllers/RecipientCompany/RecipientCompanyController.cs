@@ -1,7 +1,9 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ErrorMessageAndConstance;
+using EuropeanContracts.Core.Services;
 using EuropeanContracts.Core.ServiceViewModels.Recipient;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +52,21 @@ namespace EuropeanContracts.Controllers
             await recipientCompanyService.AddAsync(recipientToAdd);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MyOffers([FromQuery] AllOffersForRecipientViewModel model)
+        {
+            var result = await recipientCompanyService.AllOffersAsync(
+                            model.IsContract,
+                            model.CurrentPage,
+                            AllOffersForRecipientViewModel.OffersCountOnPage,
+                            User.Id());
+
+            model.Offers = result.OfferViewModels;
+            model.TotalOffersCount = result.AllOffersCount;
+
+            return View(model);
         }
     }
 }

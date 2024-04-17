@@ -1,4 +1,5 @@
-﻿using EuropeanContracts.Infrastructure.Data.Models;
+﻿using EuropeanContracts.Core.ServiceViewModels.Recipient;
+using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Contracts
 {
@@ -11,5 +12,13 @@ namespace EuropeanContracts.Core.Contracts
         Task<bool> IsRecipientExists(string country, string name);
 
         Task AddAsync(RecipientCompany model);
+
+        public Task<OffersAndCountRecipientViewModel> AllOffersAsync(
+                            string isContract,
+                            int currentPage,
+                            int offersCountOnPage,
+                            string userId);
+
+        Task<RecipientCompany> ReturnRecipientByUserIdAsync(string userId);
     }
 }
