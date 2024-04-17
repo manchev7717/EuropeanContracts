@@ -1,5 +1,8 @@
 ﻿using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ServiceViewModels.Offer;
+using EuropeanContracts.Core.ServiceViewModels.Recipient;
+using EuropeanContracts.Core.ServiceViewModels.Trailer;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +41,7 @@ namespace EuropeanContracts.Core.Services
 
             var offers = await repository.AllReadOnly<Offer>()
                 .Include(a => a.ActionType)
-                .Include(a=>a.Supplier)
+                .Include(a => a.Supplier)
                 .ToListAsync();
 
             if (actionType != null)
@@ -55,7 +58,7 @@ namespace EuropeanContracts.Core.Services
             }
             if (isTemperatureControlNeeded != null)
             {
-                bool result = isTemperatureControlNeeded =="true" ? true : false;
+                bool result = isTemperatureControlNeeded == "true" ? true : false;
 
                 offers = offers
                     .Where(o => o.IsTemperatureControlNeeded == result)
@@ -81,7 +84,7 @@ namespace EuropeanContracts.Core.Services
                     CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
                     CreatorPhoneNumber = o.Supplier.PhoneNumber,
                     ActionDescription = o.ActionType.Description
-                    
+
                 })
                 .ToList();
 
@@ -91,7 +94,7 @@ namespace EuropeanContracts.Core.Services
                 AllOffersCount = offers.Count()
             };
         }
-        
+
         public async Task<IEnumerable<ActionType>> ActionTypesAsync()
         {
             var result = await repository.AllReadOnly<ActionType>()
@@ -108,15 +111,15 @@ namespace EuropeanContracts.Core.Services
                 ProductDescription = model.ProductDescription,
                 ProductQuantity = model.ProductQuantity,
                 ProductPrice = model.ProductPrice,
-                ProductImageURL= model.ProductImageURL,
+                ProductImageURL = model.ProductImageURL,
                 LoadingCountry = model.LoadingCountry,
-                LoadingAddress= model.LoadingAddress,
+                LoadingAddress = model.LoadingAddress,
                 CountryOfDestination = model.CountryOfDestination,
-                IsTemperatureControlNeeded= model.IsTemperatureControlNeeded,
+                IsTemperatureControlNeeded = model.IsTemperatureControlNeeded,
                 PublicationDay = model.PublicationDay,
-                SupplierId= model.SupplierId,
+                SupplierId = model.SupplierId,
                 ActionTypeId = model.ActionTypeId,
-               
+
             };
             await repository.AddAsync(newOffer);
             await repository.SaveChangesAsync();
@@ -125,13 +128,13 @@ namespace EuropeanContracts.Core.Services
         public async Task<DetailOfferViewModel> DetailsOfferAsync(int offerId)
         {
             var model = await repository.AllReadOnly<Offer>()
-                .Include(o=>o.Supplier)
-                .Include(o=>o.Transporter)
-                .Include(o=>o.Recipient)
-                .Include(o=>o.Truck)
-                .Include(o=>o.Trailer)
+                .Include(o => o.Supplier)
+                .Include(o => o.Transporter)
+                .Include(o => o.Recipient)
+                .Include(o => o.Truck)
+                .Include(o => o.Trailer)
                 .Where(o => o.Id == offerId)
-                .Select(o=> new DetailOfferViewModel()
+                .Select(o => new DetailOfferViewModel()
                 {
                     ProductDescription = o.ProductDescription,
 
@@ -148,26 +151,37 @@ namespace EuropeanContracts.Core.Services
                         PublicationDay = o.PublicationDay,
                         ActionType = o.ActionType.Name,
                         SupplierId = o.SupplierId,
-                        ActionDescription=o.ActionType.Description,
-                        CreatorName = o .Supplier.Name +"/"+ o.Supplier.Country,
+                        ActionDescription = o.ActionType.Description,
+                        CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
                         CreatorPhoneNumber = o.Supplier.PhoneNumber
-                        
+
                     },
 
                     RecipientDetail = new RecipientDetailViewModel()
                     {
                         CountryOfDestination = o.CountryOfDestination,
                         AddressOfDestination = o.AddressOfDestination,
-                        IsDelivered = o.IsDelivered,
-                        DeliveryTime = o.DeliveryTime,
                         RecipientId = o.RecipientId,
+                        RecipientPhoneNumber = o.Recipient != null ? o.Recipient.PhoneNumber : string.Empty,
+                        RecipientCountry = o.Recipient != null ? o.Recipient.Country : string.Empty,
+                        RecipientName = o.Recipient != null ? o.Recipient.Name : string.Empty,
+
                     },
 
                     TransporterDetail = new TransporterDetailViewModel()
                     {
-                        TrailerId = o.TransporterId,
-                        TruckId = o.TruckId,
                         TransporterId = o.TransporterId,
+                        TransporterName = o.Transporter != null ? o.Transporter.Name : string.Empty,
+                        TransporterCountry = o.Transporter != null ? o.Transporter.Country : string.Empty,
+                        TransporterPhoneNumber = o.Transporter != null ? o.Transporter.PhoneNumber : string.Empty,
+                        TruckMake = o.Truck != null ? o.Truck.Make : string.Empty,
+                        TruckModel = o.Truck != null ? o.Truck.Model : string.Empty,
+                        TruckRegistration = o.Truck != null ? o.Truck.RegistrationNumber : string.Empty,
+                        TruckUrl = o.Truck != null ? o.Truck.TruckImageURL : null,
+                        TrailerMake = o.Trailer != null ? o.Trailer.Make : string.Empty,
+                        TrailerRegistration = o.Trailer != null ? o.Trailer.RegistrationNumber : string.Empty,
+                        TrailerUrl = o.Trailer != null ? o.Trailer.TrailerImageURL : null,
+
                     }
                 })
                 .FirstAsync();
@@ -175,9 +189,21 @@ namespace EuropeanContracts.Core.Services
             return model;
         }
 
-        public Task AddTransporterInOfferAsync()
+
+        public async Task AddTransporterInOfferAsync(AddTransportCompanyInOfferViewModel model)
         {
-            throw new NotImplementedException();
+            var offer = await repository.All<Offer>()
+                .Where(o => o.Id == model.OfferId)
+                .FirstAsync();
+
+            if (offer != null)
+            {
+                offer.TransporterId = model.TransporterId;
+                offer.TruckId = model.TruckId;
+                offer.TrailerId = model.TrailerId;
+
+                await repository.SaveChangesAsync();
+            }
         }
     }
 }

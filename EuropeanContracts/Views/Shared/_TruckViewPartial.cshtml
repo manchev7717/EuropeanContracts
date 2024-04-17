@@ -5,6 +5,7 @@
         <img class="card-img-top" src="@Model.TruckImageURL" alt="Product Image">
         <div class="card-body text-center">
             <h4>@Model.Make</h4>
+            <h6>Truck registration number: <b>@Model.RegistrationNumber</b></h6>
             <h6>Truck model: <b>@Model.Model</b></h6>
             <h6>Horse power: <b>@Model.HorsePower</b> </h6>
             <h6>Has cargo space: <b>@(Model.HasCargoSpace == true ? "Yes":"No" )</b> </h6>

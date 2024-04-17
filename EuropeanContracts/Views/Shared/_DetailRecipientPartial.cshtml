@@ -1,9 +1,12 @@
-﻿@model DetailOfferViewModel
+﻿@inject IRecipientCompanyService recipientService
+@inject ITransportCompanyService transporterService
+@model DetailOfferViewModel
+
 @if (Model.RecipientDetail.RecipientId != null)
 {
     
 }
-else
+else if (Model.RecipientDetail.RecipientId == null && await recipientService.IsRecipientExistFindByUserIdAsync(User.Id()))
 {
     <h4 class="text-center">
         <span class="text-danger text-center">No recipient company yet</span>
@@ -11,5 +14,25 @@ else
     <br/>
     <br/>
     <br/>
-    <a asp-action="AddRecipient" asp-controller="Offer" class="btn btn-primary">Add Recpient Company </a>
+    <a asp-action="AddRecipient" asp-controller="Offer" asp-route-userId="@User.Id()" class="btn btn-primary">Add Recpient Company </a>
+}
+else if (Model.RecipientDetail.RecipientId == null && await transporterService.IsTransporterExistFindByUserIdAsync(User.Id()))
+{
+    <h4 class="text-center">
+        <span class="text-danger text-center">No recipient company yet</span>
+    </h4>
+    <br />
+    <br />
+    <br />
+    <a asp-action="AddTransporter" asp-controller="Offer" class="btn btn-primary disabled">Add Recipient Company</a>
+}
+else
+{
+    <h4 class="text-center">
+        <span class="text-danger text-center">No recipient company yet</span>
+    </h4>
+    <br />
+    <br />
+    <br />
+    <a asp-action="Information" asp-controller="Home" class="btn btn-primary">Add Recipient Company</a>
 }

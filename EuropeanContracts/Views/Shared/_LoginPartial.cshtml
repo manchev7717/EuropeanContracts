@@ -9,8 +9,8 @@
     @if (SignInManager.IsSignedIn(User))
     {
         if ((await supplierService.FindSupplierByIdAsync(User.Id())) == false &&
-            (await transporterService.IsTransporterExistFindByIdAsync(User.Id())) == false &&
-            (await recipientService.FindRecipientByIdAsync(User.Id())) == false)
+            (await transporterService.IsTransporterExistFindByUserIdAsync(User.Id())) == false &&
+            (await recipientService.IsRecipientExistFindByUserIdAsync(User.Id())) == false)
         {
             <li class="nav-item">
                 <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Information">Information</a>

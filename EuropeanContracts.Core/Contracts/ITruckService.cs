@@ -17,5 +17,9 @@ namespace EuropeanContracts.Core.Contracts
 
         Task DeleteAsync(int id);
 
+        Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOffer(int transporterId);
+
+        Task<bool> HasTruckTemperaturControl(int truckId);
+
     }
 }

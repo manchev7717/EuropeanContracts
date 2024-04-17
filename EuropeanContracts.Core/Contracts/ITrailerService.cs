@@ -1,4 +1,5 @@
 ﻿using EuropeanContracts.Core.ServiceViewModels.Trailer;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Infrastructure.Data.Models;
 
@@ -16,5 +17,7 @@ namespace EuropeanContracts.Core.Contracts
         Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId);
 
         Task<EditAndDeleteTrailerViewModel> ReturnEditTrailerViewModelById(int trailerId);
+
+        Task<IEnumerable<TrailerIdAndRegistrationViewModel>> GetTrailerForOffer( bool isTemperatureRequired, int transporterId);
     }
 }

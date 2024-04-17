@@ -16,5 +16,11 @@
 
         public const string RegexVehiclePattern = @"^[A-Z0-9]+$";
         public const string RegexVehicleNumberError = "The field must contain only digits and upper case letters";
+
+        public const string TruckHasNoTemperatureControl =
+            "The selected truck has no temperature control, select another or add trailer";
+
+        public const string TrailerHasNoTemperatureControl =
+            "The selected trailer has no temperature control, select another one";
     }
 }

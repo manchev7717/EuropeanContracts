@@ -32,7 +32,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> Add(AddTrailerViewModel trailerModel)
         {
-            if (!await transportCompanyService.IsTransporterExistFindByIdAsync(User.Id()))
+            if (!await transportCompanyService.IsTransporterExistFindByUserIdAsync(User.Id()))
             {
                 return BadRequest();
             }

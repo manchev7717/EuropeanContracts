@@ -13,7 +13,7 @@ namespace EuropeanContracts.Core.Services
             this.repository = repository;
         }
 
-        public async Task<bool> FindRecipientByIdAsync(string userId)
+        public async Task<bool> IsRecipientExistFindByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<RecipientCompany>()
                 .AnyAsync(r => r.OwnerId == userId);

@@ -48,6 +48,7 @@ namespace EuropeanContracts.Core.Services
                     TrailerImageURL = t.TrailerImageURL,
                     HasTemperatureControl = t.HasTemperatureControl,
                     TransportCompanyId = t.TransportCompanyId,
+                    RegistrationNumber = t.RegistrationNumber,
                 })
                 .ToList();
             var model = new AllTrailersViewModel()
@@ -98,6 +99,7 @@ namespace EuropeanContracts.Core.Services
                     HasCargoSpace = t.HasCargoSpace,
                     HasTemperatureControl = t.HasTemperatureControl,
                     TransportCompanyId = t.TransportCompanyId,
+                    RegistrationNumber = t.RegistrationNumber
                 })
                 .ToList();
             var model = new AllTrucksViewModel()
@@ -110,7 +112,7 @@ namespace EuropeanContracts.Core.Services
             return model;
         }
 
-        public async Task<bool> IsTransporterExistFindByIdAsync(string userId)
+        public async Task<bool> IsTransporterExistFindByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
                 .AnyAsync(t => t.OwnerId == userId);

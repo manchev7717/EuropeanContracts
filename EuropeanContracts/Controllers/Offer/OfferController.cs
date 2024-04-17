@@ -1,7 +1,10 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Offer;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
+using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers.Offer
@@ -10,15 +13,25 @@ namespace EuropeanContracts.Controllers.Offer
     {
         private readonly IOfferService offerService;
         private readonly ISupplierCompanyService supplierCompanyService;
+        private readonly ITruckService truckService;
+        private readonly ITrailerService trailerService;
+        private readonly ITransportCompanyService transporterService;
 
-        public OfferController(IOfferService offerService, ISupplierCompanyService supplierCompanyService)
+        public OfferController(IOfferService offerService,
+            ISupplierCompanyService supplierCompanyService,
+            ITruckService truckService,
+            ITrailerService trailerService,
+            ITransportCompanyService transporterService)
         {
             this.offerService = offerService;
             this.supplierCompanyService = supplierCompanyService;
+            this.truckService = truckService;
+            this.trailerService = trailerService;
+            this.transporterService = transporterService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> All([FromQuery]AllOfferViewModel model)
+        public async Task<IActionResult> All([FromQuery] AllOfferViewModel model)
         {
             var result = await offerService.AllAsync(
                             model.ActionType,
@@ -60,7 +73,7 @@ namespace EuropeanContracts.Controllers.Offer
             }
 
 
-            var supplierId = await supplierCompanyService.ReturnSupplierIdByUserId(userId); 
+            var supplierId = await supplierCompanyService.ReturnSupplierIdByUserId(userId);
             model.SupplierId = supplierId;
             await offerService.CreateOfferAsync(model);
 
@@ -77,10 +90,46 @@ namespace EuropeanContracts.Controllers.Offer
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddTransporter()
+        public async Task<IActionResult> AddTransporter(bool isTemperatureRequired, int offerId)
         {
-           // var model = await offerService.AddTransporterInOfferAsync();
-            return View();
+            var transporter = await transporterService.ReturnTransporterByUserIdAsync(User.Id());
+
+            var model = new AddTransportCompanyInOfferViewModel();
+
+            model.OfferId = offerId;
+            model.IsTemperatureRequired = isTemperatureRequired;
+            model.TransporterId = transporter.Id;
+            model.Trucks = await truckService.GetTruckForOffer(model.TransporterId);
+            model.Trailers = await trailerService.GetTrailerForOffer(isTemperatureRequired, model.TransporterId);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTransporter(AddTransportCompanyInOfferViewModel model)
+        {
+            var transporter = await transporterService.ReturnTransporterByUserIdAsync(User.Id());
+            var hasTruckTemperaturControl = await truckService.HasTruckTemperaturControl(model.TruckId);
+            model.TransporterId = transporter.Id;
+
+            if (model.IsTemperatureRequired && model.TrailerId == null && hasTruckTemperaturControl == false)
+            {
+                ModelState.AddModelError(nameof(model.TruckId), ModelsErrorMessages.TruckHasNoTemperatureControl);
+                model.Trucks = await truckService.GetTruckForOffer(model.TransporterId);
+                model.Trailers = await trailerService.GetTrailerForOffer(model.IsTemperatureRequired, model.TransporterId);
+                return View(model);
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                return View(AddTransporter(model.IsTemperatureRequired, model.OfferId));
+            }
+
+
+            await offerService.AddTransporterInOfferAsync(model);
+
+
+            return RedirectToAction("MyOffers", "TransportCompany");
         }
     }
 }

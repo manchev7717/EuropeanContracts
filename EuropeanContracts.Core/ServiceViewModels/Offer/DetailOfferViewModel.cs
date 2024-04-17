@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EuropeanContracts.Core.ServiceViewModels.Recipient;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {

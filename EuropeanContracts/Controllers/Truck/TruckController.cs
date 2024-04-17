@@ -31,7 +31,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> Add(AddTruckViewModel truckModel)
         {
-            if (!await transportCompanyService.IsTransporterExistFindByIdAsync(User.Id()))
+            if (!await transportCompanyService.IsTransporterExistFindByUserIdAsync(User.Id()))
             {
                 return BadRequest();
             }

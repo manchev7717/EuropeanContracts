@@ -2,7 +2,12 @@
 @{
     ViewData["Title"] = "Offer details";
 }
-<h4 class="text-center">@ViewData["Title"]</h4>
+<h3 class="text-center ">
+    Details:
+    <span class="text-primary">
+        @Model.OfferViewModel.ProductName
+    </span>
+</h3>
 <hr class="border border-primary border-2 opacity-75" />
 <div class="container">
     <div class="row">

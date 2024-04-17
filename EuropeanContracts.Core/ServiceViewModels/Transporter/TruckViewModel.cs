@@ -24,6 +24,9 @@ namespace EuropeanContracts.Core.ServiceViewModels.Transporter
         [Display(Name = "Is there temperature control")]
         public bool HasTemperatureControl { get; set; }
 
+        [Display(Name = "Registration Number")]
+        public string RegistrationNumber { get; set; } = null!;
+
         [Display(Name = "Owner identifier")]
         public int TransportCompanyId { get; set; }
     }

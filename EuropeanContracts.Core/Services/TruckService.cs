@@ -55,6 +55,27 @@ namespace EuropeanContracts.Core.Services
                 .AnyAsync(t => t.Id == truckId);
         }
 
+        public async Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOffer(int transporterId)
+        {
+            return await repository.AllReadOnly<AutoTruck>()
+                .Where(t=>t.TransportCompanyId == transporterId)
+                .Select(t => new TruckIdAndRegistrationViewModel()
+                {
+                    Id = t.Id,
+                    RegistrationNumber = t.RegistrationNumber,
+                    HasTemperatureControl = t.HasTemperatureControl.ToString()
+
+                })
+                .ToListAsync();
+        }
+
+        public async Task<bool> HasTruckTemperaturControl(int truckId)
+        {
+            return await repository.AllReadOnly<AutoTruck>()
+                .Where(t => t.Id == truckId)
+                .Select(t=>t.HasTemperatureControl)
+                .FirstAsync();
+        }
 
         public async Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId)
         {

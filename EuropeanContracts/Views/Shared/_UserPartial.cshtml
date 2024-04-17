@@ -8,7 +8,7 @@
 <li class="navbar-text-light">
     @if (SignInManager.IsSignedIn(User))
     {
-        if (await transportService.IsTransporterExistFindByIdAsync(User.Id()))
+        if (await transportService.IsTransporterExistFindByUserIdAsync(User.Id()))
         {
             <div>
                 <b>
@@ -21,7 +21,7 @@
                 <a class="btn btn-primary" asp-controller="Trailer" asp-action="Add">Add trailer </a>
             </div>
         }
-        if (await recipientService.FindRecipientByIdAsync(User.Id()))
+        if (await recipientService.IsRecipientExistFindByUserIdAsync(User.Id()))
         {
             <b>
                 RECIPIENT COMPANY:"@await recipientService.ReturnRecipientName(User.Id())"
