@@ -1,4 +1,5 @@
 ﻿using EuropeanContracts.Core.ServiceViewModels.Offer;
+using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Infrastructure.Data.Models;
 
@@ -23,6 +24,7 @@ namespace EuropeanContracts.Core.Contracts
         Task<DetailOfferViewModel> DetailsOfferAsync(int offerId);
 
         Task AddTransporterInOfferAsync(AddTransportCompanyInOfferViewModel model);
+        Task AddRecipientInOfferAsync(AddRecipientCompanyInOfferViewModel model);
 
     }
 }

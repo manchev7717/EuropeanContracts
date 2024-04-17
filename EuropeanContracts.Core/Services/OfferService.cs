@@ -205,5 +205,21 @@ namespace EuropeanContracts.Core.Services
                 await repository.SaveChangesAsync();
             }
         }
+
+        public async Task AddRecipientInOfferAsync(AddRecipientCompanyInOfferViewModel model)
+        {
+            var offer = await repository.All<Offer>()
+                .Where(o => o.Id == model.OfferId)
+                .FirstAsync();
+
+            if (offer != null)
+            {
+                offer.RecipientId = model.RecipientId;
+                offer.CountryOfDestination = model.CountryOfDestination;
+                offer.AddressOfDestination = model.AddressOfDestination;
+
+                await repository.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -1,6 +1,11 @@
-﻿<img class="card-img-top" src="@Model.OfferViewModel.ProductImageURL" alt="Product Image">
-<h6>-From Country: <b>@Model.OfferViewModel.LoadingCountry</b></h6>
-<h6>-With Address: <b>@Model.OfferViewModel.LoadingAddress</b></h6>
+﻿<h4 class="text-primary">Тhe offer is published by: </h4>
+<img class="card-img-top" src="@Model.OfferViewModel.ProductImageURL" alt="Product Image">
+<h6>-Published by: <b>@Model.OfferViewModel.CreatorName</b></h6>
+<h6>-With phone number: <b>@Model.OfferViewModel.CreatorPhoneNumber</b></h6>
+<h6>-Published on: <b>@Model.OfferViewModel.PublicationDay</b></h6>
+
+<h6>-Loading Country: <b>@Model.OfferViewModel.LoadingCountry</b></h6>
+<h6>-Loading Address: <b>@Model.OfferViewModel.LoadingAddress</b></h6>
 <h6>-Price: <b>@String.Format("{0:f2}", Model.OfferViewModel.ProductPrice) EUR</b> </h6>
 <h6>
     @if (Model.ProductDescription != null)
@@ -16,7 +21,3 @@
     }
 </h6>
 <h6>-Transport: <b>@(Model.OfferViewModel.IsTemperatureControlNeeded ? "Temperature control is required" : "No temperature control required")</b></h6>
-
-<h6>-Published by: <b>@Model.OfferViewModel.CreatorName</b></h6>
-<h6>-With phone number: <b>@Model.OfferViewModel.CreatorPhoneNumber</b></h6>
-<h6>-Published on: <b>@Model.OfferViewModel.PublicationDay</b></h6>

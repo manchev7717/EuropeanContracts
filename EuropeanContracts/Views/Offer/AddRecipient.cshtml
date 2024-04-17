@@ -1,0 +1,37 @@
+﻿@model AddRecipientCompanyInOfferViewModel
+@{
+    ViewBag.Title = "Add recipient in offer";
+}
+
+<h2 class="text-center">
+    @ViewBag.Title
+</h2>
+<hr class="border border-primary border-2 opacity-100" />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="CountryOfDestination"></label>
+                <select asp-for="CountryOfDestination" class="form-control" placeholder="Enter destination country...">
+                    <partial name="_CountryDropDownPartial"></partial>
+                </select>
+                <span asp-validation-for="CountryOfDestination" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressOfDestination"></label>
+                <input asp-for="AddressOfDestination" class="form-control" placeholder="Enter destination address...">
+                <span asp-validation-for="AddressOfDestination" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial">
+}

@@ -4,6 +4,11 @@
 
 @if (Model.RecipientDetail.RecipientId != null)
 {
+    <h4 class="text-primary">Тhe goods are accepted by: </h4>
+    <h6>-Recipient Company :<b>@Model.RecipientDetail.RecipientName/@Model.RecipientDetail.RecipientCountry</b></h6>
+    <h6>-Pnone Number :<b>@Model.RecipientDetail.RecipientPhoneNumber</b></h6>
+    <h6>-Country of Destination of goods :<b>@Model.RecipientDetail.CountryOfDestination</b></h6>
+    <h6>-Address of Destination of goods :<b>@Model.RecipientDetail.AddressOfDestination</b></h6>
     
 }
 else if (Model.RecipientDetail.RecipientId == null && await recipientService.IsRecipientExistFindByUserIdAsync(User.Id()))
@@ -14,7 +19,7 @@ else if (Model.RecipientDetail.RecipientId == null && await recipientService.IsR
     <br/>
     <br/>
     <br/>
-    <a asp-action="AddRecipient" asp-controller="Offer" asp-route-userId="@User.Id()" class="btn btn-primary">Add Recpient Company </a>
+    <a asp-action="AddRecipient" asp-controller="Offer" asp-route-offerId="@Model.OfferViewModel.Id" class="btn btn-primary">Add Recipient Company </a>
 }
 else if (Model.RecipientDetail.RecipientId == null && await transporterService.IsTransporterExistFindByUserIdAsync(User.Id()))
 {

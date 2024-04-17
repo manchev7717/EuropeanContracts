@@ -2,6 +2,7 @@
 using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Offer;
+using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
 using Microsoft.AspNetCore.Mvc;
@@ -125,6 +126,7 @@ namespace EuropeanContracts.Controllers.Offer
 
             if (ModelState.IsValid == false)
             {
+                //// for check return direction!!!!!!!!!!!!!!!!!!
                 return View(AddTransporter(model.IsTemperatureRequired, model.OfferId));
             }
 
@@ -136,19 +138,31 @@ namespace EuropeanContracts.Controllers.Offer
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddRecipient(bool isTemperatureRequired, int offerId)
+        public async Task<IActionResult> AddRecipient(int offerId)
         {
-            var transporter = await recipientService.ReturnRecipientByUserIdAsync(User.Id());
+            var recipient = await recipientService.ReturnRecipientByUserIdAsync(User.Id());
 
             var model = new AddRecipientCompanyInOfferViewModel();
-
+            model.RecipientId = recipient.Id;
             model.OfferId = offerId;
-            model.IsTemperatureRequired = isTemperatureRequired;
-            model.TransporterId = transporter.Id;
-            model.Trucks = await truckService.GetTruckForOffer(model.TransporterId);
-            model.Trailers = await trailerService.GetTrailerForOffer(isTemperatureRequired, model.TransporterId);
-
+            
             return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddRecipient(AddRecipientCompanyInOfferViewModel model)
+        {
+            var recipient = await recipientService.ReturnRecipientByUserIdAsync(User.Id());
+            model.RecipientId = recipient.Id;
+
+            
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+            return RedirectToAction("MyOffers", "RecipientCompany");
+
+            await offerService.AddRecipientInOfferAsync(model);
+
         }
     }
 }
