@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers.Offer
 {
+    using EuropeanContracts.Infrastructure.Data.Models;
     public class OfferController : BaseController
     {
         private readonly IOfferService offerService;
@@ -87,6 +88,10 @@ namespace EuropeanContracts.Controllers.Offer
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            if (!await offerService.IsOfferExistById(id))
+            {
+                return RedirectToAction("Error","Home","500");
+            }
 
             var model = await offerService.DetailsOfferAsync(id);
 
@@ -145,7 +150,7 @@ namespace EuropeanContracts.Controllers.Offer
             var model = new AddRecipientCompanyInOfferViewModel();
             model.RecipientId = recipient.Id;
             model.OfferId = offerId;
-            
+
             return View(model);
         }
         [HttpPost]
@@ -154,7 +159,7 @@ namespace EuropeanContracts.Controllers.Offer
             var recipient = await recipientService.ReturnRecipientByUserIdAsync(User.Id());
             model.RecipientId = recipient.Id;
 
-            
+
             if (ModelState.IsValid == false)
             {
                 return View(model);

@@ -26,5 +26,7 @@ namespace EuropeanContracts.Core.Contracts
         Task AddTransporterInOfferAsync(AddTransportCompanyInOfferViewModel model);
         Task AddRecipientInOfferAsync(AddRecipientCompanyInOfferViewModel model);
 
+        Task<bool> IsOfferExistById(int offerId);
+
     }
 }

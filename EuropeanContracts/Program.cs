@@ -20,7 +20,8 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Home/Error/500");
+    app.UseStatusCodePagesWithReExecute("/Home/Error","?StatusCode={0}");
     app.UseHsts();
 }
 

@@ -221,5 +221,11 @@ namespace EuropeanContracts.Core.Services
                 await repository.SaveChangesAsync();
             }
         }
+
+        public async Task<bool> IsOfferExistById(int offerId)
+        {
+            return await repository.AllReadOnly<Offer>()
+                .AnyAsync(o => o.Id == offerId);
+        }
     }
 }
