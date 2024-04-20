@@ -65,5 +65,10 @@
         public const int RecipientPhoneNumberMinLength = 5;
         public const int RecipientPhoneNumberMaxLength = 50;
 
+        public const int EuropeanContractUserFirstNameMinLenght = 3;
+        public const int EuropeanContractUserFirstNameMaxLenght = 77;
+
+        public const int EuropeanContractUserLastNameMinLenght = 3;
+        public const int EuropeanContractUserLastNameMaxLenght = 77;
     }
 }

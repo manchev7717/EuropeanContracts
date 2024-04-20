@@ -20,14 +20,14 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public ActionType RentActionType { get; set; } = null!;
         public ActionType TransportationActionType { get; set; } = null!;
 
-        public IdentityUser FirstUser { get; set; } = null!;
-        public IdentityUser SecondUser { get; set; } = null!;
-        public IdentityUser ThirdUser { get; set; } = null!;
-        public IdentityUser FourthUser { get; set; } = null!;
-        public IdentityUser FifthUser { get; set; } = null!;
-        public IdentityUser SixthUser { get; set; } = null!;
-        public IdentityUser SeventhUser { get; set; } = null!;
-        public IdentityUser EighthUser { get; set; } = null!;
+        public EuropeanContractUser FirstUser { get; set; } = null!;
+        public EuropeanContractUser SecondUser { get; set; } = null!;
+        public EuropeanContractUser ThirdUser { get; set; } = null!;
+        public EuropeanContractUser FourthUser { get; set; } = null!;
+        public EuropeanContractUser FifthUser { get; set; } = null!;
+        public EuropeanContractUser SixthUser { get; set; } = null!;
+        public EuropeanContractUser SeventhUser { get; set; } = null!;
+        public EuropeanContractUser EighthUser { get; set; } = null!;
 
         public SupplierCompany FirstSupplierCompany { get; set; } = null!;
         public SupplierCompany SecondSupplierCompany { get; set; } = null!;
@@ -81,85 +81,101 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         }
         private void SeedIdentityUsers()
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<EuropeanContractUser>();
 
-            FirstUser = new IdentityUser()
+            FirstUser = new EuropeanContractUser()
             {
                 Id = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
                 UserName = "firstUser@mail.com",
                 NormalizedUserName = "FIRSTUSER@MAIL.COM",
                 Email = "firstUser@mail.com",
-                NormalizedEmail = "FIRSTUSER@MAIL.COM"
+                NormalizedEmail = "FIRSTUSER@MAIL.COM",
+                FirstName = "Stoyan",
+                LastName = " Stoyanov"
             };
             FirstUser.PasswordHash = hasher.HashPassword(FirstUser, "123456ABC");
 
-            SecondUser = new IdentityUser()
+            SecondUser = new EuropeanContractUser()
             {
                 Id = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
                 UserName = "secondUser@mail.com",
                 NormalizedUserName = "SECONDUSER@MAIL.COM",
                 Email = "secondUser@mail.com",
-                NormalizedEmail = "SECONDUSER@MAIL.COM"
+                NormalizedEmail = "SECONDUSER@MAIL.COM",
+                FirstName = "Vasil",
+                LastName = "Vasilev"
             };
             SecondUser.PasswordHash = hasher.HashPassword(SecondUser, "123456CBA");
 
-            ThirdUser = new IdentityUser()
+            ThirdUser = new EuropeanContractUser()
             {
                 Id = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
                 UserName = "thirdUser@mail.com",
                 NormalizedUserName = "THIRDUSER@MAIL.COM",
                 Email = "thirdUser@mail.com",
-                NormalizedEmail = "THIRDUSER@MAIL.COM"
+                NormalizedEmail = "THIRDUSER@MAIL.COM",
+                FirstName = "Todor",
+                LastName = "Todorov"
             };
             ThirdUser.PasswordHash = hasher.HashPassword(ThirdUser, "654321ABC");
 
-            FourthUser = new IdentityUser()
+            FourthUser = new EuropeanContractUser()
             {
                 Id = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
                 UserName = "fourthUser@mail.com",
                 NormalizedUserName = "FOURTHUSER@MAIL.COM",
                 Email = "fourthUser@mail.com",
-                NormalizedEmail = "FOURTHUSER@MAIL.COM"
+                NormalizedEmail = "FOURTHUSER@MAIL.COM",
+                FirstName = "Katerina",
+                LastName = "Katerinova"
             };
             FourthUser.PasswordHash = hasher.HashPassword(FourthUser, "987654FOUR");
 
-            FifthUser = new IdentityUser()
+            FifthUser = new EuropeanContractUser()
             {
                 Id = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
                 UserName = "fifthUser@mail.com",
                 NormalizedUserName = "FIFTHUSER@MAIL.COM",
                 Email = "fifthUser@mail.com",
-                NormalizedEmail = "FIFTHUSER@MAIL.COM"
+                NormalizedEmail = "FIFTHUSER@MAIL.COM",
+                FirstName = "Dimitаr",
+                LastName = "Dimitrov"
             };
             FifthUser.PasswordHash = hasher.HashPassword(FifthUser, "987654FIVE");
 
-            SixthUser = new IdentityUser()
+            SixthUser = new EuropeanContractUser()
             {
                 Id = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
                 UserName = "sixthUser@mail.com",
                 NormalizedUserName = "SIXTHUSER@MAIL.COM",
                 Email = "sixthUser@mail.com",
-                NormalizedEmail = "SIXTHUSER@MAIL.COM"
+                NormalizedEmail = "SIXTHUSER@MAIL.COM",
+                FirstName = "Velichko",
+                LastName = "Velichkov"
             };
             SixthUser.PasswordHash = hasher.HashPassword(SixthUser, "987654SIX");
 
-            SeventhUser = new IdentityUser()
+            SeventhUser = new EuropeanContractUser()
             {
                 Id = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
                 UserName = "seventhUser@mail.com",
                 NormalizedUserName = "SEVENTHUSER@MAIL.COM",
                 Email = "seventhuser@mail.com",
-                NormalizedEmail = "SEVENTHUSER@MAIL.COM"
+                NormalizedEmail = "SEVENTHUSER@MAIL.COM",
+                FirstName = "Miroslav",
+                LastName = "Miroslavov"
             };
             SeventhUser.PasswordHash = hasher.HashPassword(SeventhUser, "987654SEVEN");
 
-            EighthUser = new IdentityUser()
+            EighthUser = new EuropeanContractUser()
             {
                 Id = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
                 UserName = "eighthUser@mail.com",
                 NormalizedUserName = "EIGHTHUSER@MAIL.COM",
                 Email = "eighthUser@mail.com",
-                NormalizedEmail = "EIGHTHUSER@MAIL.COM"
+                NormalizedEmail = "EIGHTHUSER@MAIL.COM",
+                FirstName = "Daniela",
+                LastName = "Danielova"
             };
             EighthUser.PasswordHash = hasher.HashPassword(EighthUser, "987654EIGHT");
         }
@@ -362,7 +378,11 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 PublicationDay = DateTime.Now,
                 ActionTypeId = SellActionType.Id,
                 SupplierId = FirstSupplierCompany.Id,
-                IsTemperatureControlNeeded = true
+                IsTemperatureControlNeeded = true,
+                TransporterId = 1,
+                RecipientId = 1,
+                TrailerId = 4,
+                TruckId = 1,
             };
 
             FirstOffer = new Offer()
@@ -371,7 +391,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 ProductName = "Plastic waste",
                 ProductQuantity = 17800,
                 ProductPrice = 4200,
-                ProductDescription= "Baled and suitable for recycling",
+                ProductDescription = "Baled and suitable for recycling",
                 ProductImageURL = "/Images/ProductImages/PlasticWaste.png",
                 LoadingCountry = "Italy",
                 LoadingAddress = "Foggia, str. Via Daniele Manin 14",

@@ -41,7 +41,7 @@ namespace EuropeanContracts.Extentions
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
         {
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<EuropeanContractUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;

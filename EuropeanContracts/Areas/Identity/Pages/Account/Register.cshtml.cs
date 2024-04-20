@@ -2,8 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,14 +13,14 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly SignInManager<EuropeanContractUser> _signInManager;
+        private readonly UserManager<EuropeanContractUser> _userManager;
+        private readonly IUserStore<EuropeanContractUser> _userStore;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<EuropeanContractUser> userManager,
+            IUserStore<EuropeanContractUser> userStore,
+            SignInManager<EuropeanContractUser> signInManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -109,16 +109,16 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private EuropeanContractUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<EuropeanContractUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(EuropeanContractUser)}'. " +
+                    $"Ensure that '{nameof(EuropeanContractUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

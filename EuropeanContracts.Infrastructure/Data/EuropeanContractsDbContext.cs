@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Data
 {
-    public class EuropeanContractsDbContext : IdentityDbContext
+    public class EuropeanContractsDbContext : IdentityDbContext<EuropeanContractUser>
     {
         public EuropeanContractsDbContext(DbContextOptions<EuropeanContractsDbContext> options)
             : base(options)

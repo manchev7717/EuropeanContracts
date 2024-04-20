@@ -1,18 +1,19 @@
 ﻿using EuropeanContracts.Infrastructure.Data.DataSeeding;
+using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EuropeanContracts.Infrastructure.Data.Configuration
 {
-    public class IdentityUserConfiguration : IEntityTypeConfiguration<IdentityUser>
+    public class IdentityUserConfiguration : IEntityTypeConfiguration<EuropeanContractUser>
     {
-        public void Configure(EntityTypeBuilder<IdentityUser> builder)
+        public void Configure(EntityTypeBuilder<EuropeanContractUser> builder)
         {
             var data = new DataSeed();
 
             builder
-                .HasData(new IdentityUser[]
+                .HasData(new EuropeanContractUser[]
                 {
                     data.FirstUser,
                     data.SecondUser,

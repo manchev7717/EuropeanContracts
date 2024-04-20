@@ -37,7 +37,7 @@ namespace EuropeanContracts.Infrastructure.Data.Models
         [Required]
         public string OwnerId { get; set; } = string.Empty!;
         [ForeignKey(nameof(OwnerId))]
-        public IdentityUser Owner { get; set; } = null!;
+        public EuropeanContractUser Owner { get; set; } = null!;
 
         public IList<Offer> Offers { get; set; } = new List<Offer>();
     }
