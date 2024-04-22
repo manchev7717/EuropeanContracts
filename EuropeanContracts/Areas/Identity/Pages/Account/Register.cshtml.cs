@@ -95,6 +95,7 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
                 return RedirectToAction("Index", "Home");
             }
             ReturnUrl = returnUrl;
+
             return Page();            
  
         }

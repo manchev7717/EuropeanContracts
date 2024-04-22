@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {
-    public class DetailOfferViewModel
+    public class DetailOfferViewModel 
     {
 
         [Display(Name = "Product additional description")]

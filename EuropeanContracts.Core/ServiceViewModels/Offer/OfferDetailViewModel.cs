@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EuropeanContracts.Core.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {
-    public class OfferDetailViewModel
+    public class OfferDetailViewModel : IOfferModel
     {
         public int Id { get; set; }
 
