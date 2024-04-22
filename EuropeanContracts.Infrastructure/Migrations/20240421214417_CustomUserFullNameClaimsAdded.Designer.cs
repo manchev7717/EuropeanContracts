@@ -4,6 +4,7 @@ using EuropeanContracts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EuropeanContracts.Infrastructure.Migrations
 {
     [DbContext(typeof(EuropeanContractsDbContext))]
-    partial class EuropeanContractsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240421214417_CustomUserFullNameClaimsAdded")]
+    partial class CustomUserFullNameClaimsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,7 +260,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bfe3f465-2618-453b-8e27-ac84893061e3",
+                            ConcurrencyStamp = "7265a9ae-28b5-468e-aeda-0436d7b00ff6",
                             Email = "firstUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Stoyan",
@@ -266,9 +268,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "FIRSTUSER@MAIL.COM",
                             NormalizedUserName = "FIRSTUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEER4wWIgjfpLGe8o54xBE2KQe7c6txJDjBEOZkD8r59/1i3vltrpXu1Hqx8qkwiD4w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELfADnCbGhWu6K8OSJ7G+raluJBrmh3SgquwJ8R3BcIu1MZRmT1EPi9mnyAgW2PqMw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f325afed-e29c-40ba-b17c-8873f5a7e6eb",
+                            SecurityStamp = "e7eeb83d-fd55-40c0-96a0-261b6f9da3cc",
                             TwoFactorEnabled = false,
                             UserName = "firstUser@mail.com"
                         },
@@ -276,7 +278,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "58cea3fc-744b-470d-a202-a006b2ee1727",
+                            ConcurrencyStamp = "903af152-b71d-4c25-be59-c4bf12085405",
                             Email = "secondUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Vasil",
@@ -284,9 +286,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SECONDUSER@MAIL.COM",
                             NormalizedUserName = "SECONDUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAJFN8kGAdMtYAaeXDd+8flcKdN1kUJU8YShwY/WPghuNA54yaJac2u9HAfqJREtOQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJqr+qcivTYEQ729h44lrzuyi1Bp7uwsg19h47h0wB4UV9clUewYcN74/Uzz7ut71A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ad8c3886-8dba-4fa1-acc8-147c18b9290e",
+                            SecurityStamp = "3a6b07d3-d9c7-44f9-97f2-8ec759c9f6f5",
                             TwoFactorEnabled = false,
                             UserName = "secondUser@mail.com"
                         },
@@ -294,7 +296,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "17f8c83b-3e0e-4617-a5b6-79da8c64e2d8",
+                            ConcurrencyStamp = "7edf612f-169a-4d21-9bd1-24e67d0c6004",
                             Email = "thirdUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Todor",
@@ -302,9 +304,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "THIRDUSER@MAIL.COM",
                             NormalizedUserName = "THIRDUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHdJqE4hNE+STyAgJarIVoTJ8KccqYeOjElj8CU8z5VJL8GjN2Y3HMwjepVLZQ12kg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGRClkjF74K1kfmUNt9fL8pkTT8kNfQ0el7mFNDz32VFk9mDl7s92YI1FryI+aeySw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0be08b77-a1e3-4861-9a78-8647d0adee8e",
+                            SecurityStamp = "07d6a3ce-b265-4905-83b4-6bcc574f1af2",
                             TwoFactorEnabled = false,
                             UserName = "thirdUser@mail.com"
                         },
@@ -312,7 +314,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b7ed4943-9169-4479-a28d-3c9adf0bafb2",
+                            ConcurrencyStamp = "be04c565-9480-4b18-b3da-c23574d1530d",
                             Email = "fourthUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Katerina",
@@ -320,9 +322,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "FOURTHUSER@MAIL.COM",
                             NormalizedUserName = "FOURTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFSdgmq1h9xekIZz/byGKA4jdgfB+JH0/w7Vi3/d2rWb17G3axjYJAAFSRgc0xCgDA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM/gi1O7JuD4rYVFME5iXRJOiTFQrDk62Ue7C61iUxURdv9PRn0YCL8CryO9gOSH3A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b1c2e83-1ebb-4750-b19d-1301cc3d3302",
+                            SecurityStamp = "1fe9f2c4-1cdd-4db7-8b04-6f8302577d25",
                             TwoFactorEnabled = false,
                             UserName = "fourthUser@mail.com"
                         },
@@ -330,7 +332,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "06234f05-d74f-4db2-b3a5-e6a33fbcd940",
+                            ConcurrencyStamp = "8ae5fc53-6e55-4000-bae1-454ab9db171c",
                             Email = "fifthUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Dimitаr",
@@ -338,9 +340,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "FIFTHUSER@MAIL.COM",
                             NormalizedUserName = "FIFTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKlUFJ+ql1COknfSwhGamV4mg1T6gCqH4I6UGw2t4WGON/dhgQZVVMDL3ZQT9tWWFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH0ooHRZx4tw3R1x5X2/iMECm93V4tz7cjFsAY2CCF2eev+APJNw+fKT1vkfhWFE4A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "48077bc2-e29a-4219-996a-9336bb65c32b",
+                            SecurityStamp = "297ee0b8-09f4-41c9-a965-e4bf5e30917e",
                             TwoFactorEnabled = false,
                             UserName = "fifthUser@mail.com"
                         },
@@ -348,7 +350,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3b412a06-1beb-451a-9c6a-a3f9ede7e702",
+                            ConcurrencyStamp = "637186d3-a6f4-4e7a-a25b-b550b4091ace",
                             Email = "sixthUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Velichko",
@@ -356,9 +358,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SIXTHUSER@MAIL.COM",
                             NormalizedUserName = "SIXTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHeyL88dqaB+Y6CcRWTsh8MmOhQe8cX4254qEctRtccUBCbPkgMRq8N5Otx6D/qErg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEdB/7y7ZKLJRMaZ8l2rilIGNRqDxrlXbssP6uo7sXPhY9c+q0TPAdKGA0xF1Ou/ZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "81da09df-6acc-4f48-b737-24feea855da3",
+                            SecurityStamp = "38f2e616-663d-441c-951e-ef84687479bc",
                             TwoFactorEnabled = false,
                             UserName = "sixthUser@mail.com"
                         },
@@ -366,7 +368,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed0c64cd-955e-4e26-a7b8-96d46912fa94",
+                            ConcurrencyStamp = "ec7fe885-e131-4cc7-af7d-d0f05bffba12",
                             Email = "seventhuser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Miroslav",
@@ -374,9 +376,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SEVENTHUSER@MAIL.COM",
                             NormalizedUserName = "SEVENTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO8vnZRyo/jj20BZs9sps2CvnCP/exT4go+mkTd9Yfx6Vo42dC8NxNph6pE1aJQXuA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC9tYY34i7hbMDX70YcVR6uNi3j1hi5oBmN9JOtm5QF8SUOrcSmWFZb5qpfE/6aw5A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7d674811-5884-41a7-bf58-a37801aaacae",
+                            SecurityStamp = "cd65bddf-38ab-44ee-912b-102ae2fc8c3c",
                             TwoFactorEnabled = false,
                             UserName = "seventhUser@mail.com"
                         },
@@ -384,7 +386,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                         {
                             Id = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1db80df5-6143-4b7d-b78d-5925901e9cf8",
+                            ConcurrencyStamp = "297f8f63-3848-41cd-885b-6ec48a11318a",
                             Email = "eighthUser@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Daniela",
@@ -392,9 +394,9 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EIGHTHUSER@MAIL.COM",
                             NormalizedUserName = "EIGHTHUSER@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAKPXT0Zoib7XEwjVUiF28zHx1CTYhdahr2mpFSF9Ec+dYklYlQkw/3NsaPZ3mNwEg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFWK4m+FBpJLRzHk161FIX11wvIwx9kJS8RJNvCQJfoz1z2DQ8qrMBrrEwYCv3Idjg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b4d6c70b-f858-410c-af43-d99c7423bddf",
+                            SecurityStamp = "90e782ab-1d36-4240-88f9-7348419f402d",
                             TwoFactorEnabled = false,
                             UserName = "eighthUser@mail.com"
                         });
@@ -533,7 +535,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Pork Meat",
                             ProductPrice = 102504m,
                             ProductQuantity = 19840,
-                            PublicationDay = new DateTime(2024, 4, 22, 18, 21, 32, 468, DateTimeKind.Local).AddTicks(657),
+                            PublicationDay = new DateTime(2024, 4, 22, 0, 44, 17, 291, DateTimeKind.Local).AddTicks(1218),
                             RecipientId = 1,
                             SupplierId = 1,
                             TrailerId = 4,
@@ -556,7 +558,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Plastic waste",
                             ProductPrice = 4200m,
                             ProductQuantity = 17800,
-                            PublicationDay = new DateTime(2024, 4, 22, 18, 21, 32, 468, DateTimeKind.Local).AddTicks(660),
+                            PublicationDay = new DateTime(2024, 4, 22, 0, 44, 17, 291, DateTimeKind.Local).AddTicks(1221),
                             SupplierId = 2
                         },
                         new
@@ -573,7 +575,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Scaffolding material",
                             ProductPrice = 3500m,
                             ProductQuantity = 19900,
-                            PublicationDay = new DateTime(2024, 4, 22, 18, 21, 32, 468, DateTimeKind.Local).AddTicks(662),
+                            PublicationDay = new DateTime(2024, 4, 22, 0, 44, 17, 291, DateTimeKind.Local).AddTicks(1223),
                             SupplierId = 1
                         },
                         new
@@ -590,7 +592,7 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ProductName = "Chocolate Products",
                             ProductPrice = 36745.55m,
                             ProductQuantity = 17450,
-                            PublicationDay = new DateTime(2024, 4, 22, 18, 21, 32, 468, DateTimeKind.Local).AddTicks(663),
+                            PublicationDay = new DateTime(2024, 4, 22, 0, 44, 17, 291, DateTimeKind.Local).AddTicks(1225),
                             SupplierId = 1
                         });
                 });
@@ -1035,62 +1037,6 @@ namespace EuropeanContracts.Infrastructure.Migrations
                             ClaimType = "user:fullName",
                             ClaimValue = "Daniela Danielova",
                             UserId = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "Smart Elinas LTD",
-                            UserId = "k3fcll56-l458-6871-q3r9-2ve3w9a54s87"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "MDY Tools",
-                            UserId = "k21se8s5-plow-4sw4-qzp0-128fpq6zr8klo"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "Stay Fly",
-                            UserId = "QWE15t6s-hfgd-998q-mcs1-pekc249wlfhn"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "Global workers",
-                            UserId = "5lk6e95e-lyj5-w25e-8w5q-9q7w8c6u3spo"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "LeDecale Boutique",
-                            UserId = "dd2d2a66-rer7-y9y9-qlpq-w56a9w8s5a32"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "SmartSolutions",
-                            UserId = "d69wrpfj-asdr-uijj-j5ff-5s8q7w4e4532"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "NG TRANS",
-                            UserId = "d33qwej9-02ap-11mnl-hflp-lpszavr2s588"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ClaimType = "user:companyName",
-                            ClaimValue = "VIOREL TRANS GROUP",
-                            UserId = "0s3a2w5e-sad5-12s5-owls-psdasfas5f5n"
                         });
                 });
 

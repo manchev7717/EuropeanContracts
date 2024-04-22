@@ -37,6 +37,7 @@ namespace EuropeanContracts.Data
             builder.ApplyConfiguration(new TrailerConfiguration());
             builder.ApplyConfiguration(new TruckConfiguration());
             builder.ApplyConfiguration(new OfferConfiguration());
+            builder.ApplyConfiguration(new IdentityUserClaimsConfiguration());
 
             base.OnModelCreating(builder);
         }

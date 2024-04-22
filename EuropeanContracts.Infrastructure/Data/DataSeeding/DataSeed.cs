@@ -1,5 +1,7 @@
-﻿using EuropeanContracts.Infrastructure.Data.Models;
+﻿using EuropeanContracts.Infrastructure.Data.Constance;
+using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace EuropeanContracts.Infrastructure.Data.DataSeeding
 {
@@ -15,6 +17,8 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
             SeedTrailers();
             SeedTrucks();
             SeedOffer();
+            SeedUserClaim();
+
         }
         public ActionType SellActionType { get; set; } = null!;
         public ActionType RentActionType { get; set; } = null!;
@@ -28,6 +32,28 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public EuropeanContractUser SixthUser { get; set; } = null!;
         public EuropeanContractUser SeventhUser { get; set; } = null!;
         public EuropeanContractUser EighthUser { get; set; } = null!;
+
+        public IdentityUserClaim<string> FirstUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SecondUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> ThirdUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> FourthUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> FifthUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SixthUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SeventhUserClaim { get; set; } = null!;
+        public IdentityUserClaim<string> EighthUserClaim { get; set; } = null!;
+
+        public IdentityUserClaim<string> FirstSupplierClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SecondSupplierClaim { get; set; } = null!;
+        public IdentityUserClaim<string> ThirdSupplierClaim { get; set; } = null!;
+
+        public IdentityUserClaim<string> FirstRecipientClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SecondRecipientClaim { get; set; } = null!;
+        public IdentityUserClaim<string> ThirdRecipientClaim { get; set; } = null!;
+
+        public IdentityUserClaim<string> FirstTransporterClaim { get; set; } = null!;
+        public IdentityUserClaim<string> SecondTransporterClaim { get; set; } = null!;
+
+
 
         public SupplierCompany FirstSupplierCompany { get; set; } = null!;
         public SupplierCompany SecondSupplierCompany { get; set; } = null!;
@@ -91,7 +117,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Email = "firstUser@mail.com",
                 NormalizedEmail = "FIRSTUSER@MAIL.COM",
                 FirstName = "Stoyan",
-                LastName = " Stoyanov"
+                LastName = "Stoyanov"
             };
             FirstUser.PasswordHash = hasher.HashPassword(FirstUser, "123456ABC");
 
@@ -178,6 +204,137 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 LastName = "Danielova"
             };
             EighthUser.PasswordHash = hasher.HashPassword(EighthUser, "987654EIGHT");
+        }
+
+        private void SeedUserClaim()
+        {
+            FirstUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 1,
+                UserId = FirstUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{FirstUser.FirstName} {FirstUser.LastName}"
+            };
+
+            SecondUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 2,
+                UserId = SecondUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{SecondUser.FirstName} {SecondUser.LastName}",
+            };
+
+            ThirdUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 3,
+                UserId = ThirdUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{ThirdUser.FirstName} {ThirdUser.LastName}",
+            };
+
+            FourthUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 4,
+                UserId = FourthUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{FourthUser.FirstName} {FourthUser.LastName}",
+            };
+
+            FifthUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 5,
+                UserId = FifthUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{FifthUser.FirstName} {FifthUser.LastName}",
+            };
+
+            SixthUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 6,
+                UserId = SixthUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{SixthUser.FirstName} {SixthUser.LastName}",
+            };
+
+            SeventhUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 7,
+                UserId = SeventhUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{SeventhUser.FirstName} {SeventhUser.LastName}",
+            };
+
+            EighthUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 8,
+                UserId = EighthUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{EighthUser.FirstName} {EighthUser.LastName}",
+            };
+
+            FirstRecipientClaim = new IdentityUserClaim<string>
+            {
+                Id = 9,
+                UserId = SixthUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = FirstRecipientCompany.Name
+            };
+
+            SecondRecipientClaim = new IdentityUserClaim<string>
+            {
+                Id = 10,
+                UserId = SeventhUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = SecondRecipientCompany.Name
+            };
+
+            ThirdRecipientClaim = new IdentityUserClaim<string>
+            {
+                Id = 11,
+                UserId = EighthUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = ThirdRecipientCompany.Name
+            };
+
+            FirstSupplierClaim = new IdentityUserClaim<string>
+            {
+                Id = 12,
+                UserId = FirstUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = FirstSupplierCompany.Name
+            };
+
+            SecondSupplierClaim = new IdentityUserClaim<string>
+            {
+                Id = 13,
+                UserId = SecondUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = SecondSupplierCompany.Name
+            };
+            ThirdSupplierClaim = new IdentityUserClaim<string>
+            {
+                Id = 14,
+                UserId = ThirdUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = ThirdSupplierCompany.Name
+            };
+
+            FirstTransporterClaim = new IdentityUserClaim<string>
+            {
+                Id = 15,
+                UserId = FourthUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = FirstTransportCompany.Name
+            };
+
+            SecondTransporterClaim = new IdentityUserClaim<string>
+            {
+                Id = 16,
+                UserId = FifthUser.Id,
+                ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
+                ClaimValue = SecondTransportCompany.Name
+            };
+
         }
         private void SeedRecipientCompany()
         {

@@ -3,7 +3,6 @@ using EuropeanContracts.Core.Services;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Extentions

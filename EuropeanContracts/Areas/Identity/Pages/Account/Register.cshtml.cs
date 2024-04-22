@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using EuropeanContracts.Core.ErrorMessageAndConstance;
+using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -70,9 +72,23 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
+
+            [Required]
+            [StringLength(DataValidationConstance.EuropeanContractUserFirstNameMaxLenght,
+                MinimumLength = DataValidationConstance.EuropeanContractUserFirstNameMinLenght,
+                ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+            [Display(Name = "First Name")]
+            public string FirstName {  get; set; }
+
+            [Required]
+            [StringLength(DataValidationConstance.EuropeanContractUserLastNameMaxLenght,
+                MinimumLength = DataValidationConstance.EuropeanContractUserLastNameMinLenght,
+                ErrorMessage = ModelsErrorMessages.StringLengthtError)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult>  OnGetAsync(string returnUrl = null)
         {
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
@@ -91,12 +107,16 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim(
+                        CustomUserClaimType.UserFullNameCustomClaim, $"{user.FirstName} {user.LastName}"));
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

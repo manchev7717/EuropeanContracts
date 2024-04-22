@@ -5,6 +5,14 @@
 @inject IRecipientCompanyService recipientService
 @inject ISupplierCompanyService supplierService
 
+
+@{
+    string? companyName = string.Empty;
+    if (User.Identity.IsAuthenticated && User.HasClaim(c => c.Type == CustomUserClaimType.UserCompanyNameCustomClaim))
+    {
+        companyName = User.FindFirst(CustomUserClaimType.UserCompanyNameCustomClaim).Value.ToString();
+    }
+}
 <li class="navbar-text-light">
     @if (SignInManager.IsSignedIn(User))
     {
@@ -12,7 +20,7 @@
         {
             <div>
                 <b>
-                    TRANSPORT COMPANY:"@await transportService.ReturnTransporterNameAsync(User.Id())"
+                    TRANSPORT COMPANY:@companyName
                 </b>
                 <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="MyOffers">My Offers </a>
                 <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllTrucks">My Trucks </a>
@@ -24,14 +32,14 @@
         if (await recipientService.IsRecipientExistFindByUserIdAsync(User.Id()))
         {
             <b>
-                RECIPIENT COMPANY:"@await recipientService.ReturnRecipientName(User.Id())"
+                RECIPIENT COMPANY:@companyName
             </b>
             <a class="btn btn-primary" asp-controller="RecipientCompany" asp-action="MyOffers">My Offers </a>
         }
         if (await supplierService.FindSupplierByIdAsync(User.Id()))
         {
             <b>
-                SUPPLIER COMPANY: "@await supplierService.ReturnSupplierName(User.Id())"
+                SUPPLIER COMPANY: @companyName
             </b>
             <a class="btn btn-primary" asp-controller="SupplierCompany" asp-action="MyOffers">My Offers </a>
             <a class="btn btn-primary" asp-controller="Offer" asp-action="Create">Create Offer </a>
