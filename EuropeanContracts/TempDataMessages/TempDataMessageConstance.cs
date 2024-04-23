@@ -19,5 +19,7 @@
         public const string CreateNewTruck = "You have successfully created a new truck";
         public const string EditTruck = "You have successfully edited the selected truck";
         public const string DeleteTruck = "You have successfully deleted the selected truck";
+
+        public const string CreateNewActionType = "You have successfully created a new action type";
     }
 }

@@ -1,32 +1,32 @@
 ﻿using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Infrastructure.Data.Constance;
-using EuropeanContracts.Infrastructure.Data.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Offer
 {
+    using EuropeanContracts.Infrastructure.Data.Models;
     public class CreateOfferViewModel
     {
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         [StringLength(DataValidationConstance.OfferProductNameMaxLength,
             MinimumLength = DataValidationConstance.OfferProductNameMinLength,
             ErrorMessage = ModelsErrorMessages.StringLengthtError)]
-        [Display( Name ="Product name")]
+        [Display(Name = "Product name")]
         public string ProductName { get; set; } = string.Empty;
 
         [MaxLength(DataValidationConstance.OfferProductDescriptionMaxLength)]
-        [Display( Name ="Product additional description")]
+        [Display(Name = "Product additional description")]
         public string? ProductDescription { get; set; }
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
-        [Display(Name ="Product quantity in kilograms")]
+        [Display(Name = "Product quantity in kilograms")]
         [Range(DataValidationConstance.OfferProductQuantityMinValue, DataValidationConstance.OfferProductQuantityMaxValue,
             ErrorMessage = ModelsErrorMessages.RangeError)]
         public int ProductQuantity { get; set; }
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         //[Column(TypeName = "decimal(18, 6)")]
-        [Range((double)DataValidationConstance.OfferProductPriceMinValue, (double)DataValidationConstance.OfferProductPriceMaxValue,ErrorMessage = ModelsErrorMessages.RangeError)]
+        [Range((double)DataValidationConstance.OfferProductPriceMinValue, (double)DataValidationConstance.OfferProductPriceMaxValue, ErrorMessage = ModelsErrorMessages.RangeError)]
         [Display(Name = "Product price in EURO")]
         public decimal ProductPrice { get; set; }
 
@@ -59,13 +59,13 @@ namespace EuropeanContracts.Core.ServiceViewModels.Offer
         public DateTime PublicationDay { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
-        [Display( Name ="Action type identifier")]
+        [Display(Name = "Action type identifier")]
         public int ActionTypeId { get; set; }
         public IEnumerable<ActionType> ActionTypes { get; set; } = new List<ActionType>();
 
         [Required(ErrorMessage = ModelsErrorMessages.RequiredError)]
         [Display(Name = "Supplier identifier")]
         public int SupplierId { get; set; }
-        
+
     }
 }
