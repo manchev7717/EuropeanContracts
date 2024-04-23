@@ -1,9 +1,9 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
@@ -56,6 +56,7 @@ namespace EuropeanContracts.Controllers
 
             await truckService.AddTruckAsync(model);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewTruck;
             return RedirectToAction("AllTrucks", "TransportCompany");
         }
 
@@ -98,10 +99,7 @@ namespace EuropeanContracts.Controllers
 
             await truckService.EditAsync(truckModel);
 
-            // it is good to redirect to Details of the current truck, not in page with all trucks!!!!!!!!!!
-
-            //return RedirectToAction(nameof(Details), new { truckModel.Id });
-
+            TempData["message"] = TempDataMessageConstance.EditTruck;
             return RedirectToAction("AllTrucks", "TransportCompany");
         }
         [HttpGet]
@@ -137,6 +135,7 @@ namespace EuropeanContracts.Controllers
 
             await truckService.DeleteAsync(truckModel.Id);
 
+            TempData["message"] = TempDataMessageConstance.DeleteTruck;
             return RedirectToAction("AllTrucks", "TransportCompany");
         }
 

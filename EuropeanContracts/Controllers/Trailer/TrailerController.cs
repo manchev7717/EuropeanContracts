@@ -5,6 +5,7 @@ using EuropeanContracts.Core.ServiceViewModels.Trailer;
 using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
@@ -52,6 +53,7 @@ namespace EuropeanContracts.Controllers
 
             await trailerService.AddTruckAsync(model);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewTrailer;
             return RedirectToAction("AllTrailers", "TransportCompany");
         }
 
@@ -98,6 +100,7 @@ namespace EuropeanContracts.Controllers
 
             //return RedirectToAction(nameof(Details), new { truckModel.Id });
 
+            TempData["message"] = TempDataMessageConstance.EditTrailer;
             return RedirectToAction("AllTrailers", "TransportCompany");
         }
         [HttpGet]
@@ -133,6 +136,7 @@ namespace EuropeanContracts.Controllers
 
             await trailerService.DeleteAsync(trailerModel.Id);
 
+            TempData["message"] = TempDataMessageConstance.DeleteTrailer;
             return RedirectToAction("AllTrailers", "TransportCompany");
         }
     }

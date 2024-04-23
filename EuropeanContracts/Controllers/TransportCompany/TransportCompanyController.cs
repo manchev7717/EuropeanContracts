@@ -4,6 +4,7 @@ using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
@@ -49,6 +50,7 @@ namespace EuropeanContracts.Controllers
 
             await transportCompanyService.AddAsync(transporterToAdd);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewTransportCompany;
             return RedirectToAction("Index", "Home");
         }
 

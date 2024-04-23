@@ -6,6 +6,7 @@ using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
@@ -51,6 +52,7 @@ namespace EuropeanContracts.Controllers
 
             await recipientCompanyService.AddAsync(recipientToAdd);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewRecepientCompany;
             return RedirectToAction("Index", "Home");
         }
 

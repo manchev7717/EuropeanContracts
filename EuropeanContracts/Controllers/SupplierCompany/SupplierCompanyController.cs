@@ -4,6 +4,7 @@ using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Core.ServiceViewModels.Supplier;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers
@@ -49,6 +50,7 @@ namespace EuropeanContracts.Controllers
 
             await supplierCompanyService.AddAsync(supplierToAdd);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewSupplierCompany;
             return RedirectToAction("Index","Home"); 
         }
 

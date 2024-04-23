@@ -6,6 +6,7 @@ using EuropeanContracts.Core.ServiceViewModels.Offer;
 using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Extentions;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EuropeanContracts.Controllers.Offer
@@ -83,6 +84,7 @@ namespace EuropeanContracts.Controllers.Offer
             model.SupplierId = supplierId;
             await offerService.CreateOfferAsync(model);
 
+            TempData["message"] = TempDataMessageConstance.CreateNewOffer;
             return RedirectToAction("MyOffers", "SupplierCompany");
         }
 
@@ -144,7 +146,7 @@ namespace EuropeanContracts.Controllers.Offer
 
             await offerService.AddTransporterInOfferAsync(model);
 
-
+            TempData["message"] = TempDataMessageConstance.AddTransporterInOffer;
             return RedirectToAction("MyOffers", "TransportCompany");
         }
 
@@ -173,6 +175,7 @@ namespace EuropeanContracts.Controllers.Offer
 
             await offerService.AddRecipientInOfferAsync(model);
 
+            TempData["message"] = TempDataMessageConstance.AddRecepientInOffer;
             return RedirectToAction("MyOffers", "RecipientCompany");
 
 
