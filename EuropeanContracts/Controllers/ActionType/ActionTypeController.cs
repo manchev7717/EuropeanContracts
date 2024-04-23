@@ -9,9 +9,9 @@ namespace EuropeanContracts.Controllers.ActionType
 {
     public class ActionTypeController : BaseController
     {
-        private readonly IActionType actionType;
+        private readonly IActionTypeService actionType;
         private readonly ISupplierCompanyService supplierCompanyService;
-        public ActionTypeController(IActionType actionType,
+        public ActionTypeController(IActionTypeService actionType,
                                     ISupplierCompanyService supplierCompanyService)
         {
             this.actionType = actionType;

@@ -5,7 +5,7 @@ using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Services
 {
-    public class ActionTypeService : IActionType
+    public class ActionTypeService : IActionTypeService
     {
         private readonly IRepository repository;
 

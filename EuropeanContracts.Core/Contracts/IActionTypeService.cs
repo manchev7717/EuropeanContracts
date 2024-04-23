@@ -2,7 +2,7 @@
 
 namespace EuropeanContracts.Core.Contracts
 {
-    public interface IActionType
+    public interface IActionTypeService
     {
         Task CreateAction(CreateActionTypeViewModel model);
     }
