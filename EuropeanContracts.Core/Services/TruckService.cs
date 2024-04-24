@@ -1,4 +1,5 @@
 ﻿using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -97,11 +98,57 @@ namespace EuropeanContracts.Core.Services
 
             return truck;
         }
-
-        public async Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId)
+        public async Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
+                                                            string hasCargoSpace,
+                                                            int currentPage,
+                                                            int truckCountOnPage,
+                                                            int transportCompanyId)
         {
-            return await repository.AllReadOnly<TransportCompany>()
-                .AnyAsync(t => t.OwnerId == userId);
+            var trucks = await repository.AllReadOnly<AutoTruck>()
+                .Where(t => t.TransportCompanyId == transportCompanyId)
+                .ToListAsync();
+
+            if (!string.IsNullOrEmpty(isTemperatureNeeded))
+            {
+                bool isNeeded = isTemperatureNeeded == "true" ? true : false;
+                trucks = trucks
+                    .Where(t => t.HasTemperatureControl == isNeeded)
+                    .ToList();
+            }
+            if (!string.IsNullOrEmpty(hasCargoSpace))
+            {
+                bool hasSpace = hasCargoSpace == "true" ? true : false;
+                trucks = trucks
+                    .Where(t => t.HasCargoSpace == hasSpace)
+                    .ToList();
+            }
+
+            var truckResult = trucks
+                .Skip((currentPage - 1) * truckCountOnPage)
+                .Take(truckCountOnPage)
+                .Select(t => new TruckViewModel()
+                {
+                    Id = t.Id,
+                    Make = t.Make,
+                    Model = t.Model,
+                    HorsePower = t.HorsePower,
+                    TruckImageURL = t.TruckImageURL,
+                    HasCargoSpace = t.HasCargoSpace,
+                    HasTemperatureControl = t.HasTemperatureControl,
+                    TransportCompanyId = t.TransportCompanyId,
+                    RegistrationNumber = t.RegistrationNumber
+                })
+                .ToList();
+            var model = new AllTrucksViewModel()
+            {
+                Trucks = truckResult,
+                CurrentPage = currentPage,
+                IsTemperatureControlNeeded = isTemperatureNeeded,
+                TotalTruckCount = trucks.Count()
+            };
+            return model;
         }
+
+
     }
 }

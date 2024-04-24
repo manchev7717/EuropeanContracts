@@ -14,9 +14,6 @@ namespace EuropeanContracts.Core.Contracts
         Task<string> ReturnSupplierName(string name);
         Task<int> ReturnSupplierIdByUserId(string userId);
 
-        Task<SupplierOffersAndCountViewModel> AllOffersAsync(int currentPage,
-                            int offersCountOnPage,
-                            string isContract,
-                            int supplierId);
+        
     }
 }

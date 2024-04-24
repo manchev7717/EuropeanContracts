@@ -1,6 +1,7 @@
 ﻿using EuropeanContracts.Core.Contracts;
 using EuropeanContracts.Core.ServiceViewModels.Offer;
 using EuropeanContracts.Core.ServiceViewModels.Recipient;
+using EuropeanContracts.Core.ServiceViewModels.Supplier;
 using EuropeanContracts.Core.ServiceViewModels.Transporter;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -100,6 +101,154 @@ namespace EuropeanContracts.Core.Services
                 .ToListAsync();
 
             return result;
+        }
+        public async Task<OffersAndCountTransporterViewModel> AllOffersForTransporterAsync(string isContract,
+                                                                       int currentPage,
+                                                                       int offersCountOnPage,
+                                                                       string userId)
+        {
+            var currentTransporter = await repository.AllReadOnly<TransportCompany>()
+                .Where(t => t.OwnerId == userId)
+                .FirstAsync();
+
+            var offers = await repository.AllReadOnly<Offer>()
+               .Include(a => a.ActionType)
+               .Where(o => o.TransporterId == currentTransporter.Id)
+               .ToListAsync();
+
+            if (!string.IsNullOrEmpty(isContract))
+            {
+                bool result = isContract == "true" ? true : false;
+
+                offers = offers
+                    .Where(o => o.IsContract == result)
+                    .ToList();
+            }
+
+            var offerResult = offers
+                .Skip((currentPage - 1) * offersCountOnPage)
+                .Take(offersCountOnPage)
+                .Select(o => new OfferTranspoerterViewModel()
+                {
+                    Id = o.Id,
+                    ProductName = o.ProductName,
+                    ProductImageURL = o.ProductImageURL,
+                    ProductQuantity = o.ProductQuantity,
+                    ProductPrice = o.ProductPrice,
+                    LoadingAddress = o.LoadingAddress,
+                    LoadingCountry = o.LoadingCountry,
+                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                    PublicationDay = o.PublicationDay,
+                    ActionType = o.ActionType.Name,
+                    SupplierId = o.SupplierId,
+                    IsContract = o.IsContract,
+                })
+                .ToList();
+
+            return new OffersAndCountTransporterViewModel()
+            {
+                OfferViewModels = offerResult,
+                AllOffersCount = offers.Count()
+            };
+        }
+
+        public async Task<SupplierOffersAndCountViewModel> AllOffersForSupplierAsync(int currentPage,
+                                                                          int offersCountOnPage,
+                                                                          string isContract,
+                                                                          int supplierId)
+        {
+            var offers = await repository.AllReadOnly<Offer>()
+                .Where(o => o.SupplierId == supplierId)
+                .Include(a => a.ActionType)
+                .Include(a => a.Supplier)
+                .ToListAsync();
+
+            if (isContract != null)
+            {
+                bool result = isContract == "true" ? true : false;
+
+                offers = offers
+                    .Where(o => o.IsContract == result)
+                    .ToList();
+            }
+
+            var offerResult = offers
+                .Skip((currentPage - 1) * offersCountOnPage)
+                .Take(offersCountOnPage)
+                .Select(o => new OfferDetailViewModel()
+                {
+                    Id = o.Id,
+                    ProductName = o.ProductName,
+                    ProductImageURL = o.ProductImageURL,
+                    ProductQuantity = o.ProductQuantity,
+                    ProductPrice = o.ProductPrice,
+                    LoadingAddress = o.LoadingAddress,
+                    LoadingCountry = o.LoadingCountry,
+                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                    PublicationDay = o.PublicationDay,
+                    ActionType = o.ActionType.Name,
+                    SupplierId = o.SupplierId,
+                    CreatorPhoneNumber = o.Supplier.PhoneNumber,
+                    CreatorName = o.Supplier.Name,
+                    ActionDescription = o.ActionType.Description
+                })
+                .ToList();
+
+            return new SupplierOffersAndCountViewModel()
+            {
+                OfferViewModels = offerResult,
+                AllOffersCount = offers.Count()
+            };
+        }
+
+        public async Task<OffersAndCountRecipientViewModel> AllOffersForRecipientAsync(string isContract,
+                                                                     int currentPage,
+                                                                     int offersCountOnPage,
+                                                                     string userId)
+        {
+            var currentRecipient = await repository.AllReadOnly<RecipientCompany>()
+                .Where(t => t.OwnerId == userId)
+                .FirstAsync();
+
+            var offers = await repository.AllReadOnly<Offer>()
+               .Include(a => a.ActionType)
+               .Where(o => o.RecipientId == currentRecipient.Id)
+               .ToListAsync();
+
+            if (!string.IsNullOrEmpty(isContract))
+            {
+                bool result = isContract == "true" ? true : false;
+
+                offers = offers
+                    .Where(o => o.IsContract == result)
+                    .ToList();
+            }
+
+            var offerResult = offers
+                .Skip((currentPage - 1) * offersCountOnPage)
+                .Take(offersCountOnPage)
+                .Select(o => new OfferRecipientViewModel()
+                {
+                    Id = o.Id,
+                    ProductName = o.ProductName,
+                    ProductImageURL = o.ProductImageURL,
+                    ProductQuantity = o.ProductQuantity,
+                    ProductPrice = o.ProductPrice,
+                    LoadingAddress = o.LoadingAddress,
+                    LoadingCountry = o.LoadingCountry,
+                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                    PublicationDay = o.PublicationDay,
+                    ActionType = o.ActionType.Name,
+                    SupplierId = o.SupplierId,
+                    IsContract = o.IsContract,
+                })
+                .ToList();
+
+            return new OffersAndCountRecipientViewModel()
+            {
+                OfferViewModels = offerResult,
+                AllOffersCount = offers.Count()
+            };
         }
 
         public async Task CreateOfferAsync(CreateOfferViewModel model)

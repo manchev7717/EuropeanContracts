@@ -1,5 +1,4 @@
-﻿using EuropeanContracts.Core.ServiceViewModels.Transporter;
-using EuropeanContracts.Infrastructure.Data.Models;
+﻿using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Contracts
 {
@@ -9,24 +8,9 @@ namespace EuropeanContracts.Core.Contracts
         Task AddAsync(TransportCompany model);
         Task<bool> IsTransporterExistFindByUserIdAsync(string userId);
         Task<string> ReturnTransporterNameAsync(string userId);
+        Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId);
 
         Task<TransportCompany> ReturnTransporterByUserIdAsync(string userId);
 
-        Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
-                                                string hasCargoSpace, 
-                                                int currentPage, 
-                                                int truckPerPage, 
-                                                int transportCompanyId);
-
-        Task<AllTrailersViewModel> AllTrailersAsync(string isTemperatureControlNeeded,
-                                                    int currentPage,
-                                                    int trailersCountOnPage,
-                                                    int transportCompanyId);
-
-        public Task<OffersAndCountTransporterViewModel> AllOffersAsync(
-                            string isContract,
-                            int currentPage,
-                            int offersCountOnPage,
-                            string userId);
     }
 }

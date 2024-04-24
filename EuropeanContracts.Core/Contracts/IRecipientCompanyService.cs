@@ -13,12 +13,6 @@ namespace EuropeanContracts.Core.Contracts
 
         Task AddAsync(RecipientCompany model);
 
-        public Task<OffersAndCountRecipientViewModel> AllOffersAsync(
-                            string isContract,
-                            int currentPage,
-                            int offersCountOnPage,
-                            string userId);
-
         Task<RecipientCompany> ReturnRecipientByUserIdAsync(string userId);
     }
 }

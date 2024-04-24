@@ -1,4 +1,5 @@
-﻿using EuropeanContracts.Core.ServiceViewModels.Truck;
+﻿using EuropeanContracts.Core.ServiceViewModels.Transporter;
+using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Infrastructure.Data.Models;
 
 namespace EuropeanContracts.Core.Contracts
@@ -9,7 +10,6 @@ namespace EuropeanContracts.Core.Contracts
 
         Task<bool> ExistByIdAsync(int truckId);
 
-        Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId);
 
         Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId);
 
@@ -20,6 +20,12 @@ namespace EuropeanContracts.Core.Contracts
         Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOffer(int transporterId);
 
         Task<bool> HasTruckTemperaturControl(int truckId);
+        Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
+                                                string hasCargoSpace,
+                                                int currentPage,
+                                                int truckPerPage,
+                                                int transportCompanyId);
+
 
     }
 }

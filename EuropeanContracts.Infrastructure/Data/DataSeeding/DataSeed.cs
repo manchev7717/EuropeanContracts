@@ -1,7 +1,6 @@
 ﻿using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 
 namespace EuropeanContracts.Infrastructure.Data.DataSeeding
 {

@@ -65,7 +65,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -84,7 +84,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -111,7 +111,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -129,7 +129,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await trailerService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.UserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }

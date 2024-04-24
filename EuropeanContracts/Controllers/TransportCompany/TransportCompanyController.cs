@@ -12,11 +12,19 @@ namespace EuropeanContracts.Controllers
     public class TransportCompanyController : BaseController
     {
         private readonly ITransportCompanyService transportCompanyService;
+        private readonly IOfferService offerService;
+        private readonly ITrailerService trailerService;
+        private readonly ITruckService truckService;
 
-        public TransportCompanyController(ITransportCompanyService transportCompanyService)
+        public TransportCompanyController(ITransportCompanyService transportCompanyService,
+                                            IOfferService offerService,
+                                            ITrailerService trailerService,
+                                            ITruckService truckService)
         {
             this.transportCompanyService = transportCompanyService;
-
+            this.offerService = offerService;
+            this.trailerService = trailerService;
+            this.truckService = truckService;
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -57,7 +65,7 @@ namespace EuropeanContracts.Controllers
         [HttpGet]
         public async Task<IActionResult> MyOffers([FromQuery]AllOffersForTransporterViewModel model)
         {
-            var result = await transportCompanyService.AllOffersAsync(
+            var result = await offerService.AllOffersForTransporterAsync(
                             model.IsContract,
                             model.CurrentPage,
                             AllOffersForTransporterViewModel.OffersCountOnPage,
@@ -75,7 +83,7 @@ namespace EuropeanContracts.Controllers
         {
             var transportCompany = await transportCompanyService.ReturnTransporterByUserIdAsync(User.Id());
                 
-            var resultFromSearching = await transportCompanyService.AllTrucksAsync(model.IsTemperatureControlNeeded,
+            var resultFromSearching = await truckService.AllTrucksAsync(model.IsTemperatureControlNeeded,
                                                                             model.HasCargoSpace,
                                                                             model.CurrentPage,
                                                                             AllTrucksViewModel.TruckCountOnPage,
@@ -90,7 +98,7 @@ namespace EuropeanContracts.Controllers
         {
             var transportCompany = await transportCompanyService.ReturnTransporterByUserIdAsync(User.Id());
 
-            var resultFromSearching = await transportCompanyService.AllTrailersAsync(model.IsTemperatureControlNeeded,
+            var resultFromSearching = await trailerService.AllTrailersAsync(model.IsTemperatureControlNeeded,
                                                                             model.CurrentPage,
                                                                             AllTrailersViewModel.TrailersCountOnPage,
                                                                             transportCompany.Id);

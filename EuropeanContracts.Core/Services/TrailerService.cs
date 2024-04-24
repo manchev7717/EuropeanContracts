@@ -105,10 +105,44 @@ namespace EuropeanContracts.Core.Services
         }
 
 
-        public async Task<bool> UserIsTransportCompanyOwnerByIdAsync(string userId)
+        public async Task<AllTrailersViewModel> AllTrailersAsync(string isTemperatureControlNeeded,
+                                                          int currentPage,
+                                                          int trailersCountOnPage,
+                                                          int transportCompanyId)
         {
-            return await repository.AllReadOnly<TransportCompany>()
-                .AnyAsync(t => t.OwnerId == userId);
+            var trailers = await repository.AllReadOnly<Trailer>()
+                .Where(t => t.TransportCompanyId == transportCompanyId)
+                .ToListAsync();
+
+            if (!string.IsNullOrEmpty(isTemperatureControlNeeded))
+            {
+                bool isNeeded = isTemperatureControlNeeded == "true" ? true : false;
+                trailers = trailers
+                    .Where(t => t.HasTemperatureControl == isNeeded)
+                    .ToList();
+            }
+
+            var treilersResult = trailers
+                .Skip((currentPage - 1) * trailersCountOnPage)
+                .Take(trailersCountOnPage)
+                .Select(t => new TrailerViewModel()
+                {
+                    Id = t.Id,
+                    Make = t.Make,
+                    TrailerImageURL = t.TrailerImageURL,
+                    HasTemperatureControl = t.HasTemperatureControl,
+                    TransportCompanyId = t.TransportCompanyId,
+                    RegistrationNumber = t.RegistrationNumber,
+                })
+                .ToList();
+            var model = new AllTrailersViewModel()
+            {
+                Trailers = treilersResult,
+                CurrentPage = currentPage,
+                IsTemperatureControlNeeded = isTemperatureControlNeeded,
+                TotalTrailersCount = trailers.Count()
+            };
+            return model;
         }
 
     }

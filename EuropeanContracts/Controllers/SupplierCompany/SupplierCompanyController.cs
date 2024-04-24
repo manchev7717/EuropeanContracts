@@ -12,10 +12,13 @@ namespace EuropeanContracts.Controllers
     public class SupplierCompanyController : BaseController
     {
         private readonly ISupplierCompanyService supplierCompanyService;
+        private readonly IOfferService offerService;
 
-        public SupplierCompanyController(ISupplierCompanyService supplierCompanyService)
+        public SupplierCompanyController(ISupplierCompanyService supplierCompanyService,
+                                         IOfferService offerService)
         {
             this.supplierCompanyService = supplierCompanyService;
+            this.offerService = offerService;
         }
 
         [HttpGet]
@@ -58,7 +61,7 @@ namespace EuropeanContracts.Controllers
         public async Task<IActionResult> MyOffers([FromQuery] SupplierAllOffersViewModel model)
         {
             var supplierId =await supplierCompanyService.ReturnSupplierIdByUserId(User.Id());
-            var result = await supplierCompanyService.AllOffersAsync(model.CurrentPage,
+            var result = await offerService.AllOffersForSupplierAsync(model.CurrentPage,
                                                                      SupplierAllOffersViewModel.OffersCountOnPage,
                                                                      model.IsContract,
                                                                      supplierId);

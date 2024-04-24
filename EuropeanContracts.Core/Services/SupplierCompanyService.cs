@@ -1,6 +1,4 @@
 ﻿using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.ServiceViewModels.Offer;
-using EuropeanContracts.Core.ServiceViewModels.Supplier;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -28,55 +26,6 @@ namespace EuropeanContracts.Core.Services
             await userManager.AddClaimAsync(user, new System.Security.Claims.Claim(
                 CustomUserClaimType.UserCompanyNameCustomClaim, model.Name));
             await repository.SaveChangesAsync();
-        }
-
-        public async Task<SupplierOffersAndCountViewModel> AllOffersAsync(int currentPage, 
-                                                                          int offersCountOnPage,
-                                                                          string isContract,
-                                                                          int supplierId)
-        {
-            var offers = await repository.AllReadOnly<Offer>()
-                .Where(o=>o.SupplierId == supplierId)
-                .Include(a => a.ActionType)
-                .Include(a => a.Supplier)
-                .ToListAsync();
-
-            if (isContract != null)
-            {
-                bool result = isContract == "true" ? true : false;
-
-                offers = offers
-                    .Where(o => o.IsContract == result)
-                    .ToList();
-            }
-
-            var offerResult = offers
-                .Skip((currentPage - 1) * offersCountOnPage)
-                .Take(offersCountOnPage)
-                .Select(o => new OfferDetailViewModel()
-                {
-                    Id = o.Id,
-                    ProductName = o.ProductName,
-                    ProductImageURL = o.ProductImageURL,
-                    ProductQuantity = o.ProductQuantity,
-                    ProductPrice = o.ProductPrice,
-                    LoadingAddress = o.LoadingAddress,
-                    LoadingCountry = o.LoadingCountry,
-                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
-                    PublicationDay = o.PublicationDay,
-                    ActionType = o.ActionType.Name,
-                    SupplierId = o.SupplierId,
-                    CreatorPhoneNumber = o.Supplier.PhoneNumber,
-                    CreatorName = o.Supplier.Name,
-                    ActionDescription = o.ActionType.Description
-                })
-                .ToList();
-
-            return new SupplierOffersAndCountViewModel()
-            {
-                OfferViewModels = offerResult,
-                AllOffersCount = offers.Count()
-            };
         }
 
         public async Task<bool> FindSupplierByIdAsync(string userId)

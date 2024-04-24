@@ -14,10 +14,14 @@ namespace EuropeanContracts.Controllers
     public class RecipientCompanyController : BaseController
     {
         private readonly IRecipientCompanyService recipientCompanyService;
+        private readonly IOfferService offerService;
 
-        public RecipientCompanyController(IRecipientCompanyService recipientCompanyService)
+        public RecipientCompanyController(IRecipientCompanyService recipientCompanyService,
+                                          IOfferService offerService)
         {
             this.recipientCompanyService = recipientCompanyService;
+            this.offerService = offerService;
+
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -59,7 +63,7 @@ namespace EuropeanContracts.Controllers
         [HttpGet]
         public async Task<IActionResult> MyOffers([FromQuery] AllOffersForRecipientViewModel model)
         {
-            var result = await recipientCompanyService.AllOffersAsync(
+            var result = await offerService.AllOffersForRecipientAsync(
                             model.IsContract,
                             model.CurrentPage,
                             AllOffersForRecipientViewModel.OffersCountOnPage,
