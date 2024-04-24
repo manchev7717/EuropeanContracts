@@ -1,5 +1,4 @@
 ﻿using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.Services;
 using EuropeanContracts.Core.ServiceViewModels.ActionType;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EuropeanContracts.Tests.Tets
 {
     [TestFixture]
-    public class ActionTypeService
+    public class ActionTypeServiceTests
     {
         private IEnumerable<ActionType> actionTypes;
         private EuropeanContractsDbContext context;
@@ -48,7 +47,7 @@ namespace EuropeanContracts.Tests.Tets
         }
 
         [Test]
-        public void CreateAction_ShouldCreateActionTypeCorectly()
+        public void CreateAction_ShouldCreateActionTypeCorrectly()
         {
             var actionToCreate = new CreateActionTypeViewModel()
                                  {

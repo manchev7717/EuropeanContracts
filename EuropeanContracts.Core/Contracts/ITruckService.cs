@@ -11,15 +11,15 @@ namespace EuropeanContracts.Core.Contracts
         Task<bool> ExistByIdAsync(int truckId);
 
 
-        Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId);
+        Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelByIdAsync(int truckId);
 
         Task EditAsync(EditAndDeleteTruckViewModel model);
 
         Task DeleteAsync(int id);
 
-        Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOffer(int transporterId);
+        Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOfferAsync(int transporterId);
 
-        Task<bool> HasTruckTemperaturControl(int truckId);
+        Task<bool> HasTruckTemperaturControlAsync(int truckId);
         Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
                                                 string hasCargoSpace,
                                                 int currentPage,

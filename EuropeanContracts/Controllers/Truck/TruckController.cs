@@ -73,7 +73,7 @@ namespace EuropeanContracts.Controllers
                 return Unauthorized();
             }
 
-            var truckModel = await truckService.ReturnEditTruckViewModelById(id);
+            var truckModel = await truckService.ReturnEditTruckViewModelByIdAsync(id);
 
             return View(truckModel);
         }
@@ -115,7 +115,7 @@ namespace EuropeanContracts.Controllers
                 return Unauthorized();
             }
 
-            var truckModel = await truckService.ReturnEditTruckViewModelById(id);
+            var truckModel = await truckService.ReturnEditTruckViewModelByIdAsync(id);
 
             return View(truckModel);
         }

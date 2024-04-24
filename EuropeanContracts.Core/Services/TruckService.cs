@@ -56,7 +56,16 @@ namespace EuropeanContracts.Core.Services
                 .AnyAsync(t => t.Id == truckId);
         }
 
-        public async Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOffer(int transporterId)
+
+        public async Task<bool> HasTruckTemperaturControlAsync(int truckId)
+        {
+            return await repository.AllReadOnly<AutoTruck>()
+                .Where(t => t.Id == truckId)
+                .Select(t=>t.HasTemperatureControl)
+                .FirstAsync();
+        }
+
+        public async Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOfferAsync(int transporterId)
         {
             return await repository.AllReadOnly<AutoTruck>()
                 .Where(t=>t.TransportCompanyId == transporterId)
@@ -70,15 +79,8 @@ namespace EuropeanContracts.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<bool> HasTruckTemperaturControl(int truckId)
-        {
-            return await repository.AllReadOnly<AutoTruck>()
-                .Where(t => t.Id == truckId)
-                .Select(t=>t.HasTemperatureControl)
-                .FirstAsync();
-        }
 
-        public async Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelById(int truckId)
+        public async Task<EditAndDeleteTruckViewModel> ReturnEditTruckViewModelByIdAsync(int truckId)
         {
             var truck = await repository.AllReadOnly<AutoTruck>()
                 .Where(t => t.Id == truckId)
@@ -98,6 +100,7 @@ namespace EuropeanContracts.Core.Services
 
             return truck;
         }
+
         public async Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
                                                             string hasCargoSpace,
                                                             int currentPage,
