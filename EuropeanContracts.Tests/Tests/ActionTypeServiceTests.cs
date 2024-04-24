@@ -36,7 +36,7 @@ namespace EuropeanContracts.Tests.Tets
             };
 
             var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("ActionTypesDb")
+                .UseInMemoryDatabase("ActionTypesDbInMemory" + DateTime.Now.Ticks.ToString())
                 .Options;
             this.context = new EuropeanContractsDbContext(optionsDb);
             this.context.AddRange(actionTypes);

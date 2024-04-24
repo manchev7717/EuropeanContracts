@@ -45,14 +45,22 @@ namespace EuropeanContracts.Core.Services
             }
         }
 
-        public async Task<bool> ExistByIdAsync(int truckId)
+        public async Task<bool> ExistByIdAsync(int trailerId)
         {
             return await repository.AllReadOnly<Trailer>()
-                 .AnyAsync(t => t.Id == truckId);
+                 .AnyAsync(t => t.Id == trailerId);
         }
 
-        public async Task<IEnumerable<TrailerIdAndRegistrationViewModel>> GetTrailerForOffer(bool isTemperatureRequired,
-                                                                                             int transporterId)
+        public async Task<bool> HasTrailerTemperaturControlAsync(int? trailerId)
+        {
+            return await repository.AllReadOnly<Trailer>()
+                .Where(t => t.Id == trailerId)
+                .Where(t => t.HasTemperatureControl == true)
+                .AnyAsync();
+        }
+
+        public async Task<IEnumerable<TrailerIdAndRegistrationViewModel>> GetTrailerForOfferAsync(bool isTemperatureRequired,
+                                                                                                  int transporterId)
         {
             var returnModel = await repository.AllReadOnly<Trailer>()
                 .Where(t => t.TransportCompanyId == transporterId)
@@ -60,7 +68,7 @@ namespace EuropeanContracts.Core.Services
                 {
                     Id = t.Id,
                     RegistrationNumber = t.RegistrationNumber,
-                    HasTemperatureControl  = t.HasTemperatureControl.ToString()
+                    HasTemperatureControl = t.HasTemperatureControl.ToString()
                 })
                 .ToListAsync();
 
@@ -78,15 +86,8 @@ namespace EuropeanContracts.Core.Services
             }
         }
 
-        public async Task<bool> HasTrailerTemperaturControl(int? trailerId)
-        {
-            return await repository.AllReadOnly<Trailer>()
-                .Where(t => t.Id == trailerId)
-                .Select(t => t.HasTemperatureControl)
-                .AnyAsync();
-        }
 
-        public async Task<EditAndDeleteTrailerViewModel> ReturnEditTrailerViewModelById(int trailerId)
+        public async Task<EditAndDeleteTrailerViewModel> ReturnEditTrailerViewModelByIdAsync(int trailerId)
         {
             var trailer = await repository.AllReadOnly<Trailer>()
                 .Where(t => t.Id == trailerId)
@@ -117,9 +118,10 @@ namespace EuropeanContracts.Core.Services
             if (!string.IsNullOrEmpty(isTemperatureControlNeeded))
             {
                 bool isNeeded = isTemperatureControlNeeded == "true" ? true : false;
+
                 trailers = trailers
-                    .Where(t => t.HasTemperatureControl == isNeeded)
-                    .ToList();
+                .Where(t => t.HasTemperatureControl == isNeeded)
+                .ToList();
             }
 
             var treilersResult = trailers

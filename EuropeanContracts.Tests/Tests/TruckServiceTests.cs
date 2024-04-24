@@ -62,7 +62,7 @@ namespace EuropeanContracts.Tests.Tests
             };
 
             var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("AutoTruckDb" + DateTime.Now.Ticks.ToString())
+                .UseInMemoryDatabase("AutoTruckDbInMemory" + DateTime.Now.Ticks.ToString())
                 .Options;
             this.context = new EuropeanContractsDbContext(optionsDb);
             this.context.AddRange(trucks);

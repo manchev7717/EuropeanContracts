@@ -20,6 +20,7 @@ namespace EuropeanContracts.Core.Contracts
         Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOfferAsync(int transporterId);
 
         Task<bool> HasTruckTemperaturControlAsync(int truckId);
+
         Task<AllTrucksViewModel> AllTrucksAsync(string isTemperatureNeeded,
                                                 string hasCargoSpace,
                                                 int currentPage,

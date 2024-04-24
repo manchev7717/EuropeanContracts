@@ -61,8 +61,8 @@ namespace EuropeanContracts.Core.Services
         {
             return await repository.AllReadOnly<AutoTruck>()
                 .Where(t => t.Id == truckId)
-                .Select(t=>t.HasTemperatureControl)
-                .FirstAsync();
+                .Where(t=>t.HasTemperatureControl == true)
+                .AnyAsync();
         }
 
         public async Task<IEnumerable<TruckIdAndRegistrationViewModel>> GetTruckForOfferAsync(int transporterId)

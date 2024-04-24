@@ -70,7 +70,7 @@ namespace EuropeanContracts.Controllers
                 return Unauthorized();
             }
 
-            var trailerModel = await trailerService.ReturnEditTrailerViewModelById(id);
+            var trailerModel = await trailerService.ReturnEditTrailerViewModelByIdAsync(id);
 
             return View(trailerModel);
         }
@@ -116,7 +116,7 @@ namespace EuropeanContracts.Controllers
                 return Unauthorized();
             }
 
-            var truckModel = await trailerService.ReturnEditTrailerViewModelById(id);
+            var truckModel = await trailerService.ReturnEditTrailerViewModelByIdAsync(id);
 
             return View(truckModel);
         }

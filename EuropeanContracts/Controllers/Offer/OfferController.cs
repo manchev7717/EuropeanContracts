@@ -117,7 +117,7 @@ namespace EuropeanContracts.Controllers.Offer
             model.IsTemperatureRequired = isTemperatureRequired;
             model.TransporterId = transporter.Id;
             model.Trucks = await truckService.GetTruckForOfferAsync(model.TransporterId);
-            model.Trailers = await trailerService.GetTrailerForOffer(isTemperatureRequired, model.TransporterId);
+            model.Trailers = await trailerService.GetTrailerForOfferAsync(isTemperatureRequired, model.TransporterId);
 
             return View(model);
         }
@@ -133,7 +133,7 @@ namespace EuropeanContracts.Controllers.Offer
             {
                 ModelState.AddModelError(nameof(model.TruckId), ModelsErrorMessages.TruckHasNoTemperatureControl);
                 model.Trucks = await truckService.GetTruckForOfferAsync(model.TransporterId);
-                model.Trailers = await trailerService.GetTrailerForOffer(model.IsTemperatureRequired, model.TransporterId);
+                model.Trailers = await trailerService.GetTrailerForOfferAsync(model.IsTemperatureRequired, model.TransporterId);
                 return View(model);
             }
 
