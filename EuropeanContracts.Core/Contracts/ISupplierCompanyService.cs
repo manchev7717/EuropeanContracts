@@ -11,7 +11,6 @@ namespace EuropeanContracts.Core.Contracts
 
         Task<bool> FindSupplierByIdAsync(string userId);
 
-        Task<string> ReturnSupplierName(string name);
         Task<int> ReturnSupplierIdByUserId(string userId);
 
         

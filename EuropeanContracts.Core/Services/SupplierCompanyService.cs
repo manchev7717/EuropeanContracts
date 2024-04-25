@@ -44,17 +44,15 @@ namespace EuropeanContracts.Core.Services
         {
             var supplier = await repository.AllReadOnly<SupplierCompany>()
                 .Where(s=>s.OwnerId == userId)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
+
+            if (supplier == null)
+            {
+                return 0;
+            }
 
             return supplier.Id;
         }
 
-        public async Task<string> ReturnSupplierName(string userId)
-        {
-            var supplier = await repository.AllReadOnly<SupplierCompany>()
-                .FirstAsync(s => s.OwnerId == userId);
-
-            return supplier.Name;
-        }
     }
 }

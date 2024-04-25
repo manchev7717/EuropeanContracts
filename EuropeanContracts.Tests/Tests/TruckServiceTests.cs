@@ -138,7 +138,7 @@ namespace EuropeanContracts.Tests.Tests
         }
 
         [Test]
-        public async Task ExistById_ShouldReturnIsTruckExistCorrectly()
+        public async Task ExistById_ShouldReturnDoesTruckExistCorrectly()
         {
             int firstId = 1;
             int secondId = 5;
@@ -153,7 +153,7 @@ namespace EuropeanContracts.Tests.Tests
 
         [Test]
 
-        public async Task HasTruckTemperaturControl_ShouldReturnIsTruckHasTemperatureControl()
+        public async Task HasTruckTemperaturControl_ShouldReturnDoesTruckHasTemperatureControl()
         {
 
             int firstId = 1;
