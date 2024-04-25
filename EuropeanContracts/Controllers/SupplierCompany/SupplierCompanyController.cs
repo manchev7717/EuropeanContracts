@@ -32,7 +32,7 @@ namespace EuropeanContracts.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddSupplierCompanyModel model)
         {
-            if (await supplierCompanyService.IsSupplierExists(model.Country,model.Name))
+            if (await supplierCompanyService.DoesSupplierExists(model.Country,model.Name))
             {
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);

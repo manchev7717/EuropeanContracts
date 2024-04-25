@@ -30,7 +30,7 @@ namespace EuropeanContracts.Controllers.ActionType
 
         public async Task<IActionResult> Add(CreateActionTypeViewModel model)
         {
-            if (await supplierCompanyService.FindSupplierByIdAsync(User.Id()) == false)
+            if (await supplierCompanyService.DoesSupplierExists(User.Id()) == false)
             {
                 return Unauthorized();
             }

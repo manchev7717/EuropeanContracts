@@ -3,6 +3,7 @@ using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.Tests.ClassHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Tests.Tests
@@ -13,6 +14,7 @@ namespace EuropeanContracts.Tests.Tests
         private EuropeanContractsDbContext context;
         private IRepository repository;
         private ITruckService truckService;
+        private const string contextName = "AutoTruckDbInMemory";
 
 
         [SetUp]
@@ -61,10 +63,7 @@ namespace EuropeanContracts.Tests.Tests
 
             };
 
-            var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("AutoTruckDbInMemory" + DateTime.Now.Ticks.ToString())
-                .Options;
-            this.context = new EuropeanContractsDbContext(optionsDb);
+            this.context = InMemoryDbContexCreator.Create(contextName);
             this.context.AddRange(trucks);
             this.context.SaveChanges();
 

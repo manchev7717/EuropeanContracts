@@ -3,6 +3,7 @@ using EuropeanContracts.Core.ServiceViewModels.ActionType;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.Tests.ClassHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Tests.Tets
@@ -13,6 +14,7 @@ namespace EuropeanContracts.Tests.Tets
         private IEnumerable<ActionType> actionTypes;
         private EuropeanContractsDbContext context;
         private IRepository repository;
+        private const string contextName = "ActionTypesDbInMemory";
 
 
         [SetUp]
@@ -34,11 +36,7 @@ namespace EuropeanContracts.Tests.Tets
                      Description = "Тhe price is for one month of use and is in euros"
                  }
             };
-
-            var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("ActionTypesDbInMemory" + DateTime.Now.Ticks.ToString())
-                .Options;
-            this.context = new EuropeanContractsDbContext(optionsDb);
+            this.context = InMemoryDbContexCreator.Create(contextName);
             this.context.AddRange(actionTypes);
             this.context.SaveChanges();
 

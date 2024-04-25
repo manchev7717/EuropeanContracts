@@ -37,7 +37,7 @@ namespace EuropeanContracts.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddTransportCompanyModel model)
         {
-            if (await transportCompanyService.IsTransporterExistsAsync(model.Country, model.Name))
+            if (await transportCompanyService.DoesTransporterExistsAsync(model.Country, model.Name))
             {
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);

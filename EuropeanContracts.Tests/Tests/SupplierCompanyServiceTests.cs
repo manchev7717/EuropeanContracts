@@ -2,9 +2,7 @@
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using EuropeanContracts.Tests.ClassHelpers;
 
 namespace EuropeanContracts.Tests.Tests
 {
@@ -16,6 +14,7 @@ namespace EuropeanContracts.Tests.Tests
         private EuropeanContractsDbContext context;
         private IRepository repository;
         private ISupplierCompanyService supplierService;
+        private const string contextName = "SupplierCompanyDbInMemory";
 
 
 
@@ -115,34 +114,20 @@ namespace EuropeanContracts.Tests.Tests
 
 
 
-            var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("SupplierCompanyDbInMemory" + DateTime.Now.Ticks.ToString())
-                .Options;
-
-            this.context = new EuropeanContractsDbContext(optionsDb);
+            this.context = InMemoryDbContexCreator.Create(contextName);
             this.context.AddRange(suppliers);
             this.context.AddRange(users);
             this.context.SaveChanges();
 
             repository = new Repository(this.context);
 
-            var userStore = new UserStore<EuropeanContractUser>(context);
+            var userManager = UserManagerCreator.Create(context);
 
-            var hasher = new PasswordHasher<EuropeanContractUser>();
-            var normalizer = new UpperInvariantLookupNormalizer();
-            var userManager = new UserManager<EuropeanContractUser>(userStore,
-                                                                    null,
-                                                                    hasher,
-                                                                    null,
-                                                                    null,
-                                                                    normalizer,
-                                                                    null,
-                                                                    null,
-                                                                    null);
             userManager.CreateAsync(FirstUser);
             userManager.CreateAsync(SecondUser);
             userManager.CreateAsync(ThirdUser);
             userManager.CreateAsync(FourthUser);
+
             supplierService = new Core.Services.SupplierCompanyService(repository, userManager);
         }
 
@@ -163,6 +148,7 @@ namespace EuropeanContracts.Tests.Tests
 
             Assert.That(context.SuppliersCompanies.Any(a => a.OwnerId == "TestUser@#FDFDS" &&
                                                             a.Id == 4 &&
+                                                            a.Name == "BestFood ASP" &&
                                                             a.Country == "Bulgaria" &&
                                                             a.PhoneNumber == "+080808080801136" &&
                                                             a.Address == "Samokov, str. Sofiisko shose 69"), Is.EqualTo(true));
@@ -179,9 +165,9 @@ namespace EuropeanContracts.Tests.Tests
             string thirdUserId = "NoValidUserIddW54s5d4adQ7E";
 
 
-            bool resultOne = await supplierService.FindSupplierByIdAsync(firstUserId);
-            bool resultTwo = await supplierService.FindSupplierByIdAsync(secondUserId);
-            bool resultThree = await supplierService.FindSupplierByIdAsync(thirdUserId);
+            bool resultOne = await supplierService.DoesSupplierExists(firstUserId);
+            bool resultTwo = await supplierService.DoesSupplierExists(secondUserId);
+            bool resultThree = await supplierService.DoesSupplierExists(thirdUserId);
 
             Assert.That(resultOne, Is.EqualTo(true));
             Assert.That(resultTwo, Is.EqualTo(true));
@@ -204,13 +190,13 @@ namespace EuropeanContracts.Tests.Tests
             string firstNameInFrance = "Erico Le Diodi";
 
 
-            bool resultOne = await supplierService.IsSupplierExists(countryAustria, firstNameInAustria);
-            bool resultTwo = await supplierService.IsSupplierExists(countryAustria, secondNameInAustria);
+            bool resultOne = await supplierService.DoesSupplierExists(countryAustria, firstNameInAustria);
+            bool resultTwo = await supplierService.DoesSupplierExists(countryAustria, secondNameInAustria);
 
-            bool resultThree = await supplierService.IsSupplierExists(countryFrance, firstNameInFrance);
+            bool resultThree = await supplierService.DoesSupplierExists(countryFrance, firstNameInFrance);
 
-            bool resultFour = await supplierService.IsSupplierExists(countrySpain, firstNameInSpain);
-            bool resultFive = await supplierService.IsSupplierExists(countrySpain, secondNameInSpain);
+            bool resultFour = await supplierService.DoesSupplierExists(countrySpain, firstNameInSpain);
+            bool resultFive = await supplierService.DoesSupplierExists(countrySpain, secondNameInSpain);
 
             Assert.That(resultOne, Is.EqualTo(true));
             Assert.That(resultTwo, Is.EqualTo(false));

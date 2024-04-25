@@ -28,13 +28,13 @@ namespace EuropeanContracts.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<bool> FindSupplierByIdAsync(string userId)
+        public async Task<bool> DoesSupplierExists(string userId)
         {
             return await repository.AllReadOnly<SupplierCompany>()
                 .AnyAsync(s => s.OwnerId == userId);
         }
 
-        public async Task<bool> IsSupplierExists(string country, string name)
+        public async Task<bool> DoesSupplierExists(string country, string name)
         {
             return await repository.AllReadOnly<SupplierCompany>()
                 .AnyAsync(s => s.Country == country && s.Name == name);

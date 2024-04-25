@@ -1,5 +1,4 @@
 ﻿using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -19,25 +18,6 @@ namespace EuropeanContracts.Core.Services
             this.userManager = userManager;
         }
 
-        public async Task<bool> IsRecipientExistFindByUserIdAsync(string userId)
-        {
-            return await repository.AllReadOnly<RecipientCompany>()
-                .AnyAsync(r => r.OwnerId == userId);
-        }
-
-        public async Task<string> ReturnRecipientName(string userId)
-        {
-            var recipient = await repository.AllReadOnly<RecipientCompany>()
-                 .FirstAsync(r => r.OwnerId == userId);
-
-            return recipient.Name;
-        }
-        public async Task<bool> IsRecipientExists(string country, string name)
-        {
-            return await repository.AllReadOnly<RecipientCompany>()
-                .AnyAsync(s => s.Country == country && s.Name == name);
-        }
-
         public async Task AddAsync(RecipientCompany model)
         {
             var user = await userManager.FindByIdAsync(model.OwnerId);
@@ -47,6 +27,17 @@ namespace EuropeanContracts.Core.Services
                         CustomUserClaimType.UserCompanyNameCustomClaim, model.Name));
             await repository.SaveChangesAsync();
 
+        }
+
+        public async Task<bool> DoesRecipientExists(string userId)
+        {
+            return await repository.AllReadOnly<RecipientCompany>()
+                .AnyAsync(r => r.OwnerId == userId);
+        }
+        public async Task<bool> DoesRecipientExists(string country, string name)
+        {
+            return await repository.AllReadOnly<RecipientCompany>()
+                .AnyAsync(s => s.Country == country && s.Name == name);
         }
 
         public async Task<RecipientCompany> ReturnRecipientByUserIdAsync(string userId)

@@ -35,7 +35,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> Add(AddRecipientCompanyModel model)
         {
-            if (await recipientCompanyService.IsRecipientExists(model.Country, model.Name))
+            if (await recipientCompanyService.DoesRecipientExists(model.Country, model.Name))
             {
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);

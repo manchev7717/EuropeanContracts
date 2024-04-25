@@ -68,7 +68,7 @@ namespace EuropeanContracts.Controllers.Offer
         {
             var userId = User.Id();
 
-            if (await supplierCompanyService.FindSupplierByIdAsync(userId) == false)
+            if (await supplierCompanyService.DoesSupplierExists(userId) == false)
             {
                 return Unauthorized();
             }

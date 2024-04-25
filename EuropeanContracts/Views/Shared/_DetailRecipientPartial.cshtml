@@ -1,5 +1,6 @@
 ﻿@inject IRecipientCompanyService recipientService
 @inject ITransportCompanyService transporterService
+@inject ISupplierCompanyService supplierService
 @model DetailOfferViewModel
 
 @if (Model.RecipientDetail.RecipientId != null)
@@ -11,7 +12,7 @@
     <h6>-Address of Destination of goods :<b>@Model.RecipientDetail.AddressOfDestination</b></h6>
     
 }
-else if (Model.RecipientDetail.RecipientId == null && await recipientService.IsRecipientExistFindByUserIdAsync(User.Id()))
+else if (Model.RecipientDetail.RecipientId == null && await recipientService.DoesRecipientExists(User.Id()))
 {
     <h4 class="text-center">
         <span class="text-danger text-center">No recipient company yet</span>
@@ -21,7 +22,7 @@ else if (Model.RecipientDetail.RecipientId == null && await recipientService.IsR
     <br/>
     <a asp-action="AddRecipient" asp-controller="Offer" asp-route-offerId="@Model.OfferViewModel.Id" class="btn btn-primary">Add Recipient Company </a>
 }
-else if (Model.RecipientDetail.RecipientId == null && await transporterService.IsTransporterExistFindByUserIdAsync(User.Id()))
+else if ((Model.RecipientDetail.RecipientId == null && await transporterService.DoesTransporterExistFindByUserIdAsync(User.Id())) || await supplierService.DoesSupplierExists(User.Id()))
 {
     <h4 class="text-center">
         <span class="text-danger text-center">No recipient company yet</span>

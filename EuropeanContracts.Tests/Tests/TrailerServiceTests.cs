@@ -3,6 +3,7 @@ using EuropeanContracts.Core.ServiceViewModels.Trailer;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.Tests.ClassHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Tests.Tests
@@ -13,6 +14,7 @@ namespace EuropeanContracts.Tests.Tests
         private EuropeanContractsDbContext context;
         private IRepository repository;
         private ITrailerService trailerService;
+        private const string contextName = "TrailersDbInMemory";
 
 
         [SetUp]
@@ -48,11 +50,7 @@ namespace EuropeanContracts.Tests.Tests
                     RegistrationNumber = "P79634"
                 }
             };
-
-            var optionsDb = new DbContextOptionsBuilder<EuropeanContractsDbContext>()
-                .UseInMemoryDatabase("TrailersDbInMemory" + DateTime.Now.Ticks.ToString())
-                .Options;
-            this.context = new EuropeanContractsDbContext(optionsDb);
+            this.context = InMemoryDbContexCreator.Create(contextName);
             this.context.AddRange(trailers);
             this.context.SaveChanges();
 
