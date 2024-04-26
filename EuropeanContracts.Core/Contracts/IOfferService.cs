@@ -8,7 +8,6 @@ namespace EuropeanContracts.Core.Contracts
 {
     public interface IOfferService
     {
-        Task<IEnumerable<string>> AllActionTypesAsync();
         Task<IEnumerable<string>> AllCountryNamesAsync();
 
         Task<OffersAndCountViewModel> AllAsync(
@@ -17,8 +16,6 @@ namespace EuropeanContracts.Core.Contracts
                             string? isTemperatureControlNeeded,
                             int currentPage,
                             int offersCountOnPage);
-
-        Task<IEnumerable<ActionType>> ActionTypesAsync();
 
         Task CreateOfferAsync(CreateOfferViewModel model);
 

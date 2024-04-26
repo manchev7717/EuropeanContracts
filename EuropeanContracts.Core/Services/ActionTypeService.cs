@@ -2,6 +2,7 @@
 using EuropeanContracts.Core.ServiceViewModels.ActionType;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Core.Services
 {
@@ -23,6 +24,21 @@ namespace EuropeanContracts.Core.Services
 
             await repository.AddAsync(actionType);
             await repository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> AllActionTypeNamesAsync()
+        {
+            return await repository.AllReadOnly<ActionType>()
+                .Select(a => a.Name)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ActionType>> AllActionTypesAsync()
+        {
+            var result = await repository.AllReadOnly<ActionType>()
+                .ToListAsync();
+
+            return result;
         }
     }
 }

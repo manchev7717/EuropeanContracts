@@ -20,13 +20,15 @@ namespace EuropeanContracts.Controllers.Offer
         private readonly ITrailerService trailerService;
         private readonly ITransportCompanyService transporterService;
         private readonly IRecipientCompanyService recipientService;
+        private readonly IActionTypeService actionTypeService;
 
         public OfferController(IOfferService offerService,
             ISupplierCompanyService supplierCompanyService,
             ITruckService truckService,
             ITrailerService trailerService,
             ITransportCompanyService transporterService,
-            IRecipientCompanyService recipientService)
+            IRecipientCompanyService recipientService,
+            IActionTypeService actionTypeService)
         {
             this.offerService = offerService;
             this.supplierCompanyService = supplierCompanyService;
@@ -34,6 +36,7 @@ namespace EuropeanContracts.Controllers.Offer
             this.trailerService = trailerService;
             this.transporterService = transporterService;
             this.recipientService = recipientService;
+            this.actionTypeService = actionTypeService;
 
         }
 
@@ -50,7 +53,7 @@ namespace EuropeanContracts.Controllers.Offer
             model.Offers = result.OfferViewModels;
             model.TotalOffersCount = result.AllOffersCount;
             model.CountriesOfOrigin = await offerService.AllCountryNamesAsync();
-            model.Actions = await offerService.AllActionTypesAsync();
+            model.Actions = await actionTypeService.AllActionTypeNamesAsync();
 
             return View(model);
         }
@@ -60,7 +63,7 @@ namespace EuropeanContracts.Controllers.Offer
         {
             var model = new CreateOfferViewModel();
 
-            model.ActionTypes = await offerService.ActionTypesAsync();
+            model.ActionTypes = await actionTypeService.AllActionTypesAsync();
             return View(model);
         }
         [HttpPost]
@@ -75,7 +78,7 @@ namespace EuropeanContracts.Controllers.Offer
 
             if (ModelState.IsValid == false)
             {
-                model.ActionTypes = await offerService.ActionTypesAsync();
+                model.ActionTypes = await actionTypeService.AllActionTypesAsync();
                 return View(model);
             }
 
