@@ -459,7 +459,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 Model = "R510",
                 HorsePower = 510,
                 HasTemperatureControl = false,
-                HasCargoSpace = true,
+                HasCargoSpace = false,
                 TruckImageURL = "/Images/TruckImages/SCANIA.png",
                 TransportCompanyId = SecondTransportCompany.Id,
                 RegistrationNumber = "B125VTG"

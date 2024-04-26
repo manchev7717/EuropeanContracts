@@ -38,89 +38,25 @@ namespace EuropeanContracts.Core.Services
             await repository.SaveChangesAsync();
         }
 
-        public async Task<DetailOfferViewModel> DetailsOfferAsync(int offerId)
-        {
-            var model = await repository.AllReadOnly<Offer>()
-                .Include(o => o.Supplier)
-                .Include(o => o.Transporter)
-                .Include(o => o.Recipient)
-                .Include(o => o.Truck)
-                .Include(o => o.Trailer)
-                .Where(o => o.Id == offerId)
-                .Select(o => new DetailOfferViewModel()
-                {
-                    ProductDescription = o.ProductDescription,
 
-                    OfferViewModel = new OfferDetailViewModel()
-                    {
-                        Id = o.Id,
-                        ProductName = o.ProductName,
-                        ProductImageURL = o.ProductImageURL,
-                        ProductQuantity = o.ProductQuantity,
-                        ProductPrice = o.ProductPrice,
-                        LoadingAddress = o.LoadingAddress,
-                        LoadingCountry = o.LoadingCountry,
-                        IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
-                        PublicationDay = o.PublicationDay,
-                        ActionType = o.ActionType.Name,
-                        SupplierId = o.SupplierId,
-                        ActionDescription = o.ActionType.Description,
-                        CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
-                        CreatorPhoneNumber = o.Supplier.PhoneNumber
-
-                    },
-
-                    RecipientDetail = new RecipientDetailViewModel()
-                    {
-                        CountryOfDestination = o.CountryOfDestination,
-                        AddressOfDestination = o.AddressOfDestination,
-                        RecipientId = o.RecipientId,
-                        RecipientPhoneNumber = o.Recipient != null ? o.Recipient.PhoneNumber : string.Empty,
-                        RecipientCountry = o.Recipient != null ? o.Recipient.Country : string.Empty,
-                        RecipientName = o.Recipient != null ? o.Recipient.Name : string.Empty,
-
-                    },
-
-                    TransporterDetail = new TransporterDetailViewModel()
-                    {
-                        TransporterId = o.TransporterId,
-                        TransporterName = o.Transporter != null ? o.Transporter.Name : string.Empty,
-                        TransporterCountry = o.Transporter != null ? o.Transporter.Country : string.Empty,
-                        TransporterPhoneNumber = o.Transporter != null ? o.Transporter.PhoneNumber : string.Empty,
-                        TruckMake = o.Truck != null ? o.Truck.Make : string.Empty,
-                        TruckModel = o.Truck != null ? o.Truck.Model : string.Empty,
-                        TruckRegistration = o.Truck != null ? o.Truck.RegistrationNumber : string.Empty,
-                        TruckUrl = o.Truck != null ? o.Truck.TruckImageURL : null,
-                        TrailerMake = o.Trailer != null ? o.Trailer.Make : string.Empty,
-                        TrailerRegistration = o.Trailer != null ? o.Trailer.RegistrationNumber : string.Empty,
-                        TrailerUrl = o.Trailer != null ? o.Trailer.TrailerImageURL : null,
-
-                    }
-                })
-                .FirstAsync();
-
-            return model;
-        }
-
-        public async Task<bool> IsOfferExistById(int offerId)
+        public async Task<bool> DoesOfferExistById(int offerId)
         {
             return await repository.AllReadOnly<Offer>()
                 .AnyAsync(o => o.Id == offerId);
         }
 
-        public async Task<IEnumerable<string>> AllCountryNamesAsync()
+        public async Task<IEnumerable<string>> AllLoadingCountryNamesAsync()
         {
             return await repository.AllReadOnly<Offer>()
                 .Select(a => a.LoadingCountry)
                 .ToListAsync();
         }
 
-        public async Task<OffersAndCountViewModel> AllAsync(
-                            string? actionType,
-                            string? country,
-                            string? isTemperatureControlNeeded,
-                            int currentPage,
-                            int offersCountOnPage)
+        public async Task<OffersAndCountViewModel> AllAsync(string? actionType,
+                                                            string? country,
+                                                            string? isTemperatureControlNeeded,
+                                                            int currentPage,
+                                                            int offersCountOnPage)
         {
 
 
@@ -181,9 +117,9 @@ namespace EuropeanContracts.Core.Services
             };
         }
         public async Task<OffersAndCountTransporterViewModel> AllOffersForTransporterAsync(string isContract,
-                                                                       int currentPage,
-                                                                       int offersCountOnPage,
-                                                                       string userId)
+                                                                                           int currentPage,
+                                                                                           int offersCountOnPage,
+                                                                                           string userId)
         {
             var currentTransporter = await repository.AllReadOnly<TransportCompany>()
                 .Where(t => t.OwnerId == userId)
@@ -231,9 +167,9 @@ namespace EuropeanContracts.Core.Services
         }
 
         public async Task<SupplierOffersAndCountViewModel> AllOffersForSupplierAsync(int currentPage,
-                                                                          int offersCountOnPage,
-                                                                          string isContract,
-                                                                          int supplierId)
+                                                                                     int offersCountOnPage,
+                                                                                     string isContract,
+                                                                                     int supplierId)
         {
             var offers = await repository.AllReadOnly<Offer>()
                 .Where(o => o.SupplierId == supplierId)
@@ -280,9 +216,9 @@ namespace EuropeanContracts.Core.Services
         }
 
         public async Task<OffersAndCountRecipientViewModel> AllOffersForRecipientAsync(string isContract,
-                                                                     int currentPage,
-                                                                     int offersCountOnPage,
-                                                                     string userId)
+                                                                                       int currentPage,
+                                                                                       int offersCountOnPage,
+                                                                                       string userId)
         {
             var currentRecipient = await repository.AllReadOnly<RecipientCompany>()
                 .Where(t => t.OwnerId == userId)
@@ -361,6 +297,70 @@ namespace EuropeanContracts.Core.Services
 
                 await repository.SaveChangesAsync();
             }
+        }
+
+        public async Task<DetailOfferViewModel> DetailsOfferAsync(int offerId)
+        {
+            var model = await repository.AllReadOnly<Offer>()
+                .Include(o => o.Supplier)
+                .Include(o => o.Transporter)
+                .Include(o => o.Recipient)
+                .Include(o => o.Truck)
+                .Include(o => o.Trailer)
+                .Where(o => o.Id == offerId)
+                .Select(o => new DetailOfferViewModel()
+                {
+                    ProductDescription = o.ProductDescription,
+
+                    OfferViewModel = new OfferDetailViewModel()
+                    {
+                        Id = o.Id,
+                        ProductName = o.ProductName,
+                        ProductImageURL = o.ProductImageURL,
+                        ProductQuantity = o.ProductQuantity,
+                        ProductPrice = o.ProductPrice,
+                        LoadingAddress = o.LoadingAddress,
+                        LoadingCountry = o.LoadingCountry,
+                        IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                        PublicationDay = o.PublicationDay,
+                        ActionType = o.ActionType.Name,
+                        SupplierId = o.SupplierId,
+                        ActionDescription = o.ActionType.Description,
+                        CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
+                        CreatorPhoneNumber = o.Supplier.PhoneNumber
+
+                    },
+
+                    RecipientDetail = new RecipientDetailViewModel()
+                    {
+                        CountryOfDestination = o.CountryOfDestination,
+                        AddressOfDestination = o.AddressOfDestination,
+                        RecipientId = o.RecipientId,
+                        RecipientPhoneNumber = o.Recipient != null ? o.Recipient.PhoneNumber : string.Empty,
+                        RecipientCountry = o.Recipient != null ? o.Recipient.Country : string.Empty,
+                        RecipientName = o.Recipient != null ? o.Recipient.Name : string.Empty,
+
+                    },
+
+                    TransporterDetail = new TransporterDetailViewModel()
+                    {
+                        TransporterId = o.TransporterId,
+                        TransporterName = o.Transporter != null ? o.Transporter.Name : string.Empty,
+                        TransporterCountry = o.Transporter != null ? o.Transporter.Country : string.Empty,
+                        TransporterPhoneNumber = o.Transporter != null ? o.Transporter.PhoneNumber : string.Empty,
+                        TruckMake = o.Truck != null ? o.Truck.Make : string.Empty,
+                        TruckModel = o.Truck != null ? o.Truck.Model : string.Empty,
+                        TruckRegistration = o.Truck != null ? o.Truck.RegistrationNumber : string.Empty,
+                        TruckUrl = o.Truck != null ? o.Truck.TruckImageURL : null,
+                        TrailerMake = o.Trailer != null ? o.Trailer.Make : string.Empty,
+                        TrailerRegistration = o.Trailer != null ? o.Trailer.RegistrationNumber : string.Empty,
+                        TrailerUrl = o.Trailer != null ? o.Trailer.TrailerImageURL : null,
+
+                    }
+                })
+                .FirstAsync();
+
+            return model;
         }
 
     }

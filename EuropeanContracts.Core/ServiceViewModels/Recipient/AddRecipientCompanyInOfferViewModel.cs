@@ -13,7 +13,6 @@ namespace EuropeanContracts.Core.ServiceViewModels.Recipient
         [StringLength(DataValidationConstance.OfferProductAddressOfDestinationMaxValue,
             MinimumLength = DataValidationConstance.OfferProductAddressOfDestinationMinValue,
             ErrorMessage = ModelsErrorMessages.StringLengthtError)]
-
         [Display(Name = "Address of destination")]
         public string AddressOfDestination { get; set; } = string.Empty;
         [Display(Name = "Country of destination")]

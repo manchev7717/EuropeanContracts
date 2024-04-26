@@ -52,7 +52,7 @@ namespace EuropeanContracts.Controllers.Offer
 
             model.Offers = result.OfferViewModels;
             model.TotalOffersCount = result.AllOffersCount;
-            model.CountriesOfOrigin = await offerService.AllCountryNamesAsync();
+            model.CountriesOfOrigin = await offerService.AllLoadingCountryNamesAsync();
             model.Actions = await actionTypeService.AllActionTypeNamesAsync();
 
             return View(model);
@@ -94,7 +94,7 @@ namespace EuropeanContracts.Controllers.Offer
         [HttpGet]
         public async Task<IActionResult> Details(int id, string searchingInfo)
         {
-            if (!await offerService.IsOfferExistById(id))
+            if (!await offerService.DoesOfferExistById(id))
             {
                 return RedirectToAction("Error", "Home", "500");
             }

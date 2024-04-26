@@ -8,7 +8,7 @@ namespace EuropeanContracts.Core.Contracts
 {
     public interface IOfferService
     {
-        Task<IEnumerable<string>> AllCountryNamesAsync();
+        Task<IEnumerable<string>> AllLoadingCountryNamesAsync();
 
         Task<OffersAndCountViewModel> AllAsync(
                             string? actionType,
@@ -24,7 +24,7 @@ namespace EuropeanContracts.Core.Contracts
         Task AddTransporterInOfferAsync(AddTransportCompanyInOfferViewModel model);
         Task AddRecipientInOfferAsync(AddRecipientCompanyInOfferViewModel model);
 
-        Task<bool> IsOfferExistById(int offerId);
+        Task<bool> DoesOfferExistById(int offerId);
         public Task<OffersAndCountTransporterViewModel> AllOffersForTransporterAsync(
                            string isContract,
                            int currentPage,
