@@ -1,8 +1,6 @@
 ﻿using EuropeanContracts.Controllers.Base;
 using EuropeanContracts.Core.Contracts;
-using EuropeanContracts.Core.Services;
 using EuropeanContracts.Core.ServiceViewModels.Trailer;
-using EuropeanContracts.Core.ServiceViewModels.Truck;
 using EuropeanContracts.Extentions;
 using EuropeanContracts.Infrastructure.Data.Models;
 using EuropeanContracts.TempDataMessages;
@@ -33,7 +31,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> Add(AddTrailerViewModel trailerModel)
         {
-            if (!await transportCompanyService.DoesTransporterExistFindByUserIdAsync(User.Id()))
+            if (!await transportCompanyService.DoesTransporterExistsAsync(User.Id()))
             {
                 return BadRequest();
             }
@@ -65,7 +63,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -84,7 +82,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -95,10 +93,6 @@ namespace EuropeanContracts.Controllers
             }
 
             await trailerService.EditAsync(trailerModel);
-
-            // it is good to redirect to Details of the current truck, not in page with all trucks!!!!!!!!!!
-
-            //return RedirectToAction(nameof(Details), new { truckModel.Id });
 
             TempData["message"] = TempDataMessageConstance.EditTrailer;
             return RedirectToAction("AllTrailers", "TransportCompany");
@@ -111,7 +105,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -129,7 +123,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }

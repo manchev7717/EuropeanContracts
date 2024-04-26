@@ -26,7 +26,7 @@
     <h6>-Registration Number: <b>@Model.TransporterDetail.TrailerRegistration</b></h6>
 
 }
-else if (Model.TransporterDetail.TransporterId == null && await transporterService.DoesTransporterExistFindByUserIdAsync(User.Id()))
+else if (Model.TransporterDetail.TransporterId == null && await transporterService.DoesTransporterExistsAsync(User.Id()))
 {
     <h4 class="text-center">
         <span class="text-danger text-center">No transport company yet</span>

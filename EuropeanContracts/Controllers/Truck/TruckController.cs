@@ -31,7 +31,7 @@ namespace EuropeanContracts.Controllers
 
         public async Task<IActionResult> Add(AddTruckViewModel truckModel)
         {
-            if (!await transportCompanyService.DoesTransporterExistFindByUserIdAsync(User.Id()))
+            if (!await transportCompanyService.DoesTransporterExistsAsync(User.Id()))
             {
                 return BadRequest();
             }
@@ -68,7 +68,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
            
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -87,7 +87,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -110,7 +110,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }
@@ -128,7 +128,7 @@ namespace EuropeanContracts.Controllers
                 return BadRequest();
             }
 
-            if (await transportCompanyService.DoesUserIsTransportCompanyOwnerByIdAsync(User.Id()) == false)
+            if (await transportCompanyService.DoesTransporterExistsAsync(User.Id()) == false)
             {
                 return Unauthorized();
             }

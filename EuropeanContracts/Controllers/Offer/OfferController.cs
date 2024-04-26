@@ -111,6 +111,11 @@ namespace EuropeanContracts.Controllers.Offer
         {
             var transporter = await transporterService.ReturnTransporterByUserIdAsync(User.Id());
 
+            if (transporter == null)
+            {
+                return BadRequest();
+            }
+
             var model = new AddTransportCompanyInOfferViewModel();
 
             model.OfferId = offerId;
@@ -126,6 +131,10 @@ namespace EuropeanContracts.Controllers.Offer
         public async Task<IActionResult> AddTransporter(AddTransportCompanyInOfferViewModel model)
         {
             var transporter = await transporterService.ReturnTransporterByUserIdAsync(User.Id());
+            if (transporter == null)
+            {
+                return BadRequest();
+            }
             var hasTruckTemperaturControl = await truckService.HasTruckTemperaturControlAsync(model.TruckId);
             model.TransporterId = transporter.Id;
 
@@ -139,7 +148,6 @@ namespace EuropeanContracts.Controllers.Offer
 
             if (ModelState.IsValid == false)
             {
-                //// for check return direction!!!!!!!!!!!!!!!!!!
                 return View(AddTransporter(model.IsTemperatureRequired, model.OfferId));
             }
 

@@ -19,7 +19,7 @@
     {
 
         if ((await supplierService.DoesSupplierExists(User.Id())) == false &&
-        (await transporterService.DoesTransporterExistFindByUserIdAsync(User.Id())) == false &&
+        (await transporterService.DoesTransporterExistsAsync(User.Id())) == false &&
         (await recipientService.DoesRecipientExists(User.Id())) == false)
         {
             <li class="nav-item">

@@ -29,17 +29,10 @@ namespace EuropeanContracts.Core.Services
         }
 
 
-        public async Task<bool> DoesTransporterExistFindByUserIdAsync(string userId)
+        public async Task<bool> DoesTransporterExistsAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
                 .AnyAsync(t => t.OwnerId == userId);
-        }
-
-        public async Task<TransportCompany> ReturnTransporterByUserIdAsync(string userId)
-        {
-            return await repository.AllReadOnly<TransportCompany>()
-                .Where(t => t.OwnerId == userId)
-                .FirstAsync();
         }
 
         public async Task<bool> DoesTransporterExistsAsync(string country, string name)
@@ -47,12 +40,13 @@ namespace EuropeanContracts.Core.Services
             return await repository.AllReadOnly<TransportCompany>()
                 .AnyAsync(s => s.Country == country && s.Name == name);
         }
-        public async Task<bool> DoesUserIsTransportCompanyOwnerByIdAsync(string userId)
+        public async Task<TransportCompany?> ReturnTransporterByUserIdAsync(string userId)
         {
             return await repository.AllReadOnly<TransportCompany>()
-                .AnyAsync(t => t.OwnerId == userId);
+                .Where(t => t.OwnerId == userId)
+                .FirstOrDefaultAsync();
         }
 
-        
+
     }
 }

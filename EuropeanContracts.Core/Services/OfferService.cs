@@ -40,6 +40,7 @@ namespace EuropeanContracts.Core.Services
 
 
             var offers = await repository.AllReadOnly<Offer>()
+                .Where(o => o.IsContract == false)
                 .Include(a => a.ActionType)
                 .Include(a => a.Supplier)
                 .ToListAsync();

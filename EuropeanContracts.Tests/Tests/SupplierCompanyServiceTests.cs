@@ -134,7 +134,7 @@ namespace EuropeanContracts.Tests.Tests
         [Test]
         public void Add_ShouldAddSupplierAndCurrentClaimCorrectly()
         {
-            var suplierForAdd = new SupplierCompany()
+            var supplierForAdd = new SupplierCompany()
             {
                 Id = 4,
                 Name = "BestFood ASP",
@@ -144,7 +144,7 @@ namespace EuropeanContracts.Tests.Tests
                 OwnerId = "TestUser@#FDFDS"
             };
 
-            supplierService.AddAsync(suplierForAdd);
+            supplierService.AddAsync(supplierForAdd);
 
             Assert.That(context.SuppliersCompanies.Any(a => a.OwnerId == "TestUser@#FDFDS" &&
                                                             a.Id == 4 &&
@@ -153,7 +153,8 @@ namespace EuropeanContracts.Tests.Tests
                                                             a.PhoneNumber == "+080808080801136" &&
                                                             a.Address == "Samokov, str. Sofiisko shose 69"), Is.EqualTo(true));
 
-            Assert.That(context.UserClaims.Any(a => a.ClaimValue == "BestFood ASP"), Is.EqualTo(true));
+            Assert.That(context.UserClaims.Any(a => a.ClaimValue == "BestFood ASP" && 
+                                                    a.UserId == "TestUser@#FDFDS"), Is.EqualTo(true));
         }
 
         [Test]

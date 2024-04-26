@@ -22,7 +22,7 @@ else if (Model.RecipientDetail.RecipientId == null && await recipientService.Doe
     <br/>
     <a asp-action="AddRecipient" asp-controller="Offer" asp-route-offerId="@Model.OfferViewModel.Id" class="btn btn-primary">Add Recipient Company </a>
 }
-else if ((Model.RecipientDetail.RecipientId == null && await transporterService.DoesTransporterExistFindByUserIdAsync(User.Id())) || await supplierService.DoesSupplierExists(User.Id()))
+else if ((Model.RecipientDetail.RecipientId == null && await transporterService.DoesTransporterExistsAsync(User.Id())) || await supplierService.DoesSupplierExists(User.Id()))
 {
     <h4 class="text-center">
         <span class="text-danger text-center">No recipient company yet</span>

@@ -151,7 +151,8 @@ namespace EuropeanContracts.Tests.Tests
                                                              a.PhoneNumber == "+45885546651476" &&
                                                              a.Address == "Coimbra, str. Vasgo da Dama 77"), Is.EqualTo(true));
 
-            Assert.That(context.UserClaims.Any(a => a.ClaimValue == "C# DeliverY Commerce"), Is.EqualTo(true));
+            Assert.That(context.UserClaims.Any(a => a.ClaimValue == "C# DeliverY Commerce" && 
+                                                    a.UserId == "TestUser54s5d45sa4"), Is.EqualTo(true));
         }
 
         [Test]
