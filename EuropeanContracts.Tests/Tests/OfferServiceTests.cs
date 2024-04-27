@@ -406,6 +406,62 @@ namespace EuropeanContracts.Tests.Tests
 
         }
 
+        [Test] 
+
+        public async Task MakeOfferInContract_ShouldMakeOfferInContract()
+        {
+            int offerId = 2;
+            int offerIdOne = 3;
+
+            await offerService.MakeOfferInContract(offerId);
+            await offerService.MakeOfferInContract(offerIdOne);
+
+            Assert.That(context.Offers.Any(o => o.Id == 2 &&
+                                               o.ProductName == "Plastic waste" &&
+                                               o.IsContract == true), Is.EqualTo(true));
+
+            Assert.That(context.Offers.Any(o => o.Id == 3 &&
+                                              o.ProductName == "Scaffolding material" &&
+                                              o.IsContract == true), Is.EqualTo(true));
+        }
+
+        [Test]
+        public async Task All_ShouldReturnAllOffersByGivenCurrentPageAndOfferCount()
+        {
+            int currentPage = 1;
+            int offerCountOnPage = 1;
+            
+
+            int offerCountOnPageTwo = 4;
+
+            var resultOne = await offerService.AllAsync(currentPage,
+                                                        offerCountOnPage);
+
+
+
+
+            Assert.That(resultOne.AllOffersCount, Is.EqualTo(1));
+            Assert.That(resultOne.OfferViewModels.Any(o => o.Id == 1 &&
+                                                           o.LoadingAddress == "Badajoz, str. C.Jose.Caldito Ruiz 50" &&
+                                                           o.ProductImageURL == "/Images/ProductImages/FreshPorkMeat.png" &&
+                                                           o.ProductName == "Pork Meat" &&
+                                                           o.ProductPrice == 102504), Is.EqualTo(true));
+
+
+            var resultTwo = await offerService.AllAsync(currentPage,
+                                                        offerCountOnPageTwo);
+
+            Assert.That(resultTwo.AllOffersCount, Is.EqualTo(1));
+            Assert.That(resultTwo.OfferViewModels.Any(o => o.Id == 1 &&
+                                                           o.LoadingCountry == "Spain" &&
+                                                           o.ProductImageURL == "/Images/ProductImages/FreshPorkMeat.png"),
+                                                           Is.EqualTo(true));
+
+            
+        }
+
+
+
         [OneTimeTearDown]
         public void TearDownDbContextInMemory()
         {
