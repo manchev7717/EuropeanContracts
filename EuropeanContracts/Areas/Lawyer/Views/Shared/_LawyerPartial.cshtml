@@ -1,0 +1,12 @@
+﻿@using EuropeanContracts.Infrastructure.Data.Constance
+@inject SignInManager<EuropeanContractUser> SignInManager
+@inject UserManager<EuropeanContractUser> UserManager
+@inject ITransportCompanyService transportService
+@inject IRecipientCompanyService recipientService
+@inject ISupplierCompanyService supplierService
+
+
+<li class="navbar-text-light">
+
+    <a class="btn btn-primary" asp-area="Lawyer" asp-controller="LawyerHome" asp-action="OffersForValidation">Offer То Validate</a>
+</li>

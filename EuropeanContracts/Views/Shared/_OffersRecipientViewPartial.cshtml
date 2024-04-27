@@ -10,24 +10,8 @@
             <h6> Price: <b>@String.Format("{0:f2}", Model.ProductPrice) EUR</b> </h6>
             <h6>Transport: <b>@(Model.IsTemperatureControlNeeded ? "Temperature control is required" : "No temperature control required")</b></h6>
             <br />
-            <a asp-controller="Offer" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-success">Details</a>
-            @* @if (this.User.Identity.IsAuthenticated)
-            {
-            <a asp-controller="Offer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-            <a asp-controller="Offer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a> <p></p>
-            @if (!Model.IsRented)
-            {
-            <form class="input-group-sm" asp-controller="Offer" asp-action="Rent" asp-route-id="@Model.Id" method="post">
-            <input class="btn btn-primary" type="submit" value="Rent" />
-            </form>
-            }
-            else
-            {
-            <form asp-controller="Offer" asp-action="Leave" asp-route-id="@Model.Id" method="post">
-            <input class="btn btn-primary" type="submit" value="Leave" />
-            </form>
-            }
-            } *@
+            <a asp-area="" asp-controller="Offer" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-success">Details</a>
+            
         </div>
     </div>
 </div>

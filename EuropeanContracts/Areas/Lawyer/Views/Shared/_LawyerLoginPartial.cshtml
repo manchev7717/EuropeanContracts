@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<EuropeanContractUser> SignInManager
 @inject UserManager<EuropeanContractUser> UserManager
-@inject RoleManager<IdentityRole> RoleManager
 @inject ISupplierCompanyService supplierService
 @inject IRecipientCompanyService recipientService
 @inject ITransportCompanyService transporterService
@@ -16,25 +15,12 @@
 
 }
 <ul class="navbar-nav">
+
     @if (SignInManager.IsSignedIn(User))
     {
-        var user = await UserManager.FindByEmailAsync(RoleConstance.AdminEmail);
-        var role = await RoleManager.FindByNameAsync(RoleConstance.AdminRole);
-
-        if ((await supplierService.DoesSupplierExists(User.Id())) == false &&
-        (await transporterService.DoesTransporterExistsAsync(User.Id())) == false &&
-        (await recipientService.DoesRecipientExists(User.Id())) == false)
-        {
-            <li class="nav-item">
-                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Information">Information</a>
-            </li>
-            @if (await UserManager.IsInRoleAsync(user,role.Name))
-            {
-                <li class="nav-item">
-                    <a class="btn btn-primary" asp-area="Lawyer" asp-controller="LawyerHome" asp-action="index">Go to Lawyer Area</a>
-                </li>
-            }
-        }
+        <li class="nav-item">
+            <a class="btn btn-secondary" asp-area="" asp-controller="Offer" asp-action="All">Back To User Area </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @userName!</a>
         </li>

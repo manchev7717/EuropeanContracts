@@ -11,25 +11,8 @@
             <h6>Has cargo space: <b>@(Model.HasCargoSpace == true ? "Yes":"No" )</b> </h6>
             <h6>Has temperature control: <b>@(Model.HasTemperatureControl ? "Yes" : "No")</b></h6>
             <br />
-            <a asp-controller="Truck" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
-            <a asp-controller="Truck" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
-            @* @if (this.User.Identity.IsAuthenticated)
-            {
-            <a asp-controller="Offer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-            <a asp-controller="Offer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a> <p></p>
-            @if (!Model.IsRented)
-            {
-            <form class="input-group-sm" asp-controller="Offer" asp-action="Rent" asp-route-id="@Model.Id" method="post">
-            <input class="btn btn-primary" type="submit" value="Rent" />
-            </form>
-            }
-            else
-            {
-            <form asp-controller="Offer" asp-action="Leave" asp-route-id="@Model.Id" method="post">
-            <input class="btn btn-primary" type="submit" value="Leave" />
-            </form>
-            }
-            } *@
+            <a asp-area="" asp-controller="Truck" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-area="" asp-controller="Truck" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,32 @@
+﻿@model DetailOfferViewModel
+@{
+    ViewData["Title"] = "Offer details";
+}
+<h3 class="text-center ">
+    Details:
+    <span class="text-primary">
+        @Model.OfferViewModel.ProductName
+    </span>
+</h3>
+<hr class="border border-primary border-2 opacity-75" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailOfferPartial"></partial>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailTransporterPartial">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <partial name="_DetailRecipientPartial">
+            </div>
+        </div>
+        <a type="button" class="btn btn-primary" asp-area="Lawyer" asp-controller="LawyerHome" asp-action="OfferIsValid"
+           asp-route-offerId="@Model.OfferViewModel.Id">Make Contract</a>
+    </div>
+</div>

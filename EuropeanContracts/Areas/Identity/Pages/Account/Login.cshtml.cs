@@ -2,7 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using EuropeanContracts.Core.ErrorMessageAndConstance;
 using EuropeanContracts.Infrastructure.Data.Models;
+using EuropeanContracts.TempDataMessages;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,13 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<EuropeanContractUser> _signInManager;
+        private readonly UserManager<EuropeanContractUser> _userManager;
 
-        public LoginModel(SignInManager<EuropeanContractUser> signInManager)
+        public LoginModel(SignInManager<EuropeanContractUser> signInManager,
+                          UserManager<EuropeanContractUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -85,7 +90,7 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            
+
             ReturnUrl = returnUrl;
             return Page();
         }
@@ -101,6 +106,13 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, true, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(Input.Email);
+
+                    if (await _userManager.IsInRoleAsync(user, RoleConstance.AdminRole))
+                    {
+                        TempData["message"] = TempDataMessageConstance.LawyerLoginMessage;
+                        return RedirectToAction("Index", "LawyerHome", new { area = RoleConstance.AdminArea });
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 else

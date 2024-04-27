@@ -22,11 +22,11 @@
                 <b>
                     TRANSPORT COMPANY:@companyName
                 </b>
-                <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="MyOffers">My Offers </a>
-                <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllTrucks">My Trucks </a>
-                <a class="btn btn-primary" asp-controller="TransportCompany" asp-action="AllTrailers">My Trailers </a>
-                <a class="btn btn-primary" asp-controller="Truck" asp-action="Add">Add Truck </a>
-                <a class="btn btn-primary" asp-controller="Trailer" asp-action="Add">Add Trailer </a>
+                <a class="btn btn-primary"asp-area="" asp-controller="TransportCompany" asp-action="MyOffers">My Offers </a>
+                <a class="btn btn-primary"asp-area="" asp-controller="TransportCompany" asp-action="AllTrucks">My Trucks </a>
+                <a class="btn btn-primary"asp-area="" asp-controller="TransportCompany" asp-action="AllTrailers">My Trailers </a>
+                <a class="btn btn-primary"asp-area="" asp-controller="Truck" asp-action="Add">Add Truck </a>
+                <a class="btn btn-primary"asp-area="" asp-controller="Trailer" asp-action="Add">Add Trailer </a>
             </div>
         }
         if (await recipientService.DoesRecipientExists(User.Id()))
@@ -34,16 +34,16 @@
             <b>
                 RECIPIENT COMPANY:@companyName
             </b>
-            <a class="btn btn-primary" asp-controller="RecipientCompany" asp-action="MyOffers">My Offers </a>
+            <a class="btn btn-primary" asp-area="" asp-controller="RecipientCompany" asp-action="MyOffers">My Offers </a>
         }
         if (await supplierService.DoesSupplierExists(User.Id()))
         {
             <b>
                 SUPPLIER COMPANY: @companyName
             </b>
-            <a class="btn btn-primary" asp-controller="SupplierCompany" asp-action="MyOffers">My Offers </a>
-            <a class="btn btn-primary" asp-controller="Offer" asp-action="Create">Create Offer </a>
-            <a class="btn btn-primary" asp-controller="ActionType" asp-action="Add">Create Action Type </a>
+            <a class="btn btn-primary" asp-area="" asp-controller="SupplierCompany" asp-action="MyOffers">My Offers </a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Offer" asp-action="Create">Create Offer </a>
+            <a class="btn btn-primary" asp-area="" asp-controller="ActionType" asp-action="Add">Create Action Type </a>
         }
     }
 </li>

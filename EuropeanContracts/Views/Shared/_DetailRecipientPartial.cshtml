@@ -20,7 +20,7 @@ else if (Model.RecipientDetail.RecipientId == null && await recipientService.Doe
     <br/>
     <br/>
     <br/>
-    <a asp-action="AddRecipient" asp-controller="Offer" asp-route-offerId="@Model.OfferViewModel.Id" class="btn btn-primary">Add Recipient Company </a>
+    <a asp-area="" asp-action="AddRecipient" asp-controller="Offer" asp-route-offerId="@Model.OfferViewModel.Id" class="btn btn-primary">Add Recipient Company </a>
 }
 else if ((Model.RecipientDetail.RecipientId == null && await transporterService.DoesTransporterExistsAsync(User.Id())) || await supplierService.DoesSupplierExists(User.Id()))
 {
@@ -30,7 +30,7 @@ else if ((Model.RecipientDetail.RecipientId == null && await transporterService.
     <br />
     <br />
     <br />
-    <a asp-action="AddTransporter" asp-controller="Offer" class="btn btn-primary disabled">Add Recipient Company</a>
+    <a asp-area=""  asp-action="AddTransporter" asp-controller="Offer" class="btn btn-primary disabled">Add Recipient Company</a>
 }
 else
 {
@@ -40,5 +40,5 @@ else
     <br />
     <br />
     <br />
-    <a asp-action="Information" asp-controller="Home" class="btn btn-primary">Add Recipient Company</a>
+    <a asp-area="" asp-action="Information" asp-controller="Home" class="btn btn-primary">Add Recipient Company</a>
 }

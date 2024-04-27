@@ -116,6 +116,48 @@ namespace EuropeanContracts.Core.Services
                 AllOffersCount = offers.Count()
             };
         }
+        public async Task<OffersAndCountViewModel> AllAsync(
+                                                            int currentPage,
+                                                            int offersCountOnPage)
+        {
+
+
+            var offers = await repository.AllReadOnly<Offer>()
+                .Where(o => o.IsContract == false)
+                .Where(o => o.Transporter != null && o.Recipient != null)
+                .Include(a => a.ActionType)
+                .Include(a => a.Supplier)
+                .ToListAsync();
+
+            var offerResult = offers
+                .Skip((currentPage - 1) * offersCountOnPage)
+                .Take(offersCountOnPage)
+                .Select(o => new OfferDetailViewModel()
+                {
+                    Id = o.Id,
+                    ProductName = o.ProductName,
+                    ProductImageURL = o.ProductImageURL,
+                    ProductQuantity = o.ProductQuantity,
+                    ProductPrice = o.ProductPrice,
+                    LoadingAddress = o.LoadingAddress,
+                    LoadingCountry = o.LoadingCountry,
+                    IsTemperatureControlNeeded = o.IsTemperatureControlNeeded,
+                    PublicationDay = o.PublicationDay,
+                    ActionType = o.ActionType.Name,
+                    SupplierId = o.SupplierId,
+                    CreatorName = o.Supplier.Name + "/" + o.Supplier.Country,
+                    CreatorPhoneNumber = o.Supplier.PhoneNumber,
+                    ActionDescription = o.ActionType.Description
+
+                })
+                .ToList();
+
+            return new OffersAndCountViewModel()
+            {
+                OfferViewModels = offerResult,
+                AllOffersCount = offers.Count()
+            };
+        }
         public async Task<OffersAndCountTransporterViewModel> AllOffersForTransporterAsync(string isContract,
                                                                                            int currentPage,
                                                                                            int offersCountOnPage,
@@ -363,5 +405,18 @@ namespace EuropeanContracts.Core.Services
             return model;
         }
 
+        public async Task MakeOfferInContract(int offerId)
+        {
+            var offer = await repository.All<Offer>()
+                .Where(o => o.Id == offerId)
+                .FirstAsync();
+
+            if (offer != null)
+            {
+                offer.IsContract = true;
+            }
+
+            await repository.SaveChangesAsync();
+        }
     }
 }

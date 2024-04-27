@@ -21,5 +21,8 @@
         public const string DeleteTruck = "You have successfully deleted the selected truck";
 
         public const string CreateNewActionType = "You have successfully created a new action type";
+
+        public const string LawyerLoginMessage = "You have successfully loggin like Greate lawyer ever";
+        public const string LawyerSuccessfullyValidateContract = "You have successfully concluded the contract";
     }
 }

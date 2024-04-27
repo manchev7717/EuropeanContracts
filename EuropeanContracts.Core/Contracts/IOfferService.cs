@@ -16,6 +16,9 @@ namespace EuropeanContracts.Core.Contracts
                             string? isTemperatureControlNeeded,
                             int currentPage,
                             int offersCountOnPage);
+        Task<OffersAndCountViewModel> AllAsync(
+                            int currentPage,
+                            int offersCountOnPage);
 
         Task CreateOfferAsync(CreateOfferViewModel model);
 
@@ -39,6 +42,8 @@ namespace EuropeanContracts.Core.Contracts
                            int currentPage,
                            int offersCountOnPage,
                            string userId);
+
+        public Task MakeOfferInContract(int offerId);
 
     }
 }
