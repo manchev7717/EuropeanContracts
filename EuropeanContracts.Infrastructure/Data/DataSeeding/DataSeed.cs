@@ -31,6 +31,10 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
         public EuropeanContractUser SixthUser { get; set; } = null!;
         public EuropeanContractUser SeventhUser { get; set; } = null!;
         public EuropeanContractUser EighthUser { get; set; } = null!;
+        public EuropeanContractUser LawyerUser { get; set; } = null!;
+        public EuropeanContractUser TestUser { get; set; } = null!;
+        public IdentityUserClaim<string> LawyerClaim { get; set; } = null!;
+        public IdentityUserClaim<string> TestUserClaim { get; set; } = null!;
 
         public IdentityUserClaim<string> FirstUserClaim { get; set; } = null!;
         public IdentityUserClaim<string> SecondUserClaim { get; set; } = null!;
@@ -51,6 +55,7 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
 
         public IdentityUserClaim<string> FirstTransporterClaim { get; set; } = null!;
         public IdentityUserClaim<string> SecondTransporterClaim { get; set; } = null!;
+
 
 
 
@@ -203,6 +208,30 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 LastName = "Danielova"
             };
             EighthUser.PasswordHash = hasher.HashPassword(EighthUser, "987654EIGHT");
+
+            LawyerUser = new EuropeanContractUser()
+            {
+                Id = "7717fj-aadr-keke-fefe-5s8959d8f9ds82",
+                UserName = "lawyer@gmail.com",
+                NormalizedUserName = "LAWYER@GMAIL.COM",
+                Email = "lawyer@gmail.com",
+                NormalizedEmail = "LAWYER@GMAIL.COM",
+                FirstName = "Advokat",
+                LastName = "Advokatov"
+            };
+            LawyerUser.PasswordHash = hasher.HashPassword(EighthUser, "bob123456@");
+
+            TestUser = new EuropeanContractUser()
+            {
+                Id = "069b9834-e57d-47ca-ac9c-78b790b99a59",
+                UserName = "testUser@mail.com",
+                NormalizedUserName = "TESTUSER@MAIL.COM",
+                Email = "testUser@mail.com",
+                NormalizedEmail = "TESTUSER@MAIL.COM",
+                FirstName = "Test",
+                LastName = "Testovic"
+            };
+            TestUser.PasswordHash = hasher.HashPassword(EighthUser, "123456Aza@");
         }
 
         private void SeedUserClaim()
@@ -332,6 +361,22 @@ namespace EuropeanContracts.Infrastructure.Data.DataSeeding
                 UserId = FifthUser.Id,
                 ClaimType = CustomUserClaimType.UserCompanyNameCustomClaim,
                 ClaimValue = SecondTransportCompany.Name
+            };
+
+            LawyerClaim = new IdentityUserClaim<string>
+            {
+                Id = 17,
+                UserId = LawyerUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{LawyerUser.FirstName} {LawyerUser.LastName}"
+            };
+
+            TestUserClaim = new IdentityUserClaim<string>
+            {
+                Id = 18,
+                UserId = TestUser.Id,
+                ClaimType = CustomUserClaimType.UserFullNameCustomClaim,
+                ClaimValue = $"{TestUser.FirstName} {TestUser.LastName}"
             };
 
         }

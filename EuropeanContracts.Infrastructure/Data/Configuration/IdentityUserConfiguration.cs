@@ -22,6 +22,8 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
                     data.SixthUser,
                     data.SeventhUser,
                     data.EighthUser,
+                    data.LawyerUser,
+                    data.TestUser
                 });
         }
     }

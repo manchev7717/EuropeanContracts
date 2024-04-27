@@ -30,7 +30,9 @@ namespace EuropeanContracts.Infrastructure.Data.Configuration
                     data.ThirdRecipientClaim,
                     data.FirstTransporterClaim,
                     data.SecondTransporterClaim,
-                }); ;
+                    data.LawyerClaim,
+                    data.TestUserClaim
+                }); 
         }
     }
 }

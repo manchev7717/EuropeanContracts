@@ -3,6 +3,7 @@ using EuropeanContracts.Core.Services;
 using EuropeanContracts.Data;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EuropeanContracts.Extentions
@@ -49,7 +50,9 @@ namespace EuropeanContracts.Extentions
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
 
-            }).AddEntityFrameworkStores<EuropeanContractsDbContext>();
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<EuropeanContractsDbContext>();
 
             return services;
         }
