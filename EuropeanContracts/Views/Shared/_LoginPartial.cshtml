@@ -18,7 +18,7 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        var user = await UserManager.FindByEmailAsync(RoleConstance.AdminEmail);
+        var user = await UserManager.FindByIdAsync(User.Id());
         var role = await RoleManager.FindByNameAsync(RoleConstance.AdminRole);
 
         if ((await supplierService.DoesSupplierExists(User.Id())) == false &&

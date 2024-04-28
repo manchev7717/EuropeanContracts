@@ -1,4 +1,5 @@
 ﻿using EuropeanContracts.Core.Contracts;
+using EuropeanContracts.Core.ServiceViewModels.Recipient;
 using EuropeanContracts.Infrastructure.Comman;
 using EuropeanContracts.Infrastructure.Data.Constance;
 using EuropeanContracts.Infrastructure.Data.Models;
@@ -18,9 +19,18 @@ namespace EuropeanContracts.Core.Services
             this.userManager = userManager;
         }
 
-        public async Task AddAsync(RecipientCompany model)
+        public async Task AddAsync(AddRecipientCompanyModel model)
         {
             var user = await userManager.FindByIdAsync(model.OwnerId);
+
+            var recipientToAdd = new RecipientCompany()
+            {
+                Name = model.Name,
+                Country = model.Country,
+                Address = model.Address,
+                PhoneNumber = model.PhoneNumber,
+                OwnerId = user.Id
+            };
 
             await repository.AddAsync(model);
             await userManager.AddClaimAsync(user, new System.Security.Claims.Claim(

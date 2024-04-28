@@ -115,9 +115,10 @@ namespace EuropeanContracts.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
                     await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim(
                         CustomUserClaimType.UserFullNameCustomClaim, $"{user.FirstName} {user.LastName}"));
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

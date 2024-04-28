@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EuropeanContracts.Core.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace EuropeanContracts.Core.ServiceViewModels.Transporter
 {
-    public class OfferTranspoerterViewModel
+    public class OfferTranspoerterViewModel : IOfferModel
     {
 
         public int Id { get; set; }

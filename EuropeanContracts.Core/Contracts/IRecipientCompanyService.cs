@@ -9,7 +9,7 @@ namespace EuropeanContracts.Core.Contracts
 
         Task<bool> DoesRecipientExists(string country, string name);
 
-        Task AddAsync(RecipientCompany model);
+        Task AddAsync(AddRecipientCompanyModel model);
 
         Task<RecipientCompany> ReturnRecipientByUserIdAsync(string userId);
     }

@@ -40,21 +40,13 @@ namespace EuropeanContracts.Controllers
                 ModelState.AddModelError("Country", ModelsErrorMessages.CompanyExistsError);
                 return View(model);
             }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var recipientToAdd = new RecipientCompany()
-            {
-                Name = model.Name,
-                Country = model.Country,
-                Address = model.Address,
-                PhoneNumber = model.PhoneNumber,
-                OwnerId = User.Id()
-            };
-
-            await recipientCompanyService.AddAsync(recipientToAdd);
+            await recipientCompanyService.AddAsync(model);
 
             TempData["message"] = TempDataMessageConstance.CreateNewRecepientCompany;
             return RedirectToAction("Index", "Home");
